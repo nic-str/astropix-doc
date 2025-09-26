@@ -1,4 +1,4 @@
-# AstroPix3 Specification
+# AstroPix3 Specifications
 Submission Status: Submitted June 2022
 
 ![Image title](./images/apix3.png){width="300" align=right}
@@ -7,9 +7,9 @@ AstroPix3 Layout
 ///
 
 ## Summary
-### Maximum Ratings
+### SOA
 - Max. Junction temperature: +150°C
-- Temperature requirement for AmegoX: -10°C to +40°C +/-5°
+- Temperature requirement for AMEGO-X: -10°C to +40°C +/-5°
 
 ### Supplies
 - Analog Supply VDDA: 1.8V
