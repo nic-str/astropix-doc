@@ -8,10 +8,10 @@
 <meta content="mkdocs-1.6.1, mkdocs-material-9.6.20" name="generator"/>
 <title>SPI Interface - AstroPix Documentation</title>
 <link href="../../assets/stylesheets/main.e53b48f4.min.css" rel="stylesheet"/>
-
-<link href="../../assets/external/fonts.googleapis.com/css.49ea35f2.css" rel="stylesheet">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
 <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
-<link href="../../assets/external/unpkg.com/katex@0/dist/katex.min.css" rel="stylesheet">
+<link href="https://unpkg.com/katex@0/dist/katex.min.css" rel="stylesheet"/>
 <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
 <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><script src="../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
             html.glightbox-open { overflow: initial; height: 100%; }
@@ -29,7 +29,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#daq-to-fe">
+<a class="md-skip" href="#controlling-fe">
           Skip to content
         </a>
 </div>
@@ -81,7 +81,7 @@
 <div class="md-nav__link md-nav__container">
 <a class="md-nav__link" href="../..">
 <span class="md-ellipsis">
-    Overview
+    Getting Started
     
   </span>
 </a>
@@ -89,7 +89,7 @@
 <nav aria-expanded="false" aria-labelledby="__nav_1_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_1">
 <span class="md-nav__icon md-icon"></span>
-            Overview
+            Getting Started
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 </ul>
@@ -152,12 +152,12 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#daq-to-fe">
+<a class="md-nav__link" href="#controlling-fe">
 <span class="md-ellipsis">
-      DAQ to FE
+      Controlling FE
     </span>
 </a>
-<nav aria-label="DAQ to FE" class="md-nav">
+<nav aria-label="Controlling FE" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
 <a class="md-nav__link" href="#commands">
@@ -175,6 +175,49 @@
 </li>
 </ul>
 </nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#reading-from-fe">
+<span class="md-ellipsis">
+      Reading from FE
+    </span>
+</a>
+<nav aria-label="Reading from FE" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#hit-packet">
+<span class="md-ellipsis">
+      Hit Packet
+    </span>
+</a>
+<nav aria-label="Hit Packet" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#header-byte">
+<span class="md-ellipsis">
+      Header Byte
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#hit-location-byte">
+<span class="md-ellipsis">
+      Hit Location Byte
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#readout-procedure">
+<span class="md-ellipsis">
+      Readout procedure
+    </span>
+</a>
 </li>
 </ul>
 </nav>
@@ -252,9 +295,8 @@
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
 <h1 id="spi-daisychain-interface">SPI Daisychain Interface<a class="headerlink" href="#spi-daisychain-interface" title="Permanent link">¶</a></h1>
-<h2 id="daq-to-fe">DAQ to FE<a class="headerlink" href="#daq-to-fe" title="Permanent link">¶</a></h2>
+<h2 id="controlling-fe">Controlling FE<a class="headerlink" href="#controlling-fe" title="Permanent link">¶</a></h2>
 <p>AstroPix accepts commands via MOSI in the following 8 bit format:</p>
-<figure>
 <script class="wavedrom" type="WaveDrom">
     {
         reg:[
@@ -263,10 +305,6 @@
         ], config:{bits: 8}
     }
     </script>
-<figcaption>
-<p>SPI command format</p>
-</figcaption>
-</figure>
 <p>All valid commands are listed in the table below:</p>
 <table>
 <thead>
@@ -290,7 +328,6 @@
 </tbody>
 </table>
 <p>The IDLE Byte represents no specific command and an invalid address: 0x1D for address and 0x1 for IDLE -&gt; 0x3D</p>
-<figure>
 <script class="wavedrom" type="WaveDrom">
     {
         reg:[
@@ -299,10 +336,6 @@
         ], config:{bits: 8}
     }
     </script>
-<figcaption>
-<p>SPI IDLE command</p>
-</figcaption>
-</figure>
 <h3 id="commands">Commands<a class="headerlink" href="#commands" title="Permanent link">¶</a></h3>
 <table>
 <thead>
@@ -330,7 +363,7 @@
 <td>0x03</td>
 <td>Shift Register Config</td>
 <td>N Bytes</td>
-<td>Once this command is send, the whole SPI Frame is used - SPI Chip Select must be deasserted and reasserted to send a new command</td>
+<td>Once this command is sent, the whole SPI Frame is used - SPI Chip Select must be de-asserted and reasserted to send a new command</td>
 </tr>
 </tbody>
 </table>
@@ -352,6 +385,69 @@ Each bit present on the SIN serial line is clocked through the shift register af
 <li>Each following byte shifts a 0 or 1 in the Shift Register. The LSB of the byte is used for Serial in (8’bxxxxxxx1 or 8’bxxxxxxx0)</li>
 <li>At the end of the sequence, send a byte with bit[1] = 1 to generate the Load signal</li>
 <li>When the frame finishes, the Load signal goes back to 0.</li>
+</ul>
+<h2 id="reading-from-fe">Reading from FE<a class="headerlink" href="#reading-from-fe" title="Permanent link">¶</a></h2>
+<p>The APS to FE path differs from the FE -&gt; APS since it is not meant to process any commands. Its job is simply to forward packets down the chain, and arbitrate between packets to be forwarded and packets coming from the local readout.</p>
+<p>The Data format on this path is built using a Header that reflects the Chip ID of the data frame, and a length information so that the Arbiter can transmit frames fully without chunking.</p>
+<p>In our project, it is a requirement that data frames be able to pass through the chip without pausing since the SPI interface has no way to synchronise between chips in case some buffer is running full because a lot of data are produced by a chip which blocks the data forwarding path. In such a case, a receiving chip would detect a buffer running full and would have to fill the current frame with error data when possible, then discard any incoming frames until the buffer frees up. This is not implemented right now</p>
+<p>However, this type of events can be easily excluded using the following mechanisms:</p>
+<ul>
+<li>The data forwarder should have a buffer of at least one max. frame size, so that is a frame comes in, and a local readout is producing a frame, the received frame will not overflow the buffer.</li>
+<li>The chip Readout can introduce data production pauses to make sure that if multiple Pixel hits are available, it will leave enough clock cycles free from the readout to let frames from other Chips come through:</li>
+<li>At least 1 free cycle between readouts, which is guaranteed by the Readout-Hit Buffer synchronisation (at least one Load state)</li>
+<li>A configurable amount of extra waiting time, in case the chip is being tested in an environment producing more hits that the real application</li>
+</ul>
+<h3 id="hit-packet">Hit Packet<a class="headerlink" href="#hit-packet" title="Permanent link">¶</a></h3>
+<p>Each hit should produce 2 dataframes with a row and a column packet. Each dataframe consists of the following 5 Bytes:</p>
+<script class="wavedrom" type="WaveDrom">
+    {
+        reg:[
+            {bits: 1,  name: 'Header', type: 2},
+            {bits: 1,  name: 'Hit Location', type: 3},
+            {bits: 1,  name: 'ToA Timestamp', type: 4},
+            {bits: 1,  name: 'ToT MSB', type: 5},
+            {bits: 1,  name: 'ToT LSB', type: 5},
+        ], config:{bits: 5, vflip: true}
+    }
+    </script>
+<h4 id="header-byte">Header Byte<a class="headerlink" href="#header-byte" title="Permanent link">¶</a></h4>
+<script class="wavedrom" type="WaveDrom">
+    {
+        reg:[
+            {bits: 3,  name: 'Payload (3b)', type: 2},
+            {bits: 5,  name: 'Chip Address (5b)', type: 2},
+        ], config:{bits: 8}
+    }
+    </script>
+<ul>
+<li>Chip address is the configured chip ID using the routing byte</li>
+<li>The payload length is the number of bytes trailing the header</li>
+</ul>
+<h4 id="hit-location-byte">Hit Location Byte<a class="headerlink" href="#hit-location-byte" title="Permanent link">¶</a></h4>
+<script class="wavedrom" type="WaveDrom">
+    {
+        reg:[
+            {bits: 6,  name: 'Row/Col Number', type: 3},
+            {bits: 1,  name: 'Reserved', type: 3},
+            {bits: 1,  name: '1:Row 0:Col', type: 3},
+        ], config:{bits: 8}
+    }
+    </script>
+<ul>
+<li>MSB is for Row/Column identification</li>
+<li>6 bit LSB is the Row/Column Address</li>
+</ul>
+<h2 id="readout-procedure">Readout procedure<a class="headerlink" href="#readout-procedure" title="Permanent link">¶</a></h2>
+<p>APS Readout Sequence Overview</p>
+<ul>
+<li>Timestamp Clock and ToT clocks active</li>
+<li>Communication using SPI</li>
+<li>Send Routing Byte through DaisyChain</li>
+<li>Send Shift Register Config Command to configure Pixel Matrixes</li>
+<li>Wait for Interrupt with SPI deactivated (Digital Block Off)</li>
+<li>When Interrupt is asserted, Send dummy bytes to start readout</li>
+<li>Keep sending dummy bytes until the interrupt is deasserted and no packets are detected for c.a 40 Bytes</li>
+<li>Deactivate SPI to ‘sleep’</li>
 </ul>
 </article>
 </div>
@@ -385,27 +481,14 @@ Each bit present on the SIN serial line is clocked through the shift register af
 </div>
 <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.expand", "navigation.sections", "navigation.indexes", "navigation.top", "content.code.copy", "toc.integrate"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
 <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
-<script src="../../assets/external/unpkg.com/tablesort@5.3.0/dist/tablesort.min.js"></script>
+<script src="https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js"></script>
 <script src="../../javascripts/tablesort.js"></script>
 <script src="../../javascripts/wavedrom.js"></script>
-<script src="../../assets/external/cdnjs.cloudflare.com/ajax/libs/wavedrom/3.1.0/skins/default.js"></script>
-<script src="../../assets/external/cdnjs.cloudflare.com/ajax/libs/wavedrom/3.1.0/wavedrom.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/wavedrom/3.1.0/skins/default.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/wavedrom/3.1.0/wavedrom.min.js"></script>
 <script src="../../javascripts/katex.js"></script>
-<script src="../../assets/external/unpkg.com/katex@0/dist/katex.min.js"></script>
-<script src="../../assets/external/unpkg.com/katex@0/dist/contrib/auto-render.min.js"></script>
-<script src="../../assets/external/unpkg.com/mermaid@11/dist/mermaid.min.js"></script>
-<script id="init-glightbox">document.querySelectorAll('.glightbox').forEach(function(element) {
-    try {
-        var img = element.querySelector('img');
-        if (img && img.src) {
-            element.setAttribute('href', img.src);
-        } else {
-            console.log('No img element with src attribute found');
-        }
-    } catch (error) {
-        console.log('Error:', error);
-    }
-});
-const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+<script src="https://unpkg.com/katex@0/dist/katex.min.js"></script>
+<script src="https://unpkg.com/katex@0/dist/contrib/auto-render.min.js"></script>
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
 document$.subscribe(()=>{ lightbox.reload(); });
 </script><script>window.addEventListener('load', function() {wavedrom.processAll();});</script></body></html>
