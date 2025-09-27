@@ -17,21 +17,21 @@ AstroPix3 Layout
 - Digital Supply VDDD: 1.8V
 - Analog Ground GNDA
 - Digital Ground GNDD
-- Sensor Reverse Bias  Voltage: 0 to -400V with respect to GNDA
+- Sensor Reverse Bias Voltage: 0 to -400V with respect to GNDA
 - External Bias/Threshold voltages: 4 * (0-1.8V configurable)
 
 ### Pixel Matrix
 - 500u Pixel Pitch and 300u Pixel Size
 - 35 x 35 pixels
 - first 3 cols PMOS amplifier others NMOS
-- Pixel Dynamic Range 20keV - 700keV
+- Pixel Dynamic Range 20 keV - 250 keV
 - Noise Floor 5keV (2%@662keV)
 - Pixel Comparator Outputs Row/Column OR wired
 
 
 ### Matrix Digitisation
 - Time over Threshold (ToT) counter 12 bit @ 200Mhz (1% @ 700keV) for each column/row (Pixels wired OR in row/column)
-- Time of Arrival timestamp counter 8 bit  @ 2Mhz
+- Time of Arrival timestamp counter 8 bit @ 2Mhz
 
 
 ### Power dissipation

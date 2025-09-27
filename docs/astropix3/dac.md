@@ -12,7 +12,7 @@ $$
 
 ![Image title](./images/vdac.png){width=100%}
 /// caption
-Integrated 10b voltage dac
+DNL and INL of integrated 10b R2R voltage dac
 ///
 
 AstroPix features integrated 10 bit R2R Voltage DACs to internally generate the comparator threshold (Vth) and baseline(Bl), the cascode voltage (Vcasc2) and the low level for the pixel sender-receiver circuit(Vminus).
@@ -21,4 +21,4 @@ The reference voltage is vdda!, therefore the output voltage is set by the DACVA
 $$
 V_{out} = V(\text{vdda!}) \dfrac{\text{DACVAL}}{1023}
 $$
-If the external voltage card is used, the voltages will be forced to the values set by the voltagecard.
+If the external voltage card is used, the voltages will be forced to the values set by the external voltagecard.

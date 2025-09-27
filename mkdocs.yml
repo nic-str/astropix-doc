@@ -47,7 +47,7 @@ markdown_extensions:
       permalink: true
 
 plugins:
-  # - privacy
+  - privacy
   - drawio:
       toolbar: true # control if hovering on a diagram shows a toolbar for zooming or not (default: true)
       tooltips: true # control if tooltips will be shown (default: true)
