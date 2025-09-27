@@ -1,9 +1,11 @@
 # Chip Configuration
 
-AstroPix3 is configured trough a long shift register, consiting of a configuration for the digital part, the analog part including all current and voltage dacs and the column configuration to disable pixels and selection rows/columns for injection. The first bit in the register is the *interrupt_pushpull* bit, while bit 37 of the 35th column config is the last bit.
+AstroPix3 is configured trough a long shift register, consisting of a configuration for the digital part, the analog part including all current and voltage dacs and the column configuration to disable pixels and selection rows/columns for injection. The first bit in the register is the *interrupt_pushpull* bit, while bit 37 of the 35th column config is the last bit.
 
 !!! note
     For programing, the first bit *interrupt_pushpull* has to be sent last, and the last bit in this list first.
+
+The chip can be programmed directly via the shift register interface or through the [SPI SR Command](spi.md#shift-register-io-and-spi-command).
 
 ## Digital Config
 | Field Name         | Bits | Default Value | Description |

@@ -14,6 +14,10 @@
 | vminuspix                            | 0 V    | 0.7 V   | 1.98 V | < 100 uA     | **Voltage regulator must sink current**                                |
 | HV                                   | 0 V    | -150 V  | -350 V | < 100 nA     | All pads internally connected - Negative Bias for Pixel Sensors        |
 
+!!! warning
+
+    The low voltage supplies vdda!, vdd! and vssa! should be turned on at the same time, otherwise the chip can be damaged due to high currents caused by forward biased diodes.
+
 ### LVDS Receiver
 | Parameter              | Min   | Typ   | Max | Comment |
 |------------------------|-------|-------|-----|---------|
@@ -58,7 +62,7 @@
 | B27 | sample_clock_n     |        | Input               | LVDS <200 MHz Clock for ToT counter<br>  (Connect to vdd! if Single ended clock is used)               |
 | B28 | vdd!               | 1.8 V  | Power               |                                                                                                        |
 | B29 | gnd!               |        | Power               |                                                                                                        |
-| B30 | interrupt          |        | Output (Open-Drain) | Active low status signal (0: data to read out 1: no data to read out)                                  |
+| B30 | interrupt          |        | Output (Open-Drain/pushpull see [interrupt_pushpull](configuration.md#digital-config) config bit) | Active low status signal (0: data to read out 1: no data to read out) - Needs 10 kOhm pullup to vdd! in Open-Drain mode                                 |
 | B31 | res_n              |        | Input               | Active low global reset                                                                                |
 | B32 | timestamp_clk      |        | Input               | Single ended 2.5 MHz ToA clock                                                                         |
 | B33 | hold               |        | Input               | Active high hold pauses sending hit data via SPI                                                       |
