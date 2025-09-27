@@ -255,11 +255,12 @@
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
 <h1 id="chip-configuration">Chip Configuration<a class="headerlink" href="#chip-configuration" title="Permanent link">¶</a></h1>
-<p>AstroPix3 is configured trough a long shift register, consiting of a configuration for the digital part, the analog part including all current and voltage dacs and the column configuration to disable pixels and selection rows/columns for injection. The first bit in the register is the <em>interrupt_pushpull</em> bit, while bit 37 of the 35th column config is the last bit.</p>
+<p>AstroPix3 is configured trough a long shift register, consisting of a configuration for the digital part, the analog part including all current and voltage dacs and the column configuration to disable pixels and selection rows/columns for injection. The first bit in the register is the <em>interrupt_pushpull</em> bit, while bit 37 of the 35th column config is the last bit.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>For programing, the first bit <em>interrupt_pushpull</em> has to be sent last, and the last bit in this list first.</p>
 </div>
+<p>The chip can be programmed directly via the shift register interface or through the <a href="../spi/#shift-register-io-and-spi-command">SPI SR Command</a>.</p>
 <h2 id="digital-config">Digital Config<a class="headerlink" href="#digital-config" title="Permanent link">¶</a></h2>
 <table>
 <thead>

@@ -585,8 +585,8 @@
 <td>B30</td>
 <td>interrupt</td>
 <td></td>
-<td>Output (Open-Drain)</td>
-<td>Active low status signal (0: data to read out 1: no data to read out)</td>
+<td>Output (Open-Drain/pushpull see <a href="../configuration/#digital-config">interrupt_pushpull</a> config bit)</td>
+<td>Active low status signal (0: data to read out 1: no data to read out) - Needs 10 kOhm pullup to vdd! in Open-Drain mode</td>
 </tr>
 <tr>
 <td>B31</td>
