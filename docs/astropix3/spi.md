@@ -2,69 +2,61 @@
 
 ## Controlling FE
 
-AstroPix accepts commands via MOSI in the following 8 bit format:
+AstroPix receives commands via the MOSI line, using the following 8-bit format:
 
 {% include-markdown "./spi/format_packet.md" %}
 
-All valid commands are listed in the table below:
+All valid commands are summarized in the table below:
 
 | BIT   | Field   | Description                                                                                   |
 |-------|---------|-----------------------------------------------------------------------------------------------|
 | [4:0] | Address | 0x00 -  0x14 : Single addresses<br>0x15 - 0x1F : Reserved<br>0x1D: Invalid<br>0x1E: Broadcast |
 | [7:5] | Command | 0x01 - NOCMD / IDLE<br>0x02 - Routing: dispatch<br>0x03 - Shift Register Config addresses     |
 
-The IDLE Byte represents no specific command and an invalid address: 0x1D for address and 0x1 for IDLE -> 0x3D
+The IDLE byte represents no specific command and uses an invalid address: 0x1D for the address and 0x1 for IDLE, resulting in **0x3D**.
 {% include-markdown "./spi/format_idle.md" %}
 
 ### Commands
 
 | COMMAND | NAME  | LENGTH | DESCRIPTION   |
 |---------|-------|--------|---------------|
-| 0x01    | NOCMD | 1 Byte | Nothing to do |
-|0x02|	Address Config|	1 Byte	|Header Address represents the new address of the Chip. Chip forwards command to the next chip with Address = Address + 1<br>To configure Addresses with first Chip “00”, send 0x40 to the first Chip, then send some IDLE bytes so that the Clock stays active and the addressing byte gets passed down the chain|
-|0x03 |	Shift Register Config	|N Bytes	|Once this command is sent, the whole SPI Frame is used - SPI Chip Select must be deasserted and reasserted to send a new command|
+| 0x01    | NOCMD | 1 Byte | No Operation |
+|0x02|	Address Config|	1 Byte	| Sets the chip address. The chip forwards the command to the next chip with Address = Address + 1.<br>To configure addresses, start with chip "00" by sending 0x40, then send IDLE bytes to keep the clock active and propagate the address down the chain.|
+|0x03 |	Shift Register Config	|N Bytes	| Uses the entire SPI frame for shift register configuration. SPI Chip Select must be toggled to send a new command. |
 
 
 ### Shift Register I/O and SPI Command
 
-The Shift Register I/O exposes two clocks, a serial input (SIN), and a load signal to load the bits to the registers.
-Each bit present on the SIN serial line is clocked through the shift register after Clock 1 and Clock have been toggled separately. The following example diagram shows the configuration of a 3 bit register:
+The shift register interface exposes two clocks, a serial input (SIN), and a load signal to load bits into the registers.
+Each bit on the SIN line is clocked through the shift register by toggling Clock 1 and Clock 2 separately. The diagram below illustrates a 3-bit register configuration:
 
 {% include-markdown "./spi/format_sr.md" %}
 
-The SPI Command generates this sequence by using in each byte one bit as Serial In, and the other bits as clock time to generate the CLK1/CLK2 and Load sequence:
+SPI commands generate this sequence as follows:
 
--	First Byte is 0x3 command and target Chip (or broadcast ID)
--	Each following byte shifts a 0 or 1 in the Shift Register. The LSB of the byte is used for Serial in (8’bxxxxxxx1 or 8’bxxxxxxx0)
--	At the end of the sequence, send a byte with bit[1] = 1 to generate the Load signal
--	When the frame finishes, the Load signal goes back to 0.
-
-
-## Reading from FE
-The APS to FE path differs from the FE → APS since it is not meant to process any commands. Its job is simply to forward packets down the chain, and arbitrate between packets to be forwarded and packets coming from the local readout.
-
-The Data format on this path is built using a Header that reflects the Chip ID of the data frame, and a length information so that the Arbiter can transmit frames fully without chunking.
-
-In our project, it is a requirement that data frames be able to pass through the chip without pausing since the SPI interface has no way to synchronize between chips in case some buffer is running full because a lot of data are produced by a chip which blocks the data forwarding path. In such a case, a receiving chip would detect a buffer running full and would have to fill the current frame with error data when possible, then discard any incoming frames until the buffer frees up. This is not implemented right now
-
-However, this type of events can be easily excluded using the following mechanisms:
-
--	The data forwarder should have a buffer of at least one max. frame size, so that is a frame comes in, and a local readout is producing a frame, the received frame will not overflow the buffer.
--	The chip Readout can introduce data production pauses to make sure that if multiple Pixel hits are available, it will leave enough clock cycles free from the readout to let frames from other Chips come through:
--	At least 1 free cycle between readouts, which is guaranteed by the Readout-Hit Buffer synchronization (at least one Load state)
--	A configurable amount of extra waiting time, in case the chip is being tested in an environment producing more hits that the real application
+- The first byte contains the 0x3 command and the target chip or broadcast ID
+- Each subsequent byte shifts a 0 or 1 into the shift register. The LSB of each byte is used for Serial In (`8'bxxxxxxx1` or `8'bxxxxxxx0`)
+- At the end of the sequence, send a byte with bit[1] = 1 to generate the Load signal
+- When the frame ends, the Load signal returns to 0
 
 
+## Reading from the Front-End (FE)
+
+The APS-to-FE path differs from the FE-to-APS path, as it does not process commands. Its sole function is to forward packets down the chain and arbitrate between forwarded packets and those generated by the local readout.
+
+The data format on this path uses a header that includes the Chip ID and a length field, allowing the Arbiter to transmit complete frames without splitting them.
 
 ### Hit Packet
-Each hit should produce 2 data frames with a row and a column packet. Each data frame consists of the following 5 Bytes:
+A single hit generates two data frames: one for the row and one for the column. Because rows and columns are logically OR'd, two hits in the same column but different rows occurring simultaneously will produce only one column frame, but two row frames.
+
+Each frame consists of 5 bytes:
 {% include-markdown "./spi/format_packet_hit.md" %}
 
 #### Header Byte
 {% include-markdown "./spi/format_packet_read.md" %}
 
-- Chip address is the configured chip ID using the routing byte
-- The payload length is the number of bytes trailing the header
+- Chip address is set by the routing byte
+- Payload length indicates the number of bytes following the header
 
 #### Hit Location Byte
 
@@ -73,23 +65,23 @@ Each hit should produce 2 data frames with a row and a column packet. Each data 
 - MSB is for Row/Column identification
     - 1: Column
     - 0: Row
-- 6 bit LSB is the Row/Column Address
+- Lower 6 bits specify the row or column address
 
 ## Readout procedure
 
 !!! note
-    If the chip is not configured and the SPI clock is toggled, you will most likely see the [no data case](spi.md#no-data-available) where the chip responds with IDLE bytes. Under some circumstances you also get data from the chip generated by noise hits, unless hold is active.
-    If you don't get any data from the chip check the physical SPI connection to the chip.
+    If the chip is not configured and the SPI clock is toggled, you will likely see the [no data case](spi.md#no-data-available), where the chip responds with IDLE bytes. In some cases, you may also receive data generated by noise hits, unless hold is active.
+    If you do not receive any data from the chip, check the physical SPI connection.
 
 ### Readout Sequence
 
-- Timestamp Clock and ToT clocks active
-- Send Routing Byte through Daisy-chain to assign chip IDs
-- Send Shift Register config command to configure the chips
-- Wait for Interrupt negedge, with deactivated SPI clock
-- When Interrupt is asserted, send dummy bytes (e.g. IDLE) to start readout
-- Keep sending dummy bytes until the interrupt is deasserted and no packets are detected for ~40 Bytes
-- Deactivate SPI to ‘sleep’
+- Activate the Timestamp Clock and ToT clocks.
+- Send the Routing Byte through the daisy-chain to assign chip IDs
+- Send the Shift Register configuration command to configure the chips
+- Wait for the interrupt falling edge, with the SPI clock deactivated
+- When the interrupt is asserted, start the SPI clock to send dummy bytes (e.g., IDLE 0x3D) to initiate readout
+- Continue sending dummy bytes until the interrupt is deasserted and no packets are detected for approximately 40 bytes
+- Deactivate SPI clock again to save power
 
 ### Data available for readout
 

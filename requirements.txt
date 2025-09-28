@@ -1,0 +1,5 @@
+mkdocs
+markdown-wavedrom
+mkdocs-drawio
+mkdocs-glightbox
+mkdocs-include-markdown-plugin
