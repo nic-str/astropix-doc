@@ -207,12 +207,12 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#reading-from-fe">
+<a class="md-nav__link" href="#reading-from-the-front-end-fe">
 <span class="md-ellipsis">
-      Reading from FE
+      Reading from the Front-End (FE)
     </span>
 </a>
-<nav aria-label="Reading from FE" class="md-nav">
+<nav aria-label="Reading from the Front-End (FE)" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
 <a class="md-nav__link" href="#hit-packet">
@@ -366,7 +366,7 @@
 <article class="md-content__inner md-typeset">
 <h1 id="spi-daisychain-interface">SPI Daisychain Interface<a class="headerlink" href="#spi-daisychain-interface" title="Permanent link">¶</a></h1>
 <h2 id="controlling-fe">Controlling FE<a class="headerlink" href="#controlling-fe" title="Permanent link">¶</a></h2>
-<p>AstroPix accepts commands via MOSI in the following 8 bit format:</p>
+<p>AstroPix receives commands via the MOSI line, using the following 8-bit format:</p>
 <script class="wavedrom" type="WaveDrom">
     {
         reg:[
@@ -375,7 +375,7 @@
         ], config:{bits: 8}
     }
     </script>
-<p>All valid commands are listed in the table below:</p>
+<p>All valid commands are summarized in the table below:</p>
 <table>
 <thead>
 <tr>
@@ -397,7 +397,7 @@
 </tr>
 </tbody>
 </table>
-<p>The IDLE Byte represents no specific command and an invalid address: 0x1D for address and 0x1 for IDLE -&gt; 0x3D</p>
+<p>The IDLE byte represents no specific command and uses an invalid address: 0x1D for the address and 0x1 for IDLE, resulting in <strong>0x3D</strong>.</p>
 <script class="wavedrom" type="WaveDrom">
     {
         reg:[
@@ -421,25 +421,25 @@
 <td>0x01</td>
 <td>NOCMD</td>
 <td>1 Byte</td>
-<td>Nothing to do</td>
+<td>No Operation</td>
 </tr>
 <tr>
 <td>0x02</td>
 <td>Address Config</td>
 <td>1 Byte</td>
-<td>Header Address represents the new address of the Chip. Chip forwards command to the next chip with Address = Address + 1<br/>To configure Addresses with first Chip “00”, send 0x40 to the first Chip, then send some IDLE bytes so that the Clock stays active and the addressing byte gets passed down the chain</td>
+<td>Sets the chip address. The chip forwards the command to the next chip with Address = Address + 1.<br/>To configure addresses, start with chip "00" by sending 0x40, then send IDLE bytes to keep the clock active and propagate the address down the chain.</td>
 </tr>
 <tr>
 <td>0x03</td>
 <td>Shift Register Config</td>
 <td>N Bytes</td>
-<td>Once this command is sent, the whole SPI Frame is used - SPI Chip Select must be deasserted and reasserted to send a new command</td>
+<td>Uses the entire SPI frame for shift register configuration. SPI Chip Select must be toggled to send a new command.</td>
 </tr>
 </tbody>
 </table>
 <h3 id="shift-register-io-and-spi-command">Shift Register I/O and SPI Command<a class="headerlink" href="#shift-register-io-and-spi-command" title="Permanent link">¶</a></h3>
-<p>The Shift Register I/O exposes two clocks, a serial input (SIN), and a load signal to load the bits to the registers.
-Each bit present on the SIN serial line is clocked through the shift register after Clock 1 and Clock have been toggled separately. The following example diagram shows the configuration of a 3 bit register:</p>
+<p>The shift register interface exposes two clocks, a serial input (SIN), and a load signal to load bits into the registers.
+Each bit on the SIN line is clocked through the shift register by toggling Clock 1 and Clock 2 separately. The diagram below illustrates a 3-bit register configuration:</p>
 <script class="wavedrom" type="WaveDrom">
     { signal : [
         {name: 'Ck1',    wave: '0.10..10..10...'},
@@ -449,26 +449,19 @@ Each bit present on the SIN serial line is clocked through the shift register af
     ], config:{hscale: 2}
 }
     </script>
-<p>The SPI Command generates this sequence by using in each byte one bit as Serial In, and the other bits as clock time to generate the CLK1/CLK2 and Load sequence:</p>
+<p>SPI commands generate this sequence as follows:</p>
 <ul>
-<li>First Byte is 0x3 command and target Chip (or broadcast ID)</li>
-<li>Each following byte shifts a 0 or 1 in the Shift Register. The LSB of the byte is used for Serial in (8’bxxxxxxx1 or 8’bxxxxxxx0)</li>
+<li>The first byte contains the 0x3 command and the target chip or broadcast ID</li>
+<li>Each subsequent byte shifts a 0 or 1 into the shift register. The LSB of each byte is used for Serial In (<code>8'bxxxxxxx1</code> or <code>8'bxxxxxxx0</code>)</li>
 <li>At the end of the sequence, send a byte with bit[1] = 1 to generate the Load signal</li>
-<li>When the frame finishes, the Load signal goes back to 0.</li>
+<li>When the frame ends, the Load signal returns to 0</li>
 </ul>
-<h2 id="reading-from-fe">Reading from FE<a class="headerlink" href="#reading-from-fe" title="Permanent link">¶</a></h2>
-<p>The APS to FE path differs from the FE → APS since it is not meant to process any commands. Its job is simply to forward packets down the chain, and arbitrate between packets to be forwarded and packets coming from the local readout.</p>
-<p>The Data format on this path is built using a Header that reflects the Chip ID of the data frame, and a length information so that the Arbiter can transmit frames fully without chunking.</p>
-<p>In our project, it is a requirement that data frames be able to pass through the chip without pausing since the SPI interface has no way to synchronize between chips in case some buffer is running full because a lot of data are produced by a chip which blocks the data forwarding path. In such a case, a receiving chip would detect a buffer running full and would have to fill the current frame with error data when possible, then discard any incoming frames until the buffer frees up. This is not implemented right now</p>
-<p>However, this type of events can be easily excluded using the following mechanisms:</p>
-<ul>
-<li>The data forwarder should have a buffer of at least one max. frame size, so that is a frame comes in, and a local readout is producing a frame, the received frame will not overflow the buffer.</li>
-<li>The chip Readout can introduce data production pauses to make sure that if multiple Pixel hits are available, it will leave enough clock cycles free from the readout to let frames from other Chips come through:</li>
-<li>At least 1 free cycle between readouts, which is guaranteed by the Readout-Hit Buffer synchronization (at least one Load state)</li>
-<li>A configurable amount of extra waiting time, in case the chip is being tested in an environment producing more hits that the real application</li>
-</ul>
+<h2 id="reading-from-the-front-end-fe">Reading from the Front-End (FE)<a class="headerlink" href="#reading-from-the-front-end-fe" title="Permanent link">¶</a></h2>
+<p>The APS-to-FE path differs from the FE-to-APS path, as it does not process commands. Its sole function is to forward packets down the chain and arbitrate between forwarded packets and those generated by the local readout.</p>
+<p>The data format on this path uses a header that includes the Chip ID and a length field, allowing the Arbiter to transmit complete frames without splitting them.</p>
 <h3 id="hit-packet">Hit Packet<a class="headerlink" href="#hit-packet" title="Permanent link">¶</a></h3>
-<p>Each hit should produce 2 data frames with a row and a column packet. Each data frame consists of the following 5 Bytes:</p>
+<p>A single hit generates two data frames: one for the row and one for the column. Because rows and columns are logically OR'd, two hits in the same column but different rows occurring simultaneously will produce only one column frame, but two row frames.</p>
+<p>Each frame consists of 5 bytes:</p>
 <script class="wavedrom" type="WaveDrom">
     {
         reg:[
@@ -490,8 +483,8 @@ Each bit present on the SIN serial line is clocked through the shift register af
     }
     </script>
 <ul>
-<li>Chip address is the configured chip ID using the routing byte</li>
-<li>The payload length is the number of bytes trailing the header</li>
+<li>Chip address is set by the routing byte</li>
+<li>Payload length indicates the number of bytes following the header</li>
 </ul>
 <h4 id="hit-location-byte">Hit Location Byte<a class="headerlink" href="#hit-location-byte" title="Permanent link">¶</a></h4>
 <script class="wavedrom" type="WaveDrom">
@@ -509,23 +502,23 @@ Each bit present on the SIN serial line is clocked through the shift register af
 <li>0: Row</li>
 </ul>
 </li>
-<li>6 bit LSB is the Row/Column Address</li>
+<li>Lower 6 bits specify the row or column address</li>
 </ul>
 <h2 id="readout-procedure">Readout procedure<a class="headerlink" href="#readout-procedure" title="Permanent link">¶</a></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>If the chip is not configured and the SPI clock is toggled, you will most likely see the <a href="./#no-data-available">no data case</a> where the chip responds with IDLE bytes. Under some circumstances you also get data from the chip generated by noise hits, unless hold is active.
-If you don't get any data from the chip check the physical SPI connection to the chip.</p>
+<p>If the chip is not configured and the SPI clock is toggled, you will likely see the <a href="./#no-data-available">no data case</a>, where the chip responds with IDLE bytes. In some cases, you may also receive data generated by noise hits, unless hold is active.
+If you do not receive any data from the chip, check the physical SPI connection.</p>
 </div>
 <h3 id="readout-sequence">Readout Sequence<a class="headerlink" href="#readout-sequence" title="Permanent link">¶</a></h3>
 <ul>
-<li>Timestamp Clock and ToT clocks active</li>
-<li>Send Routing Byte through Daisy-chain to assign chip IDs</li>
-<li>Send Shift Register config command to configure the chips</li>
-<li>Wait for Interrupt negedge, with deactivated SPI clock</li>
-<li>When Interrupt is asserted, send dummy bytes (e.g. IDLE) to start readout</li>
-<li>Keep sending dummy bytes until the interrupt is deasserted and no packets are detected for ~40 Bytes</li>
-<li>Deactivate SPI to ‘sleep’</li>
+<li>Activate the Timestamp Clock and ToT clocks.</li>
+<li>Send the Routing Byte through the daisy-chain to assign chip IDs</li>
+<li>Send the Shift Register configuration command to configure the chips</li>
+<li>Wait for the interrupt falling edge, with the SPI clock deactivated</li>
+<li>When the interrupt is asserted, start the SPI clock to send dummy bytes (e.g., IDLE 0x3D) to initiate readout</li>
+<li>Continue sending dummy bytes until the interrupt is deasserted and no packets are detected for approximately 40 bytes</li>
+<li>Deactivate SPI clock again to save power</li>
 </ul>
 <h3 id="data-available-for-readout">Data available for readout<a class="headerlink" href="#data-available-for-readout" title="Permanent link">¶</a></h3>
 <script class="wavedrom" type="WaveDrom">
