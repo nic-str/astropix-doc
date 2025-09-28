@@ -88,7 +88,7 @@
 | B53 | VPLoad             |        | BiDir               | Amplifier load current                                                                                 |
 | B54 | gnda!              |        | Power               |                                                                                                        |
 | B55 | vdda!              | 1.8 V  | Power               |                                                                                                        |
-| B56 | Inj                |        | BiDir               | Analog Injection                                                                                       |
+| B56 | Inj                |        | BiDir               | Analog Injection - should float if DigInj Pin 84 is used                                                                           |
 | B57 | gnda!              |        | Power               |                                                                                                        |
 | B58 | ThPix              |        | BiDir               | Comparator threshold voltage for NMOS Amplifier pixels                                                 |
 | B59 | vminuspix          | 0.9 V  | Power               | Level shifter low level                                                                                |
@@ -116,7 +116,7 @@
 | B81 | vssa!              | 1.2 V  | Power               |                                                                                                        |
 | B82 | vdda!              | 1.8 V  | Power               |                                                                                                        |
 | B83 | gnda!              |        | Power               |                                                                                                        |
-| B84 | DigInj             |        | Input               | Digital injection                                                                                      |
+| B84 | DigInj             |        | Input               | Digital injection - should be held at 0V if Inj Pin 56 is used                                                                                   |
 | B85 | vdd!               | 1.8 V  | Power               |                                                                                                        |
 | B86 | gnd!               |        | Power               |                                                                                                        |
 | B87 | ring4              |        |                     |                                                                                                        |
