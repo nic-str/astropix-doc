@@ -11,7 +11,7 @@
 | vdda!                                | 1.62 V | 1.8 V   | 1.98 V | 1 mA         | All pads internally connected - add decoupling on each pad if possible |
 | vdd!                                 | 1.62 V | 1.8 V   | 1.98 V | 5 mA         | All pads internally connected - add decoupling on each pad if possible |
 | vssa!                                | 1.1 V  | 1.2 V   | 1.98 V | 1 mA         | All pads internally connected - add decoupling on each pad if possible |
-| vminuspix                            | 0 V    | 0.7 V   | 1.98 V | < 100 uA     | **Voltage regulator must sink current**                                |
+| vminuspix                            | 0 V    | 0.7 V   | 1.98 V | < 100 uA     | **Voltage regulator must be able to sink current**                                |
 | HV                                   | 0 V    | -150 V  | -350 V | < 100 nA     | All pads internally connected - Negative Bias for Pixel Sensors        |
 
 !!! warning
@@ -58,8 +58,8 @@
 | B23 | gnda!              |        | Power               |                                                                                                        |
 | B24 | vssa!              | 1.2 V  | Power               |                                                                                                        |
 | B25 | vssa!              | 1.2 V  | Power               |                                                                                                        |
-| B26 | sample_clock_p     |        | Input               | LVDS <200 MHz Clock for ToT counter<br>  (Connect to gnd! if Single ended clock is used)               |
-| B27 | sample_clock_n     |        | Input               | LVDS <200 MHz Clock for ToT counter<br>  (Connect to vdd! if Single ended clock is used)               |
+| B26 | sample_clock_p     |        | Input               | LVDS <200 MHz Clock for ToT counter<br>  (Connect to gnd! if Single ended clock is used) - P/N can be swapped              |
+| B27 | sample_clock_n     |        | Input               | LVDS <200 MHz Clock for ToT counter<br>  (Connect to vdd! if Single ended clock is used) - P/N can be swapped              |
 | B28 | vdd!               | 1.8 V  | Power               |                                                                                                        |
 | B29 | gnd!               |        | Power               |                                                                                                        |
 | B30 | interrupt          |        | Output (Open-Drain/pushpull see [interrupt_pushpull](configuration.md#digital-config) config bit) | Active low status signal (0: data to read out 1: no data to read out) - Needs 10 kOhm pullup to vdd! in Open-Drain mode                                 |

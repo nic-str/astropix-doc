@@ -1,6 +1,7 @@
 # AstroPix ASIC Documentation
 
 ## User Manuals
+* [AstroPix2](astropix2/index.md)
 * [AstroPix3](astropix3/index.md)
 * [AstroPix4](astropix4/index.md)
 * [AstroPix5](astropix4/index.md)

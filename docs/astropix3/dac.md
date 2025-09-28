@@ -15,7 +15,7 @@ $$
 DNL and INL of integrated 10b R2R voltage dac
 ///
 
-AstroPix features integrated 10 bit R2R Voltage DACs to internally generate the comparator threshold (Vth) and baseline(Bl), the cascode voltage (Vcasc2) and the low level for the pixel sender-receiver circuit(Vminus).
+AstroPix features integrated 10 bit R2R Voltage DACs to internally generate the comparator threshold (Vth) and baseline(Bl), the cascode voltage (Vcasc2).
 
 The reference voltage is vdda!, therefore the output voltage is set by the DACVAL (0-1023):
 $$
