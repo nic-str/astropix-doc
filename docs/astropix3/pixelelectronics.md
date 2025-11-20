@@ -23,7 +23,7 @@ The amplifiers input DC operating point is set by the source-follower SF1. The s
 The signal path from the comparator input to the receiver output is shown below:
 ![Image title](./images/apix3_comp_rec.png){width=100%}
 /// caption
-AstroPix CSA and bandpass filter
+Levelshifter and CMOS comparator
 ///
 The comparator is a two stage amplifier with the first stage being a NFET differential amplifier with a PFET current source load and the second stage being a common-source amplifier to increase the gain.\\
 The analog voltage pulse goes into the comparator and gets compared to the threshold voltage Vth. The comparator bias current is set by the \ac{dac} VNCOMP. The output is a positive voltage pulse with Vlow 0V and VHigh 1.8V.

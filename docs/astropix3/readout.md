@@ -2,7 +2,7 @@
 
 ![Image title](./images/apix3_hitbuffer.png){width=100%}
 /// caption
-AstroPix CSA and bandpass filter
+Hitbuffer showing ToA and ToT capturing, reset after read and hold masking
 ///
 
 The above circuit is implemented for every row and column. An incoming active low hit signal enables the clockgate of the ToT counter, starting the ToT measurement and latching the ToA timestamp.
