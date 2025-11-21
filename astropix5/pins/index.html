@@ -364,7 +364,7 @@
 <td>1.1 V</td>
 <td>1.2 V</td>
 <td>1.98 V</td>
-<td>1 mA</td>
+<td>4 mA</td>
 <td>All pads internally connected - add decoupling on each pad if possible</td>
 </tr>
 <tr>
@@ -486,23 +486,23 @@
 <tr>
 <td>B1</td>
 <td>vdd!</td>
-<td>HV</td>
+<td>1.8 V</td>
 <td>Power</td>
 <td></td>
 </tr>
 <tr>
 <td>B2</td>
 <td>gnd!</td>
-<td>HV</td>
+<td></td>
 <td>Power</td>
 <td></td>
 </tr>
 <tr>
 <td>B3</td>
 <td>chipring</td>
-<td>HV</td>
+<td></td>
 <td>Power</td>
-<td>Float</td>
+<td>Guardring - Don't connect</td>
 </tr>
 <tr>
 <td>B4</td>
@@ -514,23 +514,23 @@
 <tr>
 <td>B5</td>
 <td>sub!</td>
-<td>float</td>
+<td>HV</td>
 <td>Power</td>
 <td>HV substrate Bias</td>
 </tr>
 <tr>
 <td>B6</td>
 <td>dnring</td>
-<td>1.2 V</td>
+<td></td>
 <td>Power</td>
-<td>Float</td>
+<td>Guardring - Don't connect but add option to connect to vdda!</td>
 </tr>
 <tr>
 <td>B7</td>
-<td>pring</td>
-<td>1.2 V</td>
+<td>pring_pixel</td>
+<td></td>
 <td>Power</td>
-<td>Float</td>
+<td>Guardring - Don't connect</td>
 </tr>
 <tr>
 <td>B8</td>
@@ -765,14 +765,14 @@
 </tr>
 <tr>
 <td>B41</td>
-<td>clk20_p</td>
+<td>Clk20_Ext_P</td>
 <td></td>
 <td>Input (LVDS)</td>
 <td>External 20 MHz Clk (Connect to vdd! if unused)</td>
 </tr>
 <tr>
 <td>B42</td>
-<td>clk20_n</td>
+<td>Clk20_Ext_N</td>
 <td></td>
 <td>Input (LVDS)</td>
 <td>External 20 MHz Clk (Connect to gnd! if unused)</td>
@@ -795,7 +795,7 @@
 <td>B45</td>
 <td>interrupt</td>
 <td></td>
-<td>Output (Open-Drain)</td>
+<td>Output (Open-Drain/pushpull see <a href="configuration.md#digital-config">interrupt_pushpull config bit</a>)</td>
 <td>Active low status signal (0: data to read out 1: no data to read out) - Needs 10 kOhm pullup to vdd! in Open-Drain mode</td>
 </tr>
 <tr>
@@ -821,56 +821,56 @@
 </tr>
 <tr>
 <td>B49</td>
-<td>sr_ck1</td>
+<td>SR_ck1</td>
 <td></td>
 <td>Input</td>
 <td>SPI Fallback: Clock1 for Chip Configuration</td>
 </tr>
 <tr>
 <td>B50</td>
-<td>sr_ck2</td>
+<td>SR_ck2</td>
 <td></td>
 <td>Input</td>
 <td>SPI Fallback: Clock2 for Chip Configuration</td>
 </tr>
 <tr>
 <td>B51</td>
-<td>sr_load</td>
+<td>SR_load</td>
 <td></td>
 <td>Input</td>
 <td>SPI Fallback: Load for Chip Configuration</td>
 </tr>
 <tr>
 <td>B52</td>
-<td>sr_sin</td>
+<td>SR_sin</td>
 <td></td>
 <td>Input</td>
 <td>SPI Fallback: In for Chip Configuration</td>
 </tr>
 <tr>
 <td>B53</td>
-<td>sr_rb</td>
+<td>SR_rb</td>
 <td></td>
 <td>Input</td>
 <td>SPI Fallback: Readback for Chip Configuration</td>
 </tr>
 <tr>
 <td>B54</td>
-<td>sr_ldtdac</td>
+<td>SR_ldtdac</td>
 <td></td>
 <td>Input</td>
 <td>SPI Fallback:  Load for TDAC Configuration</td>
 </tr>
 <tr>
 <td>B55</td>
-<td>sr_ldpatgen</td>
+<td>SR_ldpatgen</td>
 <td></td>
 <td>Input</td>
 <td>SPI Fallback:  Load for Pattern Generator Configuration</td>
 </tr>
 <tr>
 <td>B56</td>
-<td>sr_sout</td>
+<td>SR_sout</td>
 <td></td>
 <td>Output</td>
 <td>SPI Fallback: Out for Chip Configuration</td>
@@ -969,7 +969,7 @@
 <tr>
 <td>B70</td>
 <td>vdda!</td>
-<td></td>
+<td>1.8 V</td>
 <td>Power</td>
 <td></td>
 </tr>
@@ -1109,7 +1109,7 @@
 <tr>
 <td>B90</td>
 <td>vdda!</td>
-<td></td>
+<td>1.8 V</td>
 <td>Power</td>
 <td></td>
 </tr>
@@ -1368,8 +1368,8 @@
 </tbody>
 </table>
 <h2 id="layout-gds">Layout GDS<a class="headerlink" href="#layout-gds" title="Permanent link">¶</a></h2>
-<p>An encrypted zip file containing the GDS with chipedge and Bondpads with labels can be downloaded <a download="ap5_pads.zip" href="../ap5_pads.zip">here</a>.
-It can be opened with <a href="https://www.klayout.de/build.html">KLayout</a> (all platform support).</p>
+<p>An encrypted zip file containing the GDS with chipedge and labeled Bondpads can be downloaded <a download="ap5_pads.zip" href="../ap5_pads.zip">here</a>.<br/>
+A recommended GDS viewer is <a href="https://www.klayout.de/build.html">KLayout</a> (all platform support).</p>
 </article>
 </div>
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
