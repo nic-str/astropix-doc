@@ -32,7 +32,7 @@ The IDLE byte represents no specific command and uses an invalid address: 0x1D f
 | 0x01    | NOCMD | 1 Byte | No Operation |
 |0x02|	Address Config|	1 Byte	| Sets the chip address. The chip forwards the command to the next chip with Address = Address + 1.<br>To configure addresses, start with chip "00" by sending 0x40, then send IDLE bytes to keep the clock active and propagate the address down the chain.|
 |0x03 |	Shift Register Config	|N Bytes	| Uses the entire SPI frame for shift register configuration. SPI Chip Select must be toggled to send a new command. |
-|0x04 |	Hearbeat	|1 Byte	| Request Hearbeat Package from chip via Address or from all chips via Broadcast 0x1E |
+|0x04 |	Heartbeat	|1 Byte	| Request Heartbeat Package from chip via Address or from all chips via Broadcast 0x1E |
 |0x05 |	ADC Readout	|1 Byte	| Request acquisition of 7 voltages (2 temperature sensors and 5 bias voltage) from on-chip ADC |
 
 ### Shift Register I/O and SPI Command

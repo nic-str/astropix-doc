@@ -4,7 +4,7 @@
 * [AstroPix2](astropix2/index.md)
 * [AstroPix3](astropix3/index.md)
 * [AstroPix4](astropix4/index.md)
-* [AstroPix5](astropix4/index.md)
+* [AstroPix5](astropix5/index.md)
 
 ## PCBs
 * [PCB](https://github.com/kit-adl/astropix/tree/main/PCB)
