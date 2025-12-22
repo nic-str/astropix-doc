@@ -1,7 +1,7 @@
 # AstroPix3 Specifications
 Submission Status: Submitted June 2022
 
-![Image title](./images/apix3.png){width="300" align=right}
+![Image title](../images/astropix3/apix3.png){width="300" align=right}
 /// caption
 AstroPix3 Layout
 ///

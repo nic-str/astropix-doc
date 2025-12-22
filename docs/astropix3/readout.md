@@ -1,6 +1,6 @@
 # AstroPix3 Hit Buffer
 
-![Image title](./images/apix3_hitbuffer.png){width=100%}
+![Image title](../images/astropix3/apix3_hitbuffer.png){width=100%}
 /// caption
 Hitbuffer showing ToA and ToT capturing, reset after read and hold masking
 ///

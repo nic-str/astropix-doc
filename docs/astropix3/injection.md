@@ -5,7 +5,7 @@ The injection can be controlled by:
 
 The simplified injection circuit shown below uses a [voltage DAC](dac.md#voltage-dac) and an NFET transistor controlled by a digital pulse.
 
-![Image title](/astropix3/images/injection.png){width=100%}
+![Image title](../images/astropix3/injection.png){width=100%}
 /// caption
 Injection circuit, showing analog and digital injection input
 ///

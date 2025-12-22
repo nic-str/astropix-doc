@@ -10,7 +10,7 @@ $$
 
 ## Voltage DAC
 
-![Image title](/astropix3/images/vdac.png){width=100%}
+![Image title](../images/astropix3/vdac.png){width=100%}
 /// caption
 DNL and INL of integrated 10b R2R voltage dac
 ///

@@ -2,7 +2,7 @@
 ## CSA and bandpass filter
 A simplified schematic of the pixel electronics is shown below:
 
-![Image title](./images/pixel_fe.png){width=100%}
+![Image title](../images/astropix3/pixel_fe.png){width=100%}
 /// caption
 Reverse biased sensor diode formed deep n-well and p-substrate, cascoded charge sensitive amplifier (CSA) and bandpass filter
 ///
@@ -21,7 +21,7 @@ The amplifiers input DC operating point is set by the source-follower SF1. The s
 
 ## Comparator and Levelshifter
 The signal path from the comparator input to the receiver output is shown below:
-![Image title](./images/apix3_comp_rec.png){width=100%}
+![Image title](../images/astropix3/apix3_comp_rec.png){width=100%}
 /// caption
 CMOS comparator and Levelshifter
 ///
