@@ -4,3 +4,4 @@ mkdocs-drawio
 mkdocs-glightbox
 mkdocs-include-markdown-plugin
 mkdocs-material
+markdown-include

@@ -21,6 +21,8 @@ nav:
   - AstroPix5 User Guide:
     - astropix5/index.md
     - SPI Interface: astropix5/spi.md
+    - DAC: astropix5/dac.md
+    - Injection: astropix5/injection.md
     - Pins: astropix5/pins.md
 
 docs_dir: docs
@@ -45,6 +47,8 @@ markdown_extensions:
   - attr_list
   - abbr
   - md_in_html
+  - markdown_include.include:
+        base_path: docs
   - pymdownx.arithmatex:
       generic: true
   - toc:
