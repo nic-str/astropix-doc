@@ -20,6 +20,7 @@ nav:
     - astropix4/index.md
   - AstroPix5 User Guide:
     - astropix5/index.md
+    - SPI Interface: astropix5/spi.md
     - Pins: astropix5/pins.md
 
 docs_dir: docs
