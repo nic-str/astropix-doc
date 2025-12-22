@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<link href="../" rel="prev"/>
+<link href="../pins/" rel="next"/>
+<link href="../../ADL_Logo.png" rel="icon"/>
+<meta content="mkdocs-1.6.1, mkdocs-material-9.7.1" name="generator"/>
+<title>SPI Interface - AstroPix Documentation</title>
+<link href="../../assets/stylesheets/main.484c7ddc.min.css" rel="stylesheet"/>
+
+<link href="../../assets/external/fonts.googleapis.com/css.49ea35f2.css" rel="stylesheet">
+<style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+<link href="../../assets/external/unpkg.com/katex@0/dist/katex.min.css" rel="stylesheet">
+<script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+<link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><script src="../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+<body dir="ltr">
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#controlling-fe">
+          Skip to content
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header md-header--shadow" data-md-component="header">
+<nav aria-label="Header" class="md-header__inner md-grid">
+<a aria-label="AstroPix Documentation" class="md-header__button md-logo" data-md-component="logo" href="../.." title="AstroPix Documentation">
+<img alt="logo" src="../../ADL_Logo.png"/>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            AstroPix Documentation
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              SPI Interface
+            
+          </span>
+</div>
+</div>
+</div>
+<script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navigation" class="md-nav md-nav--primary md-nav--integrated" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="AstroPix Documentation" class="md-nav__button md-logo" data-md-component="logo" href="../.." title="AstroPix Documentation">
+<img alt="logo" src="../../ADL_Logo.png"/>
+</a>
+    AstroPix Documentation
+  </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--section md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_1" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../..">
+<span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+</a>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_1_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_1">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--section md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_2" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../astropix2/">
+<span class="md-ellipsis">
+    
+  
+    AstroPix2 User Guide
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_2_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_2">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    AstroPix2 User Guide
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../astropix2/pins/">
+<span class="md-ellipsis">
+    
+  
+    Pins
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--section md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_3" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../astropix3/">
+<span class="md-ellipsis">
+    
+  
+    AstroPix3 User Guide
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_3">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    AstroPix3 User Guide
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../astropix3/pixelelectronics/">
+<span class="md-ellipsis">
+    
+  
+    Pixel Electronics
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../astropix3/readout/">
+<span class="md-ellipsis">
+    
+  
+    Matrix Readout
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../astropix3/spi/">
+<span class="md-ellipsis">
+    
+  
+    SPI Interface
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../astropix3/dac/">
+<span class="md-ellipsis">
+    
+  
+    DAC
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../astropix3/injection/">
+<span class="md-ellipsis">
+    
+  
+    Injection
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../astropix3/configuration/">
+<span class="md-ellipsis">
+    
+  
+    Configuration Registers
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../astropix3/pins/">
+<span class="md-ellipsis">
+    
+  
+    Pins
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--section md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_4" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../astropix4/">
+<span class="md-ellipsis">
+    
+  
+    AstroPix4 User Guide
+  
+
+    
+  </span>
+</a>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_4_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_4">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    AstroPix4 User Guide
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_5" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../">
+<span class="md-ellipsis">
+    
+  
+    AstroPix5 User Guide
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="true" aria-labelledby="__nav_5_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_5">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    AstroPix5 User Guide
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+<span class="md-ellipsis">
+    
+  
+    SPI Interface
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+<span class="md-ellipsis">
+    
+  
+    SPI Interface
+  
+
+    
+  </span>
+</a>
+<nav aria-label="Table of Contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of Contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#controlling-fe">
+<span class="md-ellipsis">
+      
+        Controlling FE
+      
+    </span>
+</a>
+<nav aria-label="Controlling FE" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#commands">
+<span class="md-ellipsis">
+      
+        Commands
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#shift-register-io-and-spi-command">
+<span class="md-ellipsis">
+      
+        Shift Register I/O and SPI Command
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#reading-from-the-front-end-fe">
+<span class="md-ellipsis">
+      
+        Reading from the Front-End (FE)
+      
+    </span>
+</a>
+<nav aria-label="Reading from the Front-End (FE)" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#hit-packet">
+<span class="md-ellipsis">
+      
+        Hit Packet
+      
+    </span>
+</a>
+<nav aria-label="Hit Packet" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#header-byte">
+<span class="md-ellipsis">
+      
+        Header Byte
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#hit-location">
+<span class="md-ellipsis">
+      
+        Hit Location
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#readout-procedure">
+<span class="md-ellipsis">
+      
+        Readout procedure
+      
+    </span>
+</a>
+<nav aria-label="Readout procedure" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#readout-sequence">
+<span class="md-ellipsis">
+      
+        Readout Sequence
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#data-available-for-readout">
+<span class="md-ellipsis">
+      
+        Data available for readout
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#no-data-available">
+<span class="md-ellipsis">
+      
+        No data available
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#hold-active">
+<span class="md-ellipsis">
+      
+        Hold active
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#adc-readout">
+<span class="md-ellipsis">
+      
+        ADC Readout
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#heartbeat">
+<span class="md-ellipsis">
+      
+        Heartbeat
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../pins/">
+<span class="md-ellipsis">
+    
+  
+    Pins
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<h1 id="spi-daisychain-interface">SPI Daisychain Interface<a class="headerlink" href="#spi-daisychain-interface" title="Permanent link">¶</a></h1>
+<p>The AstroPix5 SPI Interface is an enhanced version of the <a href="../../astropix3/spi/">SPI Interface of AstroPix3</a>.</p>
+<p>The main differences are:</p>
+<ul>
+<li>One 8 Byte frame per hit instead of two 5 Byte frames</li>
+<li>Two new commands Heartbeat and ADC Readout</li>
+<li>All shift registers configurable via SPI</li>
+<li>Improved interrupt logic, monitoring also the chain FIFOs, making it unnecessary to toggle the SPI much longer after the interrupt deassertion</li>
+</ul>
+<h2 id="controlling-fe">Controlling FE<a class="headerlink" href="#controlling-fe" title="Permanent link">¶</a></h2>
+<p>AstroPix receives commands via the MOSI line, using the following 8-bit format:</p>
+<script class="wavedrom" type="WaveDrom">
+    {
+        reg:[
+            {bits: 5,  name: 'Chip Address (5b)', type: 4},
+            {bits: 3,  name: 'Command (3b)', type: 3},
+        ], config:{bits: 8}
+    }
+    </script>
+<p>All valid commands are summarized in the table below:</p>
+<table>
+<thead>
+<tr>
+<th>BIT</th>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[4:0]</td>
+<td>Address</td>
+<td>0x00 -  0x14 : Single addresses<br/>0x15 - 0x1F : Reserved<br/>0x1D: Invalid<br/>0x1E: Broadcast</td>
+</tr>
+<tr>
+<td>[7:5]</td>
+<td>Command</td>
+<td>0x01 - NOCMD / IDLE<br/>0x02 - Routing: dispatch<br/>0x03 - Shift Register Config addresses</td>
+</tr>
+</tbody>
+</table>
+<p>The IDLE byte represents no specific command and uses an invalid address: 0x1D for the address and 0x1 for IDLE, resulting in <strong>0x3D</strong>.</p>
+<script class="wavedrom" type="WaveDrom">
+    {
+        reg:[
+            {bits: 5,  name: '0x1D', type: 4, attr: "Address"},
+            {bits: 3,  name: '0x1', type: 3, attr: "Command"},
+        ], config:{bits: 8}
+    }
+    </script>
+<h3 id="commands">Commands<a class="headerlink" href="#commands" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>COMMAND</th>
+<th>NAME</th>
+<th>LENGTH</th>
+<th>DESCRIPTION</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0x01</td>
+<td>NOCMD</td>
+<td>1 Byte</td>
+<td>No Operation</td>
+</tr>
+<tr>
+<td>0x02</td>
+<td>Address Config</td>
+<td>1 Byte</td>
+<td>Sets the chip address. The chip forwards the command to the next chip with Address = Address + 1.<br/>To configure addresses, start with chip "00" by sending 0x40, then send IDLE bytes to keep the clock active and propagate the address down the chain.</td>
+</tr>
+<tr>
+<td>0x03</td>
+<td>Shift Register Config</td>
+<td>N Bytes</td>
+<td>Uses the entire SPI frame for shift register configuration. SPI Chip Select must be toggled to send a new command.</td>
+</tr>
+<tr>
+<td>0x04</td>
+<td>Hearbeat</td>
+<td>1 Byte</td>
+<td>Request Hearbeat Package from chip via Address or from all chips via Broadcast 0x1E</td>
+</tr>
+<tr>
+<td>0x05</td>
+<td>ADC Readout</td>
+<td>1 Byte</td>
+<td>Request acquisition of 7 voltages (2 temperature sensors and 5 bias voltage) from on-chip ADC</td>
+</tr>
+</tbody>
+</table>
+<h3 id="shift-register-io-and-spi-command">Shift Register I/O and SPI Command<a class="headerlink" href="#shift-register-io-and-spi-command" title="Permanent link">¶</a></h3>
+<p>The shift register interface exposes two clocks, a serial input (SIN), and a load signal to load bits into the registers.
+Each bit on the SIN line is clocked through the shift register by toggling Clock 1 and Clock 2 separately. The diagram below illustrates a 3-bit register configuration:</p>
+<script class="wavedrom" type="WaveDrom">
+    { signal : [
+        {name: 'Ck1',    wave: '0.10..10..10...'},
+        {name: 'Ck2',     wave: '0...10..10..10.'},
+        {name: 'SIN',     wave: 'x5..x5..x5..x..', data: ['Bit 0','Bit 1', 'Bit 2']},
+        {name: 'Load',   wave: '0............10'},
+    ], config:{hscale: 2}
+}
+    </script>
+<p>SPI commands generate this sequence as follows:</p>
+<ul>
+<li>The first byte contains the 0x3 command and the target chip or broadcast ID</li>
+<li>Each subsequent byte shifts a 0 or 1 into the shift register. The LSB of each byte is used for Serial In (<code>8'bxxxxxxx1</code> or <code>8'bxxxxxxx0</code>)</li>
+<li>At the end of the sequence, send a byte with bit[1] = 1 to generate the required Load signal, in this case for the digital config</li>
+<li>When the frame ends, the Load signal returns to 0</li>
+</ul>
+<script class="wavedrom" type="WaveDrom">
+    {
+        reg:[
+            {bits: 1,  name: 'SIN', type: 2},
+            {bits: 1,  name: 'Load DigConfig', type: 3},
+            {bits: 1,  name: 'Load ColConfig', type: 3},
+            {bits: 1,  name: 'Load TDAC', type: 3},
+            {bits: 1,  name: 'Load Pulsegen', type: 3},
+            {bits: 3,  name: 'Unused', type: 0},
+        ], config:{bits: 8, vflip: false}
+    }
+    </script>
+<h2 id="reading-from-the-front-end-fe">Reading from the Front-End (FE)<a class="headerlink" href="#reading-from-the-front-end-fe" title="Permanent link">¶</a></h2>
+<p>The APS-to-FE path differs from the FE-to-APS path, as it does not process commands. Its sole function is to forward packets down the chain and arbitrate between forwarded packets and those generated by the local readout.</p>
+<p>The data format on this path uses a header that includes the Chip ID and a length field, allowing the Arbiter to transmit complete frames without splitting them.</p>
+<h3 id="hit-packet">Hit Packet<a class="headerlink" href="#hit-packet" title="Permanent link">¶</a></h3>
+<p>A single hit generates a single data frames, which is different to the 2 row and column half hits generated by AstroPix3.</p>
+<p>Each frame consists of 7 bytes:</p>
+<!--<pre>
+    <code class="wavedrom">
+    {
+        reg:[
+            {bits: 1,  name: 'Header', type: 2},
+            {bits: 1,  name: 'Row [4:0], Col [4:2]', type: 3},
+            {bits: 1,  name: 'Col[1:0]', type: 4},
+            {bits: 1,  name: 'ToT MSB', type: 5},
+            {bits: 1,  name: 'ToT LSB', type: 5},
+            {bits: 1,  name: 'ToT LSB', type: 5},
+            {bits: 1,  name: 'ToT LSB', type: 5},
+            {bits: 1,  name: 'ToT LSB', type: 5},
+        ], config:{bits: 8, vflip: true}
+    }
+    </code>
+</pre> -->
+<script class="wavedrom" type="WaveDrom">
+    {
+        reg:[
+            {bits: 8,  name: 'Header', type: 2},
+            {bits: 5,  name: 'Row [4:0]', type: 3},
+            {bits: 5,  name: 'Col [4:0]', type: 3},
+            {bits: 18,  name: 'TS1 Neg, TS1 [16:0]', type: 4},
+            {bits: 5,  name: 'TS1 TDC', type: 4},
+            {bits: 18,  name: 'TS2 Neg, TS2 [16:0]', type: 5},
+            {bits: 5,  name: 'TS2 TDC', type: 5},
+        ], config:{bits: 64, vflip: false}
+    }
+    </script>
+<h4 id="header-byte">Header Byte<a class="headerlink" href="#header-byte" title="Permanent link">¶</a></h4>
+<script class="wavedrom" type="WaveDrom">
+    {
+        reg:[
+            {bits: 3,  name: 'Payload (3b)', type: 2},
+            {bits: 5,  name: 'Chip Address (5b)', type: 2},
+        ], config:{bits: 8}
+    }
+    </script>
+<ul>
+<li>Chip address is set by the routing byte</li>
+<li>Payload length indicates the number of bytes following the header</li>
+</ul>
+<h4 id="hit-location">Hit Location<a class="headerlink" href="#hit-location" title="Permanent link">¶</a></h4>
+<p>The hit location is a 5 bit binary column and row address sent within the two first bytes after the header.</p>
+<h2 id="readout-procedure">Readout procedure<a class="headerlink" href="#readout-procedure" title="Permanent link">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If the chip is not configured and the SPI clock is toggled, you will likely see the <a href="./#no-data-available">no data case</a>, where the chip responds with IDLE bytes. In some cases, you may also receive data generated by noise hits, unless hold is active.
+If you do not receive any data from the chip, check the physical SPI connection.</p>
+</div>
+<h3 id="readout-sequence">Readout Sequence<a class="headerlink" href="#readout-sequence" title="Permanent link">¶</a></h3>
+<ul>
+<li>Activate the Timestamp Clock and if the integrated PLL is not used also the ToT clocks.</li>
+<li>Send the Routing Byte through the daisy-chain to assign chip IDs</li>
+<li>Send the Shift Register configuration command to configure the chips</li>
+<li>Wait for the interrupt falling edge, with the SPI clock deactivated</li>
+<li>When the interrupt is asserted, start the SPI clock to send dummy bytes (e.g., IDLE 0x3D) to initiate readout</li>
+<li>Continue sending dummy bytes until the interrupt is deasserted</li>
+<li>Deactivate SPI clock again to save power</li>
+</ul>
+<h3 id="data-available-for-readout">Data available for readout<a class="headerlink" href="#data-available-for-readout" title="Permanent link">¶</a></h3>
+<script class="wavedrom" type="WaveDrom">
+    { signal : [
+        {name: 'ResetN',      wave: '10.1.|..............................'},
+        {name: 'hold',        wave: '0....|..............................'},
+        {name: 'Interrupt',   wave: 'x1...|.0............................'},
+        {},
+        {name: 'SPI CLK',     wave: '0....|......p.......................'},
+        {name: 'SPI MOSI',    wave: 'xxxxx|x.....2.......2.......2.......', data: ['IDLE 0x3D','IDLE 0x3D', 'IDLE 0x3D']},
+        {name: 'SPI CSN',     wave: '1....|...0..........................'},
+        {name: 'SPI MISO[0]', wave: 'z....|...1..3...3...4...4...4...4...', data: ['IDLE Bit 0,2,4,6','IDLE Bit 0,2,4,6', 'HEADER Bit 0,2,4,6', 'Hit Location Bit 0,2,4,6', 'ToA Bit 0,2,4,6', 'ToT Bit 0,2,4,6']},
+        {name: 'SPI MISO[1]', wave: 'z....|...0..3...3...4...4...4...4...', data: ['IDLE Bit 1,3,5,7','IDLE Bit 1,3,5,7', 'HEADER Bit 1,3,5,7', 'Hit Location Bit 1,3,5,7', 'ToA Bit 1,3,5,7','ToT Bit 1,3,5,7']},
+    ]
+}
+    </script>
+<h3 id="no-data-available">No data available<a class="headerlink" href="#no-data-available" title="Permanent link">¶</a></h3>
+<p>This timing diagram shows the case when hold is low and interrupt is inactive, the chip returns only IDLE bytes because there is no hit data.</p>
+<script class="wavedrom" type="WaveDrom">
+    { signal : [
+        {name: 'ResetN',      wave: '10.1.|..............................'},
+        {name: 'hold',        wave: '0....|..............................'},
+        {name: 'Interrupt',   wave: 'x1...|..............................'},
+        {},
+        {name: 'SPI CLK',     wave: '0....|......p.......................'},
+        {name: 'SPI MOSI',    wave: 'xxxxx|x.....2.......2.......2.......', data: ['IDLE 0x3D','IDLE 0x3D', 'IDLE 0x3D']},
+        {name: 'SPI CSN',     wave: '1....|...0..........................'},
+        {name: 'SPI MISO[0]', wave: 'z....|...1..3...3...3...3...3...3...', data: ['IDLE Bit 0,2,4,6','IDLE Bit 0,2,4,6', 'IDLE Bit 0,2,4,6', 'IDLE Bit 0,2,4,6', 'IDLE Bit 0,2,4,6', 'IDLE Bit 0,2,4,6']},
+        {name: 'SPI MISO[1]', wave: 'z....|...0..3...3...3...3...3...3...', data: ['IDLE Bit 1,3,5,7','IDLE Bit 1,3,5,7', 'IDLE Bit 1,3,5,7', 'IDLE Bit 1,3,5,7', 'IDLE Bit 1,3,5,7','IDLE Bit 1,3,5,7']},
+    ]
+}
+    </script>
+<h3 id="hold-active">Hold active<a class="headerlink" href="#hold-active" title="Permanent link">¶</a></h3>
+<p>This timing diagram shows the case when hold is active and interrupt is active, the chip returns only IDLE bytes instead of sending out hit data.</p>
+<script class="wavedrom" type="WaveDrom">
+    { signal : [
+        {name: 'ResetN',      wave: '10.1.|..............................'},
+        {name: 'hold',        wave: '0....|...1..........................'},
+        {name: 'Interrupt',   wave: 'x1...|.0............................'},
+        {},
+        {name: 'SPI CLK',     wave: '0....|......p.......................'},
+        {name: 'SPI MOSI',    wave: 'xxxxx|x.....2.......2.......2.......', data: ['IDLE 0x3D','IDLE 0x3D', 'IDLE 0x3D']},
+        {name: 'SPI CSN',     wave: '1....|...0..........................'},
+        {name: 'SPI MISO[0]', wave: 'z....|...1..3...3...3...3...3...3...', data: ['IDLE Bit 0,2,4,6','IDLE Bit 0,2,4,6', 'IDLE Bit 0,2,4,6', 'IDLE Bit 0,2,4,6', 'IDLE Bit 0,2,4,6', 'IDLE Bit 0,2,4,6']},
+        {name: 'SPI MISO[1]', wave: 'z....|...0..3...3...3...3...3...3...', data: ['IDLE Bit 1,3,5,7','IDLE Bit 1,3,5,7', 'IDLE Bit 1,3,5,7', 'IDLE Bit 1,3,5,7', 'IDLE Bit 1,3,5,7','IDLE Bit 1,3,5,7']},
+    ]
+}
+    </script>
+<h3 id="adc-readout">ADC Readout<a class="headerlink" href="#adc-readout" title="Permanent link">¶</a></h3>
+<p>TODO</p>
+<h3 id="heartbeat">Heartbeat<a class="headerlink" href="#heartbeat" title="Permanent link">¶</a></h3>
+<p>TODO</p>
+</article>
+</div>
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+</div>
+<button class="md-top md-icon" data-md-component="top" hidden="" type="button">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+  Back to top
+</button>
+</main>
+<footer class="md-footer">
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+<div class="md-copyright__highlight">
+      Nicolas Striebig 2025
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+      Material for MkDocs
+    </a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.expand", "navigation.sections", "navigation.indexes", "navigation.top", "content.code.copy", "toc.integrate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+<script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+<script src="../../assets/external/unpkg.com/tablesort@5.3.0/dist/tablesort.min.js"></script>
+<script src="../../javascripts/tablesort.js"></script>
+<script src="../../javascripts/wavedrom.js"></script>
+<script src="../../assets/external/cdnjs.cloudflare.com/ajax/libs/wavedrom/3.1.0/skins/default.js"></script>
+<script src="../../assets/external/cdnjs.cloudflare.com/ajax/libs/wavedrom/3.1.0/wavedrom.min.js"></script>
+<script src="../../javascripts/katex.js"></script>
+<script src="../../assets/external/unpkg.com/katex@0/dist/katex.min.js"></script>
+<script src="../../assets/external/unpkg.com/katex@0/dist/contrib/auto-render.min.js"></script>
+<script src="../../assets/external/unpkg.com/mermaid@11/dist/mermaid.min.js"></script>
+<script id="init-glightbox">document.querySelectorAll('.glightbox').forEach(function(element) {
+    try {
+        var img = element.querySelector('img');
+        if (img && img.src) {
+            element.setAttribute('href', img.src);
+        } else {
+            console.log('No img element with src attribute found');
+        }
+    } catch (error) {
+        console.log('Error:', error);
+    }
+});
+const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script><script>window.addEventListener('load', function() {wavedrom.processAll();});</script></body></html>

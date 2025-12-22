@@ -5,9 +5,9 @@
 <link href="../readout/" rel="prev"/>
 <link href="../dac/" rel="next"/>
 <link href="../../ADL_Logo.png" rel="icon"/>
-<meta content="mkdocs-1.6.1, mkdocs-material-9.6.20" name="generator"/>
+<meta content="mkdocs-1.6.1, mkdocs-material-9.7.1" name="generator"/>
 <title>SPI Interface - AstroPix Documentation</title>
-<link href="../../assets/stylesheets/main.e53b48f4.min.css" rel="stylesheet"/>
+<link href="../../assets/stylesheets/main.484c7ddc.min.css" rel="stylesheet"/>
 
 <link href="../../assets/external/fonts.googleapis.com/css.49ea35f2.css" rel="stylesheet">
 <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
@@ -81,7 +81,11 @@
 <div class="md-nav__link md-nav__container">
 <a class="md-nav__link" href="../..">
 <span class="md-ellipsis">
+    
+  
     Getting Started
+  
+
     
   </span>
 </a>
@@ -89,7 +93,11 @@
 <nav aria-expanded="false" aria-labelledby="__nav_1_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_1">
 <span class="md-nav__icon md-icon"></span>
-            Getting Started
+            
+  
+    Getting Started
+  
+
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 </ul>
@@ -100,7 +108,11 @@
 <div class="md-nav__link md-nav__container">
 <a class="md-nav__link" href="../../astropix2/">
 <span class="md-ellipsis">
+    
+  
     AstroPix2 User Guide
+  
+
     
   </span>
 </a>
@@ -111,13 +123,21 @@
 <nav aria-expanded="false" aria-labelledby="__nav_2_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_2">
 <span class="md-nav__icon md-icon"></span>
-            AstroPix2 User Guide
+            
+  
+    AstroPix2 User Guide
+  
+
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../astropix2/pins/">
 <span class="md-ellipsis">
+    
+  
     Pins
+  
+
     
   </span>
 </a>
@@ -130,7 +150,11 @@
 <div class="md-nav__link md-nav__container">
 <a class="md-nav__link" href="../">
 <span class="md-ellipsis">
+    
+  
     AstroPix3 User Guide
+  
+
     
   </span>
 </a>
@@ -141,13 +165,21 @@
 <nav aria-expanded="true" aria-labelledby="__nav_3_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_3">
 <span class="md-nav__icon md-icon"></span>
-            AstroPix3 User Guide
+            
+  
+    AstroPix3 User Guide
+  
+
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
 <a class="md-nav__link" href="../pixelelectronics/">
 <span class="md-ellipsis">
+    
+  
     Pixel Electronics
+  
+
     
   </span>
 </a>
@@ -155,7 +187,11 @@
 <li class="md-nav__item">
 <a class="md-nav__link" href="../readout/">
 <span class="md-ellipsis">
+    
+  
     Matrix Readout
+  
+
     
   </span>
 </a>
@@ -164,14 +200,22 @@
 <input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
 <label class="md-nav__link md-nav__link--active" for="__toc">
 <span class="md-ellipsis">
+    
+  
     SPI Interface
+  
+
     
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
 <a class="md-nav__link md-nav__link--active" href="./">
 <span class="md-ellipsis">
+    
+  
     SPI Interface
+  
+
     
   </span>
 </a>
@@ -184,7 +228,9 @@
 <li class="md-nav__item">
 <a class="md-nav__link" href="#controlling-fe">
 <span class="md-ellipsis">
-      Controlling FE
+      
+        Controlling FE
+      
     </span>
 </a>
 <nav aria-label="Controlling FE" class="md-nav">
@@ -192,14 +238,18 @@
 <li class="md-nav__item">
 <a class="md-nav__link" href="#commands">
 <span class="md-ellipsis">
-      Commands
+      
+        Commands
+      
     </span>
 </a>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#shift-register-io-and-spi-command">
 <span class="md-ellipsis">
-      Shift Register I/O and SPI Command
+      
+        Shift Register I/O and SPI Command
+      
     </span>
 </a>
 </li>
@@ -209,7 +259,9 @@
 <li class="md-nav__item">
 <a class="md-nav__link" href="#reading-from-the-front-end-fe">
 <span class="md-ellipsis">
-      Reading from the Front-End (FE)
+      
+        Reading from the Front-End (FE)
+      
     </span>
 </a>
 <nav aria-label="Reading from the Front-End (FE)" class="md-nav">
@@ -217,7 +269,9 @@
 <li class="md-nav__item">
 <a class="md-nav__link" href="#hit-packet">
 <span class="md-ellipsis">
-      Hit Packet
+      
+        Hit Packet
+      
     </span>
 </a>
 <nav aria-label="Hit Packet" class="md-nav">
@@ -225,14 +279,18 @@
 <li class="md-nav__item">
 <a class="md-nav__link" href="#header-byte">
 <span class="md-ellipsis">
-      Header Byte
+      
+        Header Byte
+      
     </span>
 </a>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#hit-location-byte">
 <span class="md-ellipsis">
-      Hit Location Byte
+      
+        Hit Location Byte
+      
     </span>
 </a>
 </li>
@@ -245,7 +303,9 @@
 <li class="md-nav__item">
 <a class="md-nav__link" href="#readout-procedure">
 <span class="md-ellipsis">
-      Readout procedure
+      
+        Readout procedure
+      
     </span>
 </a>
 <nav aria-label="Readout procedure" class="md-nav">
@@ -253,28 +313,36 @@
 <li class="md-nav__item">
 <a class="md-nav__link" href="#readout-sequence">
 <span class="md-ellipsis">
-      Readout Sequence
+      
+        Readout Sequence
+      
     </span>
 </a>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#data-available-for-readout">
 <span class="md-ellipsis">
-      Data available for readout
+      
+        Data available for readout
+      
     </span>
 </a>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#no-data-available">
 <span class="md-ellipsis">
-      No data available
+      
+        No data available
+      
     </span>
 </a>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#hold-active">
 <span class="md-ellipsis">
-      Hold active
+      
+        Hold active
+      
     </span>
 </a>
 </li>
@@ -287,7 +355,11 @@
 <li class="md-nav__item">
 <a class="md-nav__link" href="../dac/">
 <span class="md-ellipsis">
+    
+  
     DAC
+  
+
     
   </span>
 </a>
@@ -295,7 +367,11 @@
 <li class="md-nav__item">
 <a class="md-nav__link" href="../injection/">
 <span class="md-ellipsis">
+    
+  
     Injection
+  
+
     
   </span>
 </a>
@@ -303,7 +379,11 @@
 <li class="md-nav__item">
 <a class="md-nav__link" href="../configuration/">
 <span class="md-ellipsis">
+    
+  
     Configuration Registers
+  
+
     
   </span>
 </a>
@@ -311,7 +391,11 @@
 <li class="md-nav__item">
 <a class="md-nav__link" href="../pins/">
 <span class="md-ellipsis">
+    
+  
     Pins
+  
+
     
   </span>
 </a>
@@ -324,7 +408,11 @@
 <div class="md-nav__link md-nav__container">
 <a class="md-nav__link" href="../../astropix4/">
 <span class="md-ellipsis">
+    
+  
     AstroPix4 User Guide
+  
+
     
   </span>
 </a>
@@ -332,7 +420,11 @@
 <nav aria-expanded="false" aria-labelledby="__nav_4_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_4">
 <span class="md-nav__icon md-icon"></span>
-            AstroPix4 User Guide
+            
+  
+    AstroPix4 User Guide
+  
+
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 </ul>
@@ -343,7 +435,11 @@
 <div class="md-nav__link md-nav__container">
 <a class="md-nav__link" href="../../astropix5/">
 <span class="md-ellipsis">
+    
+  
     AstroPix5 User Guide
+  
+
     
   </span>
 </a>
@@ -354,13 +450,33 @@
 <nav aria-expanded="false" aria-labelledby="__nav_5_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_5">
 <span class="md-nav__icon md-icon"></span>
-            AstroPix5 User Guide
+            
+  
+    AstroPix5 User Guide
+  
+
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
+<a class="md-nav__link" href="../../astropix5/spi/">
+<span class="md-ellipsis">
+    
+  
+    SPI Interface
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="../../astropix5/pins/">
 <span class="md-ellipsis">
+    
+  
     Pins
+  
+
     
   </span>
 </a>
@@ -608,8 +724,8 @@ If you do not receive any data from the chip, check the physical SPI connection.
 <div class="md-dialog" data-md-component="dialog">
 <div class="md-dialog__inner md-typeset"></div>
 </div>
-<script id="__config" type="application/json">{"base": "../..", "features": ["navigation.expand", "navigation.sections", "navigation.indexes", "navigation.top", "content.code.copy", "toc.integrate"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
-<script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+<script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.expand", "navigation.sections", "navigation.indexes", "navigation.top", "content.code.copy", "toc.integrate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+<script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
 <script src="../../assets/external/unpkg.com/tablesort@5.3.0/dist/tablesort.min.js"></script>
 <script src="../../javascripts/tablesort.js"></script>
 <script src="../../javascripts/wavedrom.js"></script>
