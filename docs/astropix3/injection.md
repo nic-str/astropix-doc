@@ -3,7 +3,7 @@ The injection can be controlled by:
 * **external voltage card** generating the required injection pulses, in this case the digital injection (DigInj) input should be held at 0V
 * **digital injection** to generate the pulses and the amplitude is set by the VDAC, in this case the injection pin (Inj)should float and the injection card should not be disconnected
 
-The simplified injection circuit shown below uses a [voltage DAC](astropix3/dac.md#voltage-dac) and an NFET transistor controlled by a digital pulse.
+The simplified injection circuit shown below uses a [voltage DAC](dac.md#voltage-dac) and an NFET transistor controlled by a digital pulse.
 
 ![Image title](./images/injection.png){width=100%}
 /// caption
