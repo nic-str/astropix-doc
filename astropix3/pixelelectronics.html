@@ -512,6 +512,14 @@ The analog voltage pulse goes into the comparator and gets compared to the thres
 Due to mismatch, the differential amplifier in the comparator is not totally symmetric. This results in a shift of the effective threshold to the value set by Vth. A compensation mechanism is implemented since AstroPix4, consisting of a 3bit current DAC which can be tuned to make the tail currents in the differential stage equal.<br/>
 The following stage is an open drain NFET, pulled up by the current source VPREC. This NFET converts the positive pulse to a negative pulse. The source of the NFET is connected to Vminuspix (normally 0.7 - 1V), which reduces the signal amplitude from 1.8V to 0.8 - 1.1V. A higher signal amplitude, i.e. a lower value of vminuspix reduces the propagation delay but also increases EMI at the same time.<br/>
 In the hit buffer of every pixel, the signal is converted back to the full amplitude by a PFET common-source amplifier. The output signal is a positive pulse with a fast rise time and a fall time which is determined by the discharge current VNREC.</p>
+<aside class="md-source-file">
+<span class="md-source-file__fact">
+<span class="md-icon" title="Last update">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
+</span>
+<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="December 23, 2025 19:32:02 UTC">December 23, 2025</span>
+</span>
+</aside>
 </article>
 </div>
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
