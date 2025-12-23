@@ -41,7 +41,7 @@
 | B6  | sample_clock_n     |        | Input           | LVDS <200 MHz Clock for ToT counter<br>  (Connect to vdd! if Single ended clock is used) - P/N can be swapped             |
 | B7  | vdd!               | 1.8 V  | Power   |               |
 | B8  | gnd!               |        | Power   |               |
-| B9  | interrupt          |        | Output (Open-Drain/pushpull see [interrupt_pushpull](configuration.md#digital-config) config bit) | Active low status signal (0: data to read out 1: no data to read out) - Needs 10 kOhm pullup to vdd! in Open-Drain mode            |
+| B9  | interrupt          |        | Output (Open-Drain/pushpull see [interrupt_pushpull](../astropix3/configuration.md#digital-config) config bit) | Active low status signal (0: data to read out 1: no data to read out) - Needs 10 kOhm pullup to vdd! in Open-Drain mode            |
 | B10 | res_n              |        | Input               | Active low global reset |
 | B11 | timestamp_clk      |        | Input           |               |
 | B12 | hold               |        | Output           |               |

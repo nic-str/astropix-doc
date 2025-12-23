@@ -1,7 +1,7 @@
 # Chip Configuration
 
 AstroPix3 is configured trough a long shift register, consisting of a configuration for the digital part, the analog part including all current and voltage dacs and the column configuration to disable pixels and selection rows/columns for injection. The first bit in the register is the *interrupt_pushpull* bit, while bit 37 of the 35th column config is the last bit.
-
+<!--config_digana-start-->
 !!! note
     For programing, the first bit *interrupt_pushpull* has to be sent last, and the last bit in this list first.
 
@@ -44,7 +44,7 @@ The chip can be programmed directly via the shift register interface or through 
 | nu16               | 6    | 0             |unused|
 | vprec              | 6    | 30            |Levelshifter Pullup current|
 | vnrec              | 6    | 30            |Levelshifter Receiver load current|
-
+<!--config_digana-end-->
 ## VDAC Config
 | Field Name | Bits | Default Value | Description |
 |------------|------|---------------|-------------|
@@ -55,6 +55,7 @@ The chip can be programmed directly via the shift register interface or through 
 | thpmos:    | 10   | 682           |  Comparator threshold voltage for PMOS Amplifier pixels           |
 | vinj:      | 10   | 0             |  Injection amplitude           |
 
+<!--config_column-start-->
 ## Column Config
 Each column incorporates a 38 bit shift register, and each columns are connected in series starting at column 0 to column 34.
 {% include-markdown "./configuration/format_col_config.md" %}
@@ -72,3 +73,4 @@ For column n from 0 to 34:
 
     Set AmpOut bit only in one column
 
+<!--config_column-end-->

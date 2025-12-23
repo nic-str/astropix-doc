@@ -1,5 +1,6 @@
 # Pixel Electronics
-## CSA and bandpass filter
+<!--pixel-start-->
+## CSA and Bandpass Filter
 A simplified schematic of the pixel electronics is shown below:
 
 ![Image title](../images/astropix3/pixel_fe.png){width=100%}
@@ -18,15 +19,15 @@ v_{out} \approx \dfrac{Q}{C_{fb}+C_{fb2}}
 $$
 The feedback capacitance is continuously discharged by a constant current source VNFB, which results in a linear decay of the output pulse.
 The amplifiers input DC operating point is set by the source-follower SF1. The second source-follower SF2 acts as a low pass filter. Due to its non-linearity, the rising edge has a fast rise time, but the falling edge because the load current source INFOLL2 is biased with a low current. A higher current increases the low pass filter bandwidth, resulting in a steeper slope i.e. shorter time-over-threshold (ToT) but also higher noise. From the output of SF2 the signal is capacitively coupled through a Metal-Insulator-Metal capacitor to AmpOutAC. The DC level is set by the voltage DAC blpix, which is connected to the signal though a small current source, acting as a high pass filter together with the coupling capacitance.
-
-## Comparator and Levelshifter
+<!--pixel-end-->
+## Comparator and Level shifter
 The signal path from the comparator input to the receiver output is shown below:
 ![Image title](../images/astropix3/apix3_comp_rec.png){width=100%}
 /// caption
-CMOS comparator and Levelshifter
+CMOS comparator and Level shifter
 ///
 The comparator is a two stage amplifier with the first stage being a NFET differential amplifier with a PFET current source load and the second stage being a common-source amplifier to increase the gain.  
 The analog voltage pulse goes into the comparator and gets compared to the threshold voltage Vth. The comparator bias current is set by the current digital-to-analog converter (DAC) VNCOMP. The output is a positive voltage pulse with Vlow 0V and VHigh 1.8V.
-Due to mismatch, the differential amplifier in the comparator is not totally symmetric. This results in a shift of the effective threshold to the value set by Vth. A compensation mechanism is implemented in AstroPix4. It consists of a 3bit current DAC which can be tuned to make the tail currents in the differential stage equal.  
+Due to mismatch, the differential amplifier in the comparator is not totally symmetric. This results in a shift of the effective threshold to the value set by Vth. A compensation mechanism is implemented since AstroPix4, consisting of a 3bit current DAC which can be tuned to make the tail currents in the differential stage equal.  
 The following stage is an open drain NFET, pulled up by the current source VPREC. This NFET converts the positive pulse to a negative pulse. The source of the NFET is connected to Vminuspix (normally 0.7 - 1V), which reduces the signal amplitude from 1.8V to 0.8 - 1.1V. A higher signal amplitude, i.e. a lower value of vminuspix reduces the propagation delay but also increases EMI at the same time.  
 In the hit buffer of every pixel, the signal is converted back to the full amplitude by a PFET common-source amplifier. The output signal is a positive pulse with a fast rise time and a fall time which is determined by the discharge current VNREC.

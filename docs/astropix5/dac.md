@@ -1,1 +1,3 @@
-{!astropix3/dac.md!}
+{%
+    include-markdown "../astropix3/dac.md"
+%}
