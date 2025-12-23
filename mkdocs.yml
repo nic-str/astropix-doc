@@ -113,6 +113,7 @@ plugins:
       recursive: true
   - offline
   - search
+  - git-revision-date-localized
   #- to-pdf
 
 # markdown_extensions:

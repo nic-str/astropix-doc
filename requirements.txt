@@ -5,3 +5,5 @@ mkdocs-glightbox
 mkdocs-include-markdown-plugin
 mkdocs-material
 mkdocs-include-markdown-plugin
+mkdocs-to-pdf
+mkdocs-git-revision-date-localized-plugin
