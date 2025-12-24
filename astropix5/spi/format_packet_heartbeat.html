@@ -4,7 +4,7 @@
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <link href="../../ADL_Logo.png" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-9.7.1" name="generator"/>
-<title>Format packet hit - AstroPix Documentation</title>
+<title>Format packet heartbeat - AstroPix Documentation</title>
 <link href="../../assets/stylesheets/main.484c7ddc.min.css" rel="stylesheet"/>
 <script src="../../assets/external/unpkg.com/iframe-worker/shim.js"></script>
 
@@ -49,7 +49,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Format packet hit
+              Format packet heartbeat
             
           </span>
 </div>
@@ -434,7 +434,7 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1>Format packet hit</h1>
+<h1>Format packet heartbeat</h1>
 <!--<pre>
     <code class="wavedrom">
     {
@@ -454,12 +454,11 @@
     {
         reg:[
             {bits: 8,  name: 'Header', type: 2},
-            {bits: 5,  name: 'Row [4:0]', type: 3},
-            {bits: 5,  name: 'Col [4:0]', type: 3},
-            {bits: 18,  name: 'TS1 Neg, TS1 [16:0]', type: 4},
-            {bits: 5,  name: 'TS1 TDC', type: 4},
-            {bits: 18,  name: 'TS2 Neg, TS2 [16:0]', type: 5},
-            {bits: 5,  name: 'TS2 TDC', type: 5},
+            {bits: 16,  name: '0xFFFF', type: 3},
+            {bits: 16,  name: 'Extrabits', type: 4},
+            {bits: 16,  name: 'ExtrabitsN', type: 4},
+            {bits: 8,  name: 'SEU Counter', type: 5},
+
         ], config:{bits: 64, vflip: true}
     }
     </script>

@@ -470,6 +470,24 @@
 </ul>
 </nav>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#adc-readout">
+<span class="md-ellipsis">
+      
+        ADC Readout
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#heartbeat">
+<span class="md-ellipsis">
+      
+        Heartbeat
+      
+    </span>
+</a>
+</li>
 </ul>
 </nav>
 </li>
@@ -515,24 +533,6 @@
 <span class="md-ellipsis">
       
         Hold active
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#adc-readout">
-<span class="md-ellipsis">
-      
-        ADC Readout
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#heartbeat">
-<span class="md-ellipsis">
-      
-        Heartbeat
       
     </span>
 </a>
@@ -608,7 +608,7 @@
 <li>One 8 Byte frame per hit instead of two 5 Byte frames</li>
 <li>Two new commands Heartbeat and ADC Readout</li>
 <li>All shift registers configurable via SPI</li>
-<li>Improved interrupt logic, monitoring also the chain FIFOs, making it unnecessary to toggle the SPI much longer after the interrupt deassertion</li>
+<li>Improved interrupt logic, monitoring also the chain FIFOs, making it unnecessary to toggle the SPI much longer after the interrupt de-assertion</li>
 </ul>
 <h2 id="controlling-fe">Controlling FE<a class="headerlink" href="#controlling-fe" title="Permanent link">¶</a></h2>
 <p>AstroPix receives commands via the MOSI line, using the following 8-bit format:</p>
@@ -694,7 +694,7 @@
 <td>0x05</td>
 <td>ADC Readout</td>
 <td>1 Byte</td>
-<td>Request acquisition of 7 voltages (2 temperature sensors and 5 bias voltage) from on-chip ADC</td>
+<td>Request acquisition of 8 voltages (2 temperature sensors and 6 bias voltage) from on-chip ADC</td>
 </tr>
 </tbody>
 </table>
@@ -766,7 +766,7 @@ Each bit on the SIN line is clocked through the shift register by toggling Clock
             {bits: 5,  name: 'TS1 TDC', type: 4},
             {bits: 18,  name: 'TS2 Neg, TS2 [16:0]', type: 5},
             {bits: 5,  name: 'TS2 TDC', type: 5},
-        ], config:{bits: 64, vflip: false}
+        ], config:{bits: 64, vflip: true}
     }
     </script>
 <!-- END INCLUDE -->
@@ -787,6 +787,86 @@ Each bit on the SIN line is clocked through the shift register by toggling Clock
 </ul>
 <h4 id="hit-location">Hit Location<a class="headerlink" href="#hit-location" title="Permanent link">¶</a></h4>
 <p>The hit location is a 5 bit binary column and row address sent within the two first bytes after the header.</p>
+<h3 id="adc-readout">ADC Readout<a class="headerlink" href="#adc-readout" title="Permanent link">¶</a></h3>
+<p>The ADC readout command 0x5 is used to readout 8 voltages, including the 2 temperature sensors and 6 bias voltages (BL, Th, Vcasc2!, GateRef, vminus, Vinj). The chips needs a few milliseconds to acquire the voltages, but it asserts the interrupt when the acquisition is done.</p>
+<p>The ADC data is packed into two data frames. The first two Bytes of the first package are 0xFFFE and 0xFFFD for the second package. Therefore, they can also be distinguished from a normal data packet, as the pixel address is 63, 63 which does not correspond to an existing pixel.</p>
+<!-- BEGIN INCLUDE ./spi/format_packet_adcreadout.md '&lt;!--start--&gt;' '&lt;!--end--&gt;' -->
+<!--<pre>
+    <code class="wavedrom">
+    {
+        reg:[
+            {bits: 1,  name: 'Header', type: 2},
+            {bits: 1,  name: 'Row [4:0], Col [4:2]', type: 3},
+            {bits: 1,  name: 'Col[1:0]', type: 4},
+            {bits: 1,  name: 'ToT MSB', type: 5},
+            {bits: 1,  name: 'ToT LSB', type: 5},
+            {bits: 1,  name: 'ToT LSB', type: 5},
+            {bits: 1,  name: 'ToT LSB', type: 5},
+            {bits: 1,  name: 'ToT LSB', type: 5},
+        ], config:{bits: 8, vflip: true}
+    }
+    </code>
+</pre> -->
+<script class="wavedrom" type="WaveDrom">
+    {
+        reg:[
+            {bits: 8,  name: 'Header', type: 2},
+            {bits: 16,  name: '0xFFFE', type: 3},
+            {bits: 16,  name: 'Temp1', type: 4},
+            {bits: 16,  name: 'Temp2', type: 4},
+            {bits: 8,  name: 'BL', type: 4},
+
+        ], config:{bits: 64, vflip: true}
+    }
+    </script>
+<script class="wavedrom" type="WaveDrom">
+    {
+        reg:[
+            {bits: 8,  name: 'Header', type: 2},
+            {bits: 16,  name: '0xFFFD', type: 3},
+            {bits: 8,  name: 'Th', type: 4},
+            {bits: 8,  name: 'Vcasc2', type: 4},
+            {bits: 8,  name: 'GateRef', type: 4},
+            {bits: 8,  name: 'Vminus', type: 4},
+            {bits: 8,  name: 'Vinj', type: 4},
+
+        ], config:{bits: 64, vflip: true}
+    }
+    </script>
+<!-- END INCLUDE -->
+<h3 id="heartbeat">Heartbeat<a class="headerlink" href="#heartbeat" title="Permanent link">¶</a></h3>
+<p>The heartbeat command 0x4 can be used to get „sign of life“ and to check if a chip is configured. It can be broadcasted or sent to individual chips via their ID.</p>
+<p>The chip answers with a packet similar to the <a href="#hit-packet">normal readout data frame</a>. The first two bytes are 0xFFFF, then the 16 Extrabits from the configuration are sent non-inverted and inverted. The last Byte is the current count of the internal SEU counter. Similar to the ADC readout package, it can also be distinguished from a normal data packet, as the pixel address is 63, 63 which does not correspond to an existing pixel.</p>
+<!-- BEGIN INCLUDE ./spi/format_packet_heartbeat.md '&lt;!--start--&gt;' '&lt;!--end--&gt;' -->
+<!--<pre>
+    <code class="wavedrom">
+    {
+        reg:[
+            {bits: 1,  name: 'Header', type: 2},
+            {bits: 1,  name: 'Row [4:0], Col [4:2]', type: 3},
+            {bits: 1,  name: 'Col[1:0]', type: 4},
+            {bits: 1,  name: 'ToT MSB', type: 5},
+            {bits: 1,  name: 'ToT LSB', type: 5},
+            {bits: 1,  name: 'ToT LSB', type: 5},
+            {bits: 1,  name: 'ToT LSB', type: 5},
+            {bits: 1,  name: 'ToT LSB', type: 5},
+        ], config:{bits: 8, vflip: true}
+    }
+    </code>
+</pre> -->
+<script class="wavedrom" type="WaveDrom">
+    {
+        reg:[
+            {bits: 8,  name: 'Header', type: 2},
+            {bits: 16,  name: '0xFFFF', type: 3},
+            {bits: 16,  name: 'Extrabits', type: 4},
+            {bits: 16,  name: 'ExtrabitsN', type: 4},
+            {bits: 8,  name: 'SEU Counter', type: 5},
+
+        ], config:{bits: 64, vflip: true}
+    }
+    </script>
+<!-- END INCLUDE -->
 <h2 id="readout-procedure">Readout procedure<a class="headerlink" href="#readout-procedure" title="Permanent link">¶</a></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -856,16 +936,12 @@ If you do not receive any data from the chip, check the physical SPI connection.
 }
     </script>
 <!-- END INCLUDE -->
-<h3 id="adc-readout">ADC Readout<a class="headerlink" href="#adc-readout" title="Permanent link">¶</a></h3>
-<p>TODO</p>
-<h3 id="heartbeat">Heartbeat<a class="headerlink" href="#heartbeat" title="Permanent link">¶</a></h3>
-<p>TODO</p>
 <aside class="md-source-file">
 <span class="md-source-file__fact">
 <span class="md-icon" title="Last update">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
 </span>
-<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="December 22, 2025 16:43:55 UTC">December 22, 2025</span>
+<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="December 24, 2025 12:33:10 UTC">December 24, 2025</span>
 </span>
 </aside>
 </article>
