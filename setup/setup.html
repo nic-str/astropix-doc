@@ -2,11 +2,10 @@
 <html class="no-js" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<link href="../astropix4/index.html" rel="prev"/>
-<link href="pixelelectronics.html" rel="next"/>
+<link href="../astropix5/pins.html" rel="prev"/>
 <link href="../ADL_Logo.png" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-9.7.1" name="generator"/>
-<title>Index - AstroPix Documentation</title>
+<title>Measurement Setup - AstroPix Documentation</title>
 <link href="../assets/stylesheets/main.484c7ddc.min.css" rel="stylesheet"/>
 <script src="../assets/external/unpkg.com/iframe-worker/shim.js"></script>
 
@@ -30,6 +29,9 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
+<a class="md-skip" href="#hardware">
+          Skip to content
+        </a>
 </div>
 <div data-md-component="announce">
 </div>
@@ -51,7 +53,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Index
+              Measurement Setup
             
           </span>
 </div>
@@ -327,10 +329,10 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" id="__nav_5" type="checkbox"/>
+<li class="md-nav__item md-nav__item--section md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_5" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
-<a class="md-nav__link md-nav__link--active" href="index.html">
+<a class="md-nav__link" href="../astropix5/index.html">
 <span class="md-ellipsis">
     
   
@@ -340,11 +342,11 @@
     
   </span>
 </a>
-<label class="md-nav__link md-nav__link--active" for="__nav_5" id="__nav_5_label" tabindex="">
+<label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-expanded="true" aria-labelledby="__nav_5_label" class="md-nav" data-md-level="1">
+<nav aria-expanded="false" aria-labelledby="__nav_5_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_5">
 <span class="md-nav__icon md-icon"></span>
             
@@ -355,7 +357,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="pixelelectronics.html">
+<a class="md-nav__link" href="../astropix5/pixelelectronics.html">
 <span class="md-ellipsis">
     
   
@@ -367,7 +369,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="spi.html">
+<a class="md-nav__link" href="../astropix5/spi.html">
 <span class="md-ellipsis">
     
   
@@ -379,7 +381,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="dac.html">
+<a class="md-nav__link" href="../astropix5/dac.html">
 <span class="md-ellipsis">
     
   
@@ -391,7 +393,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="injection.html">
+<a class="md-nav__link" href="../astropix5/injection.html">
 <span class="md-ellipsis">
     
   
@@ -403,7 +405,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="plldll.html">
+<a class="md-nav__link" href="../astropix5/plldll.html">
 <span class="md-ellipsis">
     
   
@@ -415,7 +417,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="pins.html">
+<a class="md-nav__link" href="../astropix5/pins.html">
 <span class="md-ellipsis">
     
   
@@ -429,8 +431,20 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../setup/setup.html">
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+<span class="md-ellipsis">
+    
+  
+    Measurement Setup
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="setup.html">
 <span class="md-ellipsis">
     
   
@@ -440,6 +454,85 @@
     
   </span>
 </a>
+<nav aria-label="Table of Contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of Contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#hardware">
+<span class="md-ellipsis">
+      
+        Hardware
+      
+    </span>
+</a>
+<nav aria-label="Hardware" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#chip-carrier-pcbs">
+<span class="md-ellipsis">
+      
+        Chip Carrier PCBs
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#gecco-board-configuration">
+<span class="md-ellipsis">
+      
+        Gecco Board Configuration
+      
+    </span>
+</a>
+<nav aria-label="Gecco Board Configuration" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#jumper-settings">
+<span class="md-ellipsis">
+      
+        Jumper Settings
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#resistor-placement">
+<span class="md-ellipsis">
+      
+        Resistor placement
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#supply-voltages">
+<span class="md-ellipsis">
+      
+        Supply Voltages
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#software">
+<span class="md-ellipsis">
+      
+        Software
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
 </li>
 </ul>
 </nav>
@@ -448,13 +541,136 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1>Index</h1>
+<h1>Measurement Setup</h1>
+<h2 id="hardware">Hardware<a class="headerlink" href="#hardware" title="Permanent link">¶</a></h2>
+<h3 id="chip-carrier-pcbs">Chip Carrier PCBs<a class="headerlink" href="#chip-carrier-pcbs" title="Permanent link">¶</a></h3>
+<p>The chip carrier PCBs feature a PCIe card edge connector and have all the same size W: 51.3 x H: 57.3.</p>
+<p>The project files together with Gerber and assembly data are also available on Github:</p>
+<table>
+<thead>
+<tr>
+<th>Chipversion</th>
+<th>EDA Tool</th>
+<th>Project</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Altium</td>
+<td><a href="https://github.com/kit-adl/astropix/tree/main/PCB/AstroPix1">AstroPix1 PCB</a></td>
+</tr>
+<tr>
+<td>2</td>
+<td>KiCAD</td>
+<td><a href="https://github.com/kit-adl/astropix/tree/main/PCB/AstroPix2">AstroPix2 PCB</a></td>
+</tr>
+<tr>
+<td>3</td>
+<td>KiCAD</td>
+<td><a href="https://github.com/kit-adl/astropix/tree/main/PCB/AstroPix3">AstroPix3 PCB</a></td>
+</tr>
+<tr>
+<td>4</td>
+<td>KiCAD</td>
+<td><a href="https://github.com/kit-adl/astropix/tree/main/PCB/AstroPix4">AstroPix4 PCB</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="gecco-board-configuration">Gecco Board Configuration<a class="headerlink" href="#gecco-board-configuration" title="Permanent link">¶</a></h3>
+<h4 id="jumper-settings">Jumper Settings<a class="headerlink" href="#jumper-settings" title="Permanent link">¶</a></h4>
+<ul>
+<li><strong>RegRst!</strong> Set to vdd</li>
+<li><strong>JPGND</strong> Closed</li>
+<li><strong>JP3V3</strong> Open</li>
+</ul>
+<h4 id="resistor-placement">Resistor placement<a class="headerlink" href="#resistor-placement" title="Permanent link">¶</a></h4>
+<p>100 Ohm differential termination resistors for the LVDS Receivers should be placed at:</p>
+<ul>
+<li>R30, R31, R32, R33</li>
+<li>R25, R26, R27, R28, R29</li>
+</ul>
+<h3 id="supply-voltages">Supply Voltages<a class="headerlink" href="#supply-voltages" title="Permanent link">¶</a></h3>
+<p>Below different possible configurations are listed, a testing configuration requiring the minimal number of power supplies by bridging supplies together as well as an optimal configuration.</p>
+<table>
+<thead>
+<tr>
+<th>Chipversion</th>
+<th>Configuration</th>
+<th>Supplies</th>
+<th>Vminus</th>
+<th>Chip Carrier Board Jumpers</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2</td>
+<td>Testing</td>
+<td>J6=-HV J6, POW6 = VDD18 = 1.8V, VDD33 = 2.7 V</td>
+<td>Voltagecard Slot 4</td>
+<td>JP1: 1-2</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Optimal</td>
+<td>J6=-HV J6, POW6 = 1.8 V, VDD18 = 1.8V, VDD33 = 2.7 V</td>
+<td>Voltagecard Slot 4</td>
+<td>JP1: 1-2</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Testing</td>
+<td>J6=-HV J6, POW6 = VDD18 = VSSA = 1.8V, VDD33 = 2.7 V</td>
+<td>Voltagecard Slot 4</td>
+<td>JP1: 1-2</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Optimal</td>
+<td>J6=-HV J6, POW6 = 1.8 V, VDD18 = 1.8V, VSSA = 1.2V, VDD33 = 2.7 V</td>
+<td>Voltagecard Slot 4</td>
+<td>JP1: 1-2</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Testing</td>
+<td>J6=-HV J6, POW6 = VDD18 = VSSA = 1.8V, VDD33 = 2.7 V</td>
+<td>Voltagecard Slot 5</td>
+<td>JP1: 1-2</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Optimal</td>
+<td>J6=-HV J6, POW6 = 1.8 V, VDD18 = 1.8V, VSSA = 1.2V, VDD33 = 2.7 V</td>
+<td>Voltagecard Slot 5</td>
+<td>JP1: 1-2</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Testing</td>
+<td>J6=-HV J6, POW6 = VDD18 = VSSA = 1.8V, VDD33 = 2.7 V</td>
+<td>Internally generated</td>
+<td>JP1: 1-2</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Optimal</td>
+<td>J6=-HV J6, POW6 = 1.8 V, VDD18 = 1.8V, VSSA = 1.2V, VDD33 = 2.7 V</td>
+<td>Internally generated</td>
+<td>JP1: 1-2</td>
+</tr>
+</tbody>
+</table>
+<h2 id="software">Software<a class="headerlink" href="#software" title="Permanent link">¶</a></h2>
+<p>For using AstroPix2 and AstroPix3 the recommend software and firmware is <a href="https://github.com/AstroPix/astep-fw/tree/dev_richard">astep-fw branch:dev_richard</a>. The documentation can be found <a href="https://astropix.github.io/astep-fw/">here</a>.</p>
+<p>It can also be used for AstroPix4, by using the branch <a href="https://github.com/AstroPix/astep-fw/tree/dev_nic">dev_nic</a>.</p>
+<p>A legacy software, <a href="https://github.com/AstroPix/astropix-python">astropix-python</a> together with<a href="https://github.com/AstroPix/astropix-fw">astropix-fw</a>, is available, supporting all chip versions.</p>
 <aside class="md-source-file">
 <span class="md-source-file__fact">
 <span class="md-icon" title="Last update">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
 </span>
-<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 26, 2025 17:12:43 UTC">September 26, 2025</span>
+<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="December 24, 2025 13:58:33 UTC">December 24, 2025</span>
 </span>
 </aside>
 </article>
