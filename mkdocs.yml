@@ -27,6 +27,7 @@ nav:
     - Injection: astropix5/injection.md
     - PLL and DLL: astropix5/plldll.md
     - Pins: astropix5/pins.md
+  - Measurement Setup: setup/setup.md
 
 docs_dir: docs
 theme:
