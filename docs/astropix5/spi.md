@@ -7,7 +7,7 @@ The main differences are:
 * One 8 Byte frame per hit instead of two 5 Byte frames
 * Two new commands Heartbeat and ADC Readout
 * All shift registers configurable via SPI
-* Improved interrupt logic, monitoring also the chain FIFOs, making it unnecessary to toggle the SPI much longer after the interrupt deassertion
+* Improved interrupt logic, monitoring also the chain FIFOs, making it unnecessary to toggle the SPI much longer after the interrupt de-assertion
 
 ## Controlling FE
 
@@ -33,7 +33,7 @@ The IDLE byte represents no specific command and uses an invalid address: 0x1D f
 |0x02|	Address Config|	1 Byte	| Sets the chip address. The chip forwards the command to the next chip with Address = Address + 1.<br>To configure addresses, start with chip "00" by sending 0x40, then send IDLE bytes to keep the clock active and propagate the address down the chain.|
 |0x03 |	Shift Register Config	|N Bytes	| Uses the entire SPI frame for shift register configuration. SPI Chip Select must be toggled to send a new command. |
 |0x04 |	Heartbeat	|1 Byte	| Request Heartbeat Package from chip via Address or from all chips via Broadcast 0x1E |
-|0x05 |	ADC Readout	|1 Byte	| Request acquisition of 7 voltages (2 temperature sensors and 5 bias voltage) from on-chip ADC |
+|0x05 |	ADC Readout	|1 Byte	| Request acquisition of 8 voltages (2 temperature sensors and 6 bias voltage) from on-chip ADC |
 
 ### Shift Register I/O and SPI Command
 
@@ -74,6 +74,22 @@ Each frame consists of 7 bytes:
 
 The hit location is a 5 bit binary column and row address sent within the two first bytes after the header.
 
+### ADC Readout
+
+The ADC readout command 0x5 is used to readout 8 voltages, including the 2 temperature sensors and 6 bias voltages (BL, Th, Vcasc2!, GateRef, vminus, Vinj). The chips needs a few milliseconds to acquire the voltages, but it asserts the interrupt when the acquisition is done.
+
+The ADC data is packed into two data frames. The first two Bytes of the first package are 0xFFFE and 0xFFFD for the second package. Therefore, they can also be distinguished from a normal data packet, as the pixel address is 63, 63 which does not correspond to an existing pixel.
+{% include-markdown "./spi/format_packet_adcreadout.md" %}
+
+### Heartbeat
+
+The heartbeat command 0x4 can be used to get „sign of life“ and to check if a chip is configured. It can be broadcasted or sent to individual chips via their ID.
+
+The chip answers with a packet similar to the [normal readout data frame](#hit-packet). The first two bytes are 0xFFFF, then the 16 Extrabits from the configuration are sent non-inverted and inverted. The last Byte is the current count of the internal SEU counter. Similar to the ADC readout package, it can also be distinguished from a normal data packet, as the pixel address is 63, 63 which does not correspond to an existing pixel.
+{% include-markdown "./spi/format_packet_heartbeat.md" %}
+
+
+
 ## Readout procedure
 
 !!! note
@@ -105,13 +121,4 @@ This timing diagram shows the case when hold is low and interrupt is inactive, t
 This timing diagram shows the case when hold is active and interrupt is active, the chip returns only IDLE bytes instead of sending out hit data.
 
 {% include-markdown "../astropix3/spi/timing_spi_hold.md" %}
-
-
-### ADC Readout
-
-TODO
-
-### Heartbeat
-
-TODO
 

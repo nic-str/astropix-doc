@@ -20,12 +20,11 @@
     {
         reg:[
             {bits: 8,  name: 'Header', type: 2},
-            {bits: 5,  name: 'Row [4:0]', type: 3},
-            {bits: 5,  name: 'Col [4:0]', type: 3},
-            {bits: 18,  name: 'TS1 Neg, TS1 [16:0]', type: 4},
-            {bits: 5,  name: 'TS1 TDC', type: 4},
-            {bits: 18,  name: 'TS2 Neg, TS2 [16:0]', type: 5},
-            {bits: 5,  name: 'TS2 TDC', type: 5},
+            {bits: 16,  name: '0xFFFF', type: 3},
+            {bits: 16,  name: 'Extrabits', type: 4},
+            {bits: 16,  name: 'ExtrabitsN', type: 4},
+            {bits: 8,  name: 'SEU Counter', type: 5},
+
         ], config:{bits: 64, vflip: true}
     }
     </code>
