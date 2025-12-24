@@ -1,8 +1,8 @@
 ## Hardware
 ### Chip Carrier PCBs
-The chip carrier PCBs feature a PCIe card edge connector and have all the same size W: 51.3 x H: 57.3.
+The chip carrier PCBs feature a PCIe card edge connector and share the same dimensions W: 51.3 x H: 57.3.
 
-The project files together with Gerber and assembly data are also available on Github:
+The design files including Gerber and assembly data are available on Github:
 
 | Chipversion | EDA Tool | Project                                                                      |
 |-------------|----------|------------------------------------------------------------------------------|
@@ -21,14 +21,18 @@ The project files together with Gerber and assembly data are also available on G
 * **JP3V3** Open
 
 #### Resistor placement
-100 Ohm differential termination resistors for the LVDS Receivers should be placed at:
+Place 100 Ω resistors for the LVDS receivers at the following footprints:
 
 * R30, R31, R32, R33
 * R25, R26, R27, R28, R29
 
 ### Supply Voltages
 
-Below different possible configurations are listed, a testing configuration requiring the minimal number of power supplies by bridging supplies together as well as an optimal configuration.
+Two typical configurations are shown for each chip version:
+
+* **Testing**: Minimal number of external supplies (some rails are bridged).
+* **Optimal**: Each rail is supplied independently for best performance.
+
 
 | Chipversion | Configuration | Supplies                                                          | Vminus               | Chip Carrier Board Jumpers |
 |-------------|---------------|-------------------------------------------------------------------|----------------------|----------------------------|
@@ -46,4 +50,4 @@ For using AstroPix2 and AstroPix3 the recommend software and firmware is [astep-
 
 It can also be used for AstroPix4, by using the branch [dev_nic](https://github.com/AstroPix/astep-fw/tree/dev_nic).
 
-A legacy software, [astropix-python](https://github.com/AstroPix/astropix-python) together with[astropix-fw](https://github.com/AstroPix/astropix-fw), is available, supporting all chip versions.
+A legacy software, [astropix-python](https://github.com/AstroPix/astropix-python) together with [astropix-fw](https://github.com/AstroPix/astropix-fw), is available, supporting all chip versions.
