@@ -6,6 +6,9 @@ nav:
     - index.md
   - AstroPix2 User Guide:
     - astropix2/index.md
+    - Pixel Electronics: astropix2/pixelelectronics.md
+    - Matrix Readout: astropix2/readout.md
+    - SPI Interface: astropix2/spi.md
     - Configuration Registers: astropix2/configuration.md
     - Pins: astropix2/pins.md
   - AstroPix3 User Guide:

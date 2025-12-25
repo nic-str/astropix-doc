@@ -1,4 +1,4 @@
-# AstroPix3 Hit Buffer
+# Column/Row Hit Buffer
 
 ![Image title](../images/astropix3/apix3_hitbuffer.png){width=100%}
 /// caption
