@@ -175,7 +175,7 @@ $$
 
 This latency must be shorter than the wrap time of the 17 bit time-of-arrival counter
 $$
-t_{\text{lat}} < 2^17 ~T_{\text{ckts}}
+t_{\text{lat}} < 2^{17} ~T_{\text{ckts}}
 $$
 where $T_\textnormal{ckts}$ is the timestamp clock period.
 
