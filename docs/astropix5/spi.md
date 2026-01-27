@@ -122,3 +122,63 @@ This timing diagram shows the case when hold is active and interrupt is active, 
 
 {% include-markdown "../astropix3/spi/timing_spi_hold.md" %}
 
+## Data Rate Considerations
+
+To determine the minimum SPI clock frequency, the actual rate and the maximum latency needs to be taken into account. The calculations below are minimum values and should be implemented with a safety factor. The fact that the ToA timestamp is only 17 bits wide and that the daisy chain arbiter does prioritize data coming from the chain, relaxes the requirements on the SPI readout clock frequency.
+
+### Minimum Data Rate
+The expected maximum hitrate is 10 Hz/sensor. Therefore the maximum data rate is
+$$
+\textnormal{DR} = 20 \cdot 10 \textnormal{Hz} \cdot 8 \textnormal{Byte} = 2000 \textnormal{Byte/s} = 16 \textnormal{kBit/s}
+$$
+
+### Latency Requirements
+The **minimum latency** for a row with n chips and the data rate DR, which is two times the SPI clock rate, for the readout of a hit from the last chip in the row is
+$$
+t_\textnormal{lat, single hit} = \dfrac {8 \textnormal{Byte} + 2 \textnormal{Byte} \cdot (n-1)}{\textnormal{DR}}
+$$
+
+The **minimum latency** for a row with n chips and the data rate DR, which is two times the SPI clock rate, for the readout of a hit from the last chip with each chip storing data is
+$$
+t_\textnormal{lat, all hits} = \dfrac {8 \textnormal{Byte} \cdot n}{\textnormal{DR}}
+$$
+
+The latency has to be shorter than the wrap over time of the 8 bit time-of-arrival timestamp counter.
+$$
+t_\textnormal{lat} < 2^17 T_\textnormal{ckts}
+$$
+
+With $T_\textnormal{ckts} = 1/ 20 \textnormal{MHz}$ and n = 20, the minimum required data rate DR is ~ 56 kbit/s or an SPI clock of 28 kHz. If all chips have a hit saved the minimum required data rate is ~195 kbit/s or an SPI clock of 98 kHz.
+
+## Readout Rate Considerations
+
+To select a safe minimum SPI clock frequency, both the expected hit volume and the maximum acceptable readout latency must be considered. The formulas below give minimum values, include an appropriate safety margin when choosing the operating point. Note that the ToA timestamp is 17 bits wide and the daisy-chain arbiter does prioritize forwarded data; both factors relax the required SPI throughput compared to [AstroPix3](../astropix3/spi.md#readout-rate-considerations).
+
+### Minimum Data Rate
+Assuming a maximum hit rate HR, the peak data rate  for a row of n chips is
+$$
+\text{DR} = n \cdot \textnormal{HR} \cdot 8 ~\text{Byte}
+$$
+
+Assuming n = 20 and a maximum hit rate HR of 10 Hz/sensor, the data rate DR is 12.8 Kbit/s, requiring a minimum SPI clock frequency of 7 kHz.
+
+### Latency Requirements
+Let n be the number of chips in a row and RR the readout rate (RR is twice the SPI clock frequency, as there are 2 MISO lines). The minimum readout latency for a hit originating at the last chip in the row, when only that chip has a hit, is
+$$
+t_{\text{lat, single hit}} = \dfrac{8 ~\text{Byte} + 2 ~\text{Byte}\cdot (n-1)}{\text{RR}}
+$$
+
+If every chip in the row has a stored hit, the minimum latency becomes
+$$
+t_{\text{lat, all hits}} = \dfrac{8 ~\text{Byte}\cdot n}{\text{RR}}
+$$
+
+This latency must be shorter than the wrap time of the 17 bit time-of-arrival counter
+$$
+t_{\text{lat}} < 2^17 ~T_{\text{ckts}}
+$$
+where $T_\textnormal{ckts}$ is the timestamp clock period.
+
+Using $T_\textnormal{ckts}$ = 1/20 MHz and n = 20 gives the following practical numbers: the single-hit case requires DR ~ 56 kbit/s (SPI clock = 28 kHz). In the case where every chip has a stored hit, DR ~ 195 kbit/s (SPI clock = 98 kHz).
+
+If a slower timestamp clock can be tolerated, the required SPI clock frequency can be reduced accordingly.

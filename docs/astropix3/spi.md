@@ -99,3 +99,36 @@ This timing diagram shows the case when hold is active and interrupt is active, 
 
 {% include-markdown "./spi/timing_spi_hold.md" %}
 
+## Readout Rate Considerations
+
+To select a safe minimum SPI clock frequency, both the expected hit volume and the maximum acceptable readout latency must be considered. The formulas below give minimum values, include an appropriate safety margin when choosing the operating point. Note that the ToA timestamp is only 8 bits wide and the daisy-chain arbiter does not fully prioritize forwarded data; both factors increase the required SPI throughput.
+
+### Minimum Data Rate
+Assuming a maximum hit rate HR, the peak data rate  for a row of n chips is
+$$
+\text{DR} = n \cdot \textnormal{HR} \cdot 2 \cdot 5 ~\text{Byte}
+$$
+
+Assuming n = 20 and a maximum hit rate HR of 10 Hz/sensor, the data rate DR is 16 Kbit/s, requiring a minimum SPI clock frequency of 8 kHz.
+
+### Latency Requirements
+Let n be the number of chips in a row and RR the readout rate (RR is twice the SPI clock frequency, as there are 2 MISO lines). The minimum readout latency for a hit originating at the last chip in the row, when only that chip has a hit, is
+$$
+t_{\text{lat, single hit}} = \dfrac{2\cdot 5 ~\text{Byte} + 2 ~\text{Byte}\cdot (n-1)}{\text{RR}}
+$$
+
+If every chip in the row has a stored hit, the minimum latency becomes
+$$
+t_{\text{lat, all hits}} = \dfrac{2\cdot 5 ~\text{Byte} \cdot n}{\text{RR}}
+$$
+
+This latency must be shorter than the wrap time of the 8-bit time-of-arrival counter
+$$
+t_{\text{lat}} < 2^8 ~T_{\text{ckts}}
+$$
+where $T_\textnormal{ckts}$ is the timestamp clock period.
+
+Using $T_\textnormal{ckts}$ = 1/2 MHz and n = 20 gives the following practical numbers: the single-hit case requires DR ~ 1.4 Mbit/s (SPI clock = 0.7 MHz). In the case where every chip has a stored hit, DR ~ 6.4 Mbit/s (SPI clock = 3.2 MHz).
+
+If a slower timestamp clock can be tolerated, the required SPI clock frequency can be reduced accordingly.
+
