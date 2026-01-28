@@ -13,6 +13,7 @@
 <link href="../assets/external/fonts.googleapis.com/css.49ea35f2.css" rel="stylesheet">
 <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
 <link href="../assets/external/unpkg.com/katex@0/dist/katex.min.css" rel="stylesheet">
+<link href="../stylesheets/custom.css" rel="stylesheet"/>
 <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
 <link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><script src="../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
             html.glightbox-open { overflow: initial; height: 100%; }
@@ -363,6 +364,15 @@
 <span class="md-ellipsis">
       
         Latency Requirements
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#calculator">
+<span class="md-ellipsis">
+      
+        Calculator
       
     </span>
 </a>
@@ -905,8 +915,32 @@ $$
 t_{\text{lat}} &lt; 2^8 ~T_{\text{ckts}}
 $$
 where <span class="arithmatex">\(T_\textnormal{ckts}\)</span> is the timestamp clock period.</p>
-<p>Using <span class="arithmatex">\(T_\textnormal{ckts}\)</span> = 1/2 MHz and n = 20 gives the following practical numbers: the single-hit case requires RR ~ 1.4 Mbit/s (SPI clock = 0.7 MHz). In the case where every chip has a stored hit, RR ~ 6.4 Mbit/s (SPI clock = 3.2 MHz).</p>
+<p>Using <span class="arithmatex">\(T_\textnormal{ckts}\)</span> = 1/2 MHz and n = 20 gives the following practical numbers: the single-hit case requires RR = 3 Mbit/s (SPI clock = 1.5 MHz). In the case where every chip has a stored hit, RR = 12.5 Mbit/s (SPI clock = 6.25 MHz).</p>
 <p>If a slower timestamp clock can be tolerated, the required SPI clock frequency can be reduced accordingly.</p>
+<h3 id="calculator">Calculator<a class="headerlink" href="#calculator" title="Permanent link">¶</a></h3>
+<div class="md-card md-shadow--2dp" style="max-width: 520px; padding: 1em; border: 1px solid #ccc; border-radius: 6px;">
+<h3>Readout Rate Calculator</h3>
+<label>
+    Number of chips (n):<br/>
+<input class="md-input" id="n" min="1" oninput="this.value = Math.round(this.value);" step="1" type="number" value="20"/>
+</label><br/><br/>
+<label>
+    Hit rate per chip (HR) [Hz]:<br/>
+<input class="md-input" id="hr" min="0" step="0.1" type="number" value="10"/>
+</label><br/><br/>
+<!-- <label>
+    ToA counter width [bits]:<br>
+    <input type="number" id="toa" value="17" min="1">
+  </label><br><br> -->
+<label>
+    Timestamp clock period T<sub>ckts</sub> [s]:<br/>
+<input class="md-input" id="tckts" min="0" step="1e-9" type="number" value="500e-9"/>
+<small class="md-hint">(default = 1 / (2 MHz) = 500 ns)</small>
+</label><br/><br/>
+<button class="md-button md-button--primary" onclick="calculateRR(8,10)">Calculate</button>
+<hr/>
+<div id="output"></div>
+</div>
 <!-- END INCLUDE -->
 <aside class="md-source-file">
 <span class="md-source-file__fact">
@@ -958,6 +992,7 @@ where <span class="arithmatex">\(T_\textnormal{ckts}\)</span> is the timestamp c
 <script src="../assets/external/unpkg.com/katex@0/dist/contrib/auto-render.min.js"></script>
 <script src="../assets/external/unpkg.com/katex@0/dist/fonts/KaTeX_Main-Regular.woff2"></script>
 <script src="../assets/external/unpkg.com/katex@0/dist/fonts/KaTeX_Math-Italic.woff2"></script>
+<script src="../javascripts/calculator.js"></script>
 <script src="../assets/external/unpkg.com/mermaid@11/dist/mermaid.min.js"></script>
 <script id="init-glightbox">document.querySelectorAll('.glightbox').forEach(function(element) {
     try {
