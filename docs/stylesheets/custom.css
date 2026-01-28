@@ -1,0 +1,65 @@
+.md-card {
+  border-radius: 0.6rem;
+}
+
+.md-field {
+  margin-bottom: 1rem;
+}
+
+.md-input {
+  width: 100%;
+  padding: 0.4rem 0.6rem;
+  border-radius: 0.3rem;
+  border: 1px solid var(--md-default-fg-color--lightest);
+  background-color: var(--md-default-bg-color);
+  color: var(--md-default-fg-color);
+}
+
+.md-input:focus {
+  outline: none;
+  border-color: var(--md-primary-fg-color);
+}
+
+.md-hint {
+  color: var(--md-default-fg-color--light);
+  font-size: 0.75rem;
+}
+
+.rr-calculator {
+  padding: 1rem;
+  border-radius: 0.6rem;
+  background-color: var(--md-default-bg-color);
+  box-shadow: var(--md-shadow-z2);
+  max-width: 560px;
+}
+
+.rr-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.rr-calculator label span {
+  display: block;
+  font-size: 0.85rem;
+  margin-bottom: 0.2rem;
+}
+
+.rr-calculator input {
+  width: 100%;
+  padding: 0.4rem 0.6rem;
+  border-radius: 0.3rem;
+  border: 1px solid var(--md-default-fg-color--lightest);
+  background: var(--md-default-bg-color);
+  color: var(--md-default-fg-color);
+}
+
+.rr-calculator input:focus {
+  outline: none;
+  border-color: var(--md-primary-fg-color);
+}
+
+.rr-output {
+  margin-top: 1rem;
+}

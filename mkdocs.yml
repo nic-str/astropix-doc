@@ -141,5 +141,7 @@ extra_javascript:
   - https://unpkg.com/katex@0/dist/fonts/KaTeX_Main-Regular.woff2
   - https://unpkg.com/katex@0/dist/fonts/KaTeX_Math-Italic.woff2
 
+  - javascripts/calculator.js
 extra_css:
   - https://unpkg.com/katex@0/dist/katex.min.css
+  - stylesheets/custom.css

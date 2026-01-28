@@ -154,3 +154,36 @@ where $T_\textnormal{ckts}$ is the timestamp clock period.
 Using $T_\textnormal{ckts}$ = 1/20 MHz and n = 20 gives the following practical numbers: the single-hit case requires RR ~ 56 kbit/s (SPI clock = 28 kHz). In the case where every chip has a stored hit, RR ~ 195 kbit/s (SPI clock = 98 kHz).
 
 If a slower timestamp clock can be tolerated, the required SPI clock frequency can be reduced accordingly.
+
+### Calculator
+
+<div class="md-card md-shadow--2dp" style="max-width: 520px; padding: 1em; border: 1px solid #ccc; border-radius: 6px;">
+  <h3>Readout Rate Calculator</h3>
+
+  <label>
+    Number of chips (n):<br>
+    <input type="number" id="n" value="20" min="1" step="1" class="md-input" oninput="this.value = Math.round(this.value);">
+  </label><br><br>
+
+  <label>
+    Hit rate per chip (HR) [Hz]:<br>
+    <input type="number" id="hr" value="10" min="0" step="0.1" class="md-input">
+  </label><br><br>
+
+  <!-- <label>
+    ToA counter width [bits]:<br>
+    <input type="number" id="toa" value="17" min="1">
+  </label><br><br> -->
+
+  <label>
+    Timestamp clock period T<sub>ckts</sub> [s]:<br>
+    <input type="number" id="tckts" min="0" value="50e-9" step="1e-9" class="md-input">
+    <small class="md-hint">(default = 1 / (20 MHz) = 50 ns)</small>
+  </label><br><br>
+
+  <button onclick="calculateRR(17,8)" class="md-button md-button--primary">Calculate</button>
+
+  <hr>
+
+  <div id="output"></div>
+</div>
