@@ -151,7 +151,7 @@ t_{\text{lat}} < 2^{17} ~T_{\text{ckts}}
 $$
 where $T_\textnormal{ckts}$ is the timestamp clock period.
 
-Using $T_\textnormal{ckts}$ = 1/20 MHz and n = 20 gives the following practical numbers: the single-hit case requires RR ~ 56 kbit/s (SPI clock = 28 kHz). In the case where every chip has a stored hit, RR ~ 195 kbit/s (SPI clock = 98 kHz).
+Using $T_\textnormal{ckts} = 1/f_\textnormal{ckts}$ = 1/(20 MHz) and n = 20 gives the following practical numbers: the single-hit case requires RR ~ 56 kbit/s (SPI clock = 28 kHz). In the case where every chip has a stored hit, RR ~ 195 kbit/s (SPI clock = 98 kHz).
 
 If a slower timestamp clock can be tolerated, the required SPI clock frequency can be reduced accordingly.
 
