@@ -744,15 +744,15 @@
 <!-- END INCLUDE -->
 <!-- BEGIN INCLUDE ../astropix3/configuration.md '&lt;!--config_column-start--&gt;' '&lt;!--config_column-end--&gt;' -->
 <h2 id="column-config">Column Config<a class="headerlink" href="#column-config" title="Permanent link">¶</a></h2>
-<p>Each column incorporates a 38 bit shift register, and each columns are connected in series starting at column 0 to column 34.</p>
+<p>Each column incorporates a 38 bit shift register, and all columns are connected in series starting from column 0 to column 34.</p>
 <!-- BEGIN INCLUDE ./configuration/format_col_config.md '&lt;!--start--&gt;' '&lt;!--end--&gt;' -->
 <script class="wavedrom" type="WaveDrom">
     {
         reg:[
-            {bits: 1,  name: '', attr: "InjRow"},
-            {bits: 35,  name: '', attr: 'Pixel Comp Disable'},
-            {bits: 1,  name: '' , attr: 'InjCol'},
-            {bits: 1,  name: '', attr: 'AmpOut'},
+            {bits: 1,  name: 'Inj', attr: "Row"},
+            {bits: 35,  name: 'Pixel Comp Disable[34:0]', attr: 'Pixel Comp Disable'},
+            {bits: 1,  name: 'Inj' , attr: 'Col'},
+            {bits: 1,  name: 'A', attr: ''},
         ], config: { bits: 38},
     }
     </script>
@@ -761,7 +761,7 @@
 <ul>
 <li>Bit 37: AmpOut Mux enable</li>
 <li>Bit 36: Enable Column for injection</li>
-<li>Bit 35-1: Enable Pixel comparators in column<ul>
+<li>Bit 35-1: Enable Pixel comparators in column (<strong>1:</strong> Disable <strong>0:</strong> Enable)<ul>
 <li>Bit 35 is row 34</li>
 <li>Bit 1 is row 0</li>
 </ul>
