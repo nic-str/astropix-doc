@@ -57,14 +57,14 @@ The chip can be programmed directly via the shift register interface or through 
 
 <!--config_column-start-->
 ## Column Config
-Each column incorporates a 38 bit shift register, and each columns are connected in series starting at column 0 to column 34.
+Each column incorporates a 38 bit shift register, and all columns are connected in series starting from column 0 to column 34.
 {% include-markdown "./configuration/format_col_config.md" %}
 
 For column n from 0 to 34:
 
 * Bit 37: AmpOut Mux enable
 * Bit 36: Enable Column for injection
-* Bit 35-1: Enable Pixel comparators in column
+* Bit 35-1: Enable Pixel comparators in column (**1:** Disable **0:** Enable)
     * Bit 35 is row 34
     * Bit 1 is row 0
 - Bit 0: Enable Row n for Injection
