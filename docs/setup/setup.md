@@ -10,7 +10,7 @@ The design files including Gerber and assembly data are available on Github:
 | 2           | KiCAD    | [AstroPix2 PCB](https://github.com/kit-adl/astropix/tree/main/PCB/AstroPix2) |
 | 3           | KiCAD    | [AstroPix3 PCB](https://github.com/kit-adl/astropix/tree/main/PCB/AstroPix3) |
 | 4           | KiCAD    | [AstroPix4 PCB](https://github.com/kit-adl/astropix/tree/main/PCB/AstroPix4) |
-
+| 5           | KiCAD    | WIP |
 
 ### Gecco Board Configuration
 
@@ -46,8 +46,8 @@ Two typical configurations are shown for each chip version:
 | 5           | Optimal       | J6=-HV J6, POW6 = 1.8 V, VDD18 = 1.8V, VSSA = 1.2V, VDD33 = 2.7 V | Internally generated | JP1: 1-2                   |
 
 ## Software
-For using AstroPix2 and AstroPix3 the recommend software and firmware is [astep-fw branch:dev_richard](https://github.com/AstroPix/astep-fw/tree/dev_richard). The documentation can be found [here](https://astropix.github.io/astep-fw/).
+For AstroPix2 to AstroPix4 the recommend software and firmware is [astep-fw branch:dev_richard](https://github.com/AstroPix/astep-fw/tree/dev_richard). The documentation can be found [here](https://astropix.github.io/astep-fw/).
 
-It can also be used for AstroPix4, by using the branch [dev_nic](https://github.com/AstroPix/astep-fw/tree/dev_nic).
+<del>It can also be used for AstroPix4, by using the branch> [dev_nic](https://github.com/AstroPix/astep-fw/tree/dev_nic).</del> Merged into dev_richard.
 
 A legacy software, [astropix-python](https://github.com/AstroPix/astropix-python) together with [astropix-fw](https://github.com/AstroPix/astropix-fw), is available, supporting all chip versions.
