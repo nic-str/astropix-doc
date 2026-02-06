@@ -22,6 +22,12 @@ nav:
     - Pins: astropix3/pins.md
   - AstroPix4 User Guide:
     - astropix4/index.md
+    - Pixel Electronics: astropix4/pixelelectronics.md
+    - SPI Interface: astropix4/spi.md
+    - DAC: astropix4/dac.md
+    - Injection: astropix4/injection.md
+    - PLL and DLL: astropix4/plldll.md
+    - Pins: astropix4/pins.md
   - AstroPix5 User Guide:
     - astropix5/index.md
     - Pixel Electronics: astropix5/pixelelectronics.md
@@ -29,6 +35,7 @@ nav:
     - DAC: astropix5/dac.md
     - Injection: astropix5/injection.md
     - PLL and DLL: astropix5/plldll.md
+    # - Configuration Registers: astropix5/configuration.md
     - Pins: astropix5/pins.md
   - Measurement Setup: setup/setup.md
 
@@ -62,7 +69,7 @@ theme:
   #     toggle:
   #       icon: material/brightness-4
   #       name: Switch to light mode
-copyright: Nicolas Striebig 2025
+copyright: Nicolas Striebig
 markdown_extensions:
   - admonition
   - pymdownx.details
@@ -105,7 +112,7 @@ plugins:
       manual: false
   - markdownwavedrom
   - include-markdown:
-      encoding: ascii
+      encoding: utf-8
       preserve_includer_indent: false
       dedent: false
       trailing_newlines: true
@@ -132,16 +139,17 @@ extra_javascript:
   - https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js
   - javascripts/tablesort.js
   - javascripts/wavedrom.js
-  - https://cdnjs.cloudflare.com/ajax/libs/wavedrom/3.1.0/skins/default.js
-  - https://cdnjs.cloudflare.com/ajax/libs/wavedrom/3.1.0/wavedrom.min.js
+  - https://cdnjs.cloudflare.com/ajax/libs/wavedrom/3.5.0/skins/default.min.js
+  - https://cdnjs.cloudflare.com/ajax/libs/wavedrom/3.5.0/wavedrom.min.js
 
   - javascripts/katex.js
   - https://unpkg.com/katex@0/dist/katex.min.js
   - https://unpkg.com/katex@0/dist/contrib/auto-render.min.js
-  - https://unpkg.com/katex@0/dist/fonts/KaTeX_Main-Regular.woff2
-  - https://unpkg.com/katex@0/dist/fonts/KaTeX_Math-Italic.woff2
+  # - https://unpkg.com/katex@0/dist/fonts/KaTeX_Main-Regular.woff2
+  # - https://unpkg.com/katex@0/dist/fonts/KaTeX_Math-Italic.woff2
 
   - javascripts/calculator.js
+  # - javascripts/csa.js
 extra_css:
   - https://unpkg.com/katex@0/dist/katex.min.css
   - stylesheets/custom.css

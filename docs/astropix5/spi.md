@@ -8,7 +8,7 @@ The main differences are:
 * Two new commands Heartbeat and ADC Readout
 * All shift registers configurable via SPI
 * Improved interrupt logic, monitoring also the chain FIFOs, making it unnecessary to toggle the SPI much longer after the interrupt de-assertion
-
+<!--spi4-start-->
 ## Controlling FE
 
 AstroPix receives commands via the MOSI line, using the following 8-bit format:
@@ -73,7 +73,7 @@ Each frame consists of 7 bytes:
 #### Hit Location
 
 The hit location is a 5 bit binary column and row address sent within the two first bytes after the header.
-
+<!--spi4-stop-->
 ### ADC Readout
 
 The ADC readout command 0x5 is used to readout 8 voltages, including the 2 temperature sensors and 6 bias voltages (BL, Th, Vcasc2!, GateRef, vminus, Vinj). The chips needs a few milliseconds to acquire the voltages, but it asserts the interrupt when the acquisition is done.
@@ -89,7 +89,7 @@ The chip answers with a packet similar to the [normal readout data frame](#hit-p
 {% include-markdown "./spi/format_packet_heartbeat.md" %}
 
 
-
+<!--spi4readout-start-->
 ## Readout procedure
 
 !!! note
@@ -187,3 +187,4 @@ If a slower timestamp clock can be tolerated, the required SPI clock frequency c
 
   <div id="output"></div>
 </div>
+<!--spi4readout-stop-->

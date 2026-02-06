@@ -6,7 +6,7 @@
     **Internal Clock:** Clkmux 1, DisableLVDS 1, VNCp: 10, VNVCO: 0
 
 ## PLL
-AstroPix5 features an integrated Third-Order Type-2 PLL used to generate a 20 MHz clock from an externally provided 2.5 MHz Reference Clock.
+Since version 4, AstroPix features an integrated Third-Order Type-2 PLL used to generate a 20 MHz clock from an externally provided 2.5 MHz Reference Clock.
 $$
 F_{\text{OutClk}} = 8 F_{\text{RefClk}}
 $$
