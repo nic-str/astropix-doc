@@ -6,10 +6,10 @@ The design files including Gerber and assembly data are available on Github:
 
 | Chipversion | EDA Tool | Project                                                                      |
 |-------------|----------|------------------------------------------------------------------------------|
-| 1           | Altium   | [AstroPix1 PCB](https://github.com/kit-adl/astropix/tree/main/PCB/AstroPix1) |
-| 2           | KiCAD    | [AstroPix2 PCB](https://github.com/kit-adl/astropix/tree/main/PCB/AstroPix2) |
-| 3           | KiCAD    | [AstroPix3 PCB](https://github.com/kit-adl/astropix/tree/main/PCB/AstroPix3) |
-| 4           | KiCAD    | [AstroPix4 PCB](https://github.com/kit-adl/astropix/tree/main/PCB/AstroPix4) |
+| 1           | Altium   | [AstroPix1 PCB](https://github.com/AstroPix/astropix-pcbs/tree/main/AstroPix1) |
+| 2           | KiCAD    | [AstroPix2 PCB](https://github.com/AstroPix/astropix-pcbs/tree/main/AstroPix2) |
+| 3           | KiCAD    | [AstroPix3 PCB](https://github.com/AstroPix/astropix-pcbs/tree/main/AstroPix3) |
+| 4           | KiCAD    | [AstroPix4 PCB](https://github.com/AstroPix/astropix-pcbs/tree/main/AstroPix4) |
 | 5           | KiCAD    | WIP |
 
 ### Gecco Board Configuration
