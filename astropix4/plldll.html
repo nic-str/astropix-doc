@@ -2,11 +2,11 @@
 <html class="no-js" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<link href="configuration.html" rel="prev"/>
-<link href="../astropix3/index.html" rel="next"/>
+<link href="injection.html" rel="prev"/>
+<link href="pins.html" rel="next"/>
 <link href="../ADL_Logo.png" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-9.7.1" name="generator"/>
-<title>Pins - AstroPix Documentation</title>
+<title>PLL and DLL - AstroPix Documentation</title>
 <link href="../assets/stylesheets/main.484c7ddc.min.css" rel="stylesheet"/>
 <script src="../assets/external/unpkg.com/iframe-worker/shim.js"></script>
 
@@ -31,7 +31,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#recommended-operating-parameters">
+<a class="md-skip" href="#pll">
           Skip to content
         </a>
 </div>
@@ -55,7 +55,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Pins
+              PLL and DLL
             
           </span>
 </div>
@@ -136,10 +136,10 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" id="__nav_2" type="checkbox"/>
+<li class="md-nav__item md-nav__item--section md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_2" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
-<a class="md-nav__link" href="index.html">
+<a class="md-nav__link" href="../astropix2/index.html">
 <span class="md-ellipsis">
     
   
@@ -153,7 +153,7 @@
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-expanded="true" aria-labelledby="__nav_2_label" class="md-nav" data-md-level="1">
+<nav aria-expanded="false" aria-labelledby="__nav_2_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_2">
 <span class="md-nav__icon md-icon"></span>
             
@@ -164,7 +164,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="pixelelectronics.html">
+<a class="md-nav__link" href="../astropix2/pixelelectronics.html">
 <span class="md-ellipsis">
     
   
@@ -176,7 +176,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="readout.html">
+<a class="md-nav__link" href="../astropix2/readout.html">
 <span class="md-ellipsis">
     
   
@@ -188,7 +188,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="spi.html">
+<a class="md-nav__link" href="../astropix2/spi.html">
 <span class="md-ellipsis">
     
   
@@ -200,7 +200,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="configuration.html">
+<a class="md-nav__link" href="../astropix2/configuration.html">
 <span class="md-ellipsis">
     
   
@@ -211,20 +211,8 @@
   </span>
 </a>
 </li>
-<li class="md-nav__item md-nav__item--active">
-<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
-<label class="md-nav__link md-nav__link--active" for="__toc">
-<span class="md-ellipsis">
-    
-  
-    Pins
-  
-
-    
-  </span>
-<span class="md-nav__icon md-icon"></span>
-</label>
-<a class="md-nav__link md-nav__link--active" href="pins.html">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../astropix2/pins.html">
 <span class="md-ellipsis">
     
   
@@ -234,54 +222,6 @@
     
   </span>
 </a>
-<nav aria-label="Table of Contents" class="md-nav md-nav--secondary">
-<label class="md-nav__title" for="__toc">
-<span class="md-nav__icon md-icon"></span>
-      Table of Contents
-    </label>
-<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#recommended-operating-parameters">
-<span class="md-ellipsis">
-      
-        Recommended Operating Parameters
-      
-    </span>
-</a>
-<nav aria-label="Recommended Operating Parameters" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#supply-voltages">
-<span class="md-ellipsis">
-      
-        Supply Voltages
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#lvds-receiver">
-<span class="md-ellipsis">
-      
-        LVDS Receiver
-      
-    </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#pins">
-<span class="md-ellipsis">
-      
-        Pins
-      
-    </span>
-</a>
-</li>
-</ul>
-</nav>
 </li>
 </ul>
 </nav>
@@ -400,10 +340,10 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--section md-nav__item--nested">
-<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_4" type="checkbox"/>
+<li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_4" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
-<a class="md-nav__link" href="../astropix4/index.html">
+<a class="md-nav__link" href="index.html">
 <span class="md-ellipsis">
     
   
@@ -417,7 +357,7 @@
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-expanded="false" aria-labelledby="__nav_4_label" class="md-nav" data-md-level="1">
+<nav aria-expanded="true" aria-labelledby="__nav_4_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_4">
 <span class="md-nav__icon md-icon"></span>
             
@@ -428,7 +368,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../astropix4/pixelelectronics.html">
+<a class="md-nav__link" href="pixelelectronics.html">
 <span class="md-ellipsis">
     
   
@@ -440,7 +380,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../astropix4/spi.html">
+<a class="md-nav__link" href="spi.html">
 <span class="md-ellipsis">
     
   
@@ -452,7 +392,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../astropix4/dac.html">
+<a class="md-nav__link" href="dac.html">
 <span class="md-ellipsis">
     
   
@@ -464,7 +404,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../astropix4/injection.html">
+<a class="md-nav__link" href="injection.html">
 <span class="md-ellipsis">
     
   
@@ -475,8 +415,20 @@
   </span>
 </a>
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../astropix4/plldll.html">
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+<span class="md-ellipsis">
+    
+  
+    PLL and DLL
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="plldll.html">
 <span class="md-ellipsis">
     
   
@@ -486,9 +438,79 @@
     
   </span>
 </a>
+<nav aria-label="Table of Contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of Contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#pll">
+<span class="md-ellipsis">
+      
+        PLL
+      
+    </span>
+</a>
+<nav aria-label="PLL" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#block-diagram">
+<span class="md-ellipsis">
+      
+        Block diagram
+      
+    </span>
+</a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../astropix4/pins.html">
+<a class="md-nav__link" href="#configuration">
+<span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#dll">
+<span class="md-ellipsis">
+      
+        DLL
+      
+    </span>
+</a>
+<nav aria-label="DLL" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#block-diagram_1">
+<span class="md-ellipsis">
+      
+        Block diagram
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#configuration_1">
+<span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="pins.html">
 <span class="md-ellipsis">
     
   
@@ -623,533 +645,54 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1>Pins</h1>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<ul>
-<li>Unused inputs must be tied to ground unless otherwise specified.</li>
-<li>Unused outputs should be left unconnected.</li>
-<li>Unused bidirectional pins should be left unconnected.</li>
-</ul>
-</div>
-<h2 id="recommended-operating-parameters">Recommended Operating Parameters<a class="headerlink" href="#recommended-operating-parameters" title="Permanent link">¶</a></h2>
-<h3 id="supply-voltages">Supply Voltages<a class="headerlink" href="#supply-voltages" title="Permanent link">¶</a></h3>
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Min</th>
-<th>Typ</th>
-<th>Max</th>
-<th>Typ. Current</th>
-<th>Comment</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>vdda!</td>
-<td>1.62 V</td>
-<td>1.8 V</td>
-<td>1.98 V</td>
-<td>2 mA</td>
-<td>All pads internally connected - add decoupling on each pad if possible</td>
-</tr>
-<tr>
-<td>vdd!</td>
-<td>1.62 V</td>
-<td>1.8 V</td>
-<td>1.98 V</td>
-<td>5 mA</td>
-<td>All pads internally connected - add decoupling on each pad if possible</td>
-</tr>
-<tr>
-<td>vssa!</td>
-<td>1.1 V</td>
-<td>1.2 V</td>
-<td>1.98 V</td>
-<td>-</td>
-<td>Not implemented</td>
-</tr>
-<tr>
-<td>vminuspix</td>
-<td>0 V</td>
-<td>0.7 V</td>
-<td>1.98 V</td>
-<td>&lt; 100 uA</td>
-<td><strong>Voltage regulator must be able to sink current</strong></td>
-</tr>
-<tr>
-<td>HV</td>
-<td>0 V</td>
-<td>-120 V</td>
-<td>-190 V</td>
-<td>&lt; 100 nA</td>
-<td>All pads internally connected - Negative Bias for Pixel Sensors</td>
-</tr>
-</tbody>
-</table>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>The low voltage supplies vdda!, vdd! and vssa! should be turned on at the same time, otherwise the chip can be damaged due to high currents caused by forward biased diodes.</p>
-</div>
-<h3 id="lvds-receiver">LVDS Receiver<a class="headerlink" href="#lvds-receiver" title="Permanent link">¶</a></h3>
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Min</th>
-<th>Typ</th>
-<th>Max</th>
-<th>Comment</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Common mode voltage</td>
-<td>0.8 V</td>
-<td>1.2V</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>Differential amplitude</td>
-<td>0.2 V</td>
-<td>0.4 V</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>Input capacitance</td>
-<td></td>
-<td>~3 pF</td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h2 id="pins">Pins<a class="headerlink" href="#pins" title="Permanent link">¶</a></h2>
-<div class="admonition note">
+<h1>PLL and DLL</h1>
+<!-- BEGIN INCLUDE ../astropix5/plldll.md '&lt;!--start--&gt;' '&lt;!--end--&gt;' --><div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Pins starting with <strong>B</strong> are located at the <strong>bottom</strong>, <strong>L</strong> on the <strong>left</strong> and <strong>R</strong> on the <strong>right</strong> side of the chip</p>
+<p>If the PLL is not used, the LVDS Receiver for the external clock must be enabled in the configuration and an appropriate clock must be provided for the chip to work</p>
+<p><strong>External Clock:</strong> Clkmux 0, DisableLVDS 0, VNCp: x, VNVCO: 0<br/>
+<strong>Internal Clock:</strong> Clkmux 1, DisableLVDS 1, VNCp: 10, VNVCO: 0</p>
 </div>
-<table>
-<thead>
-<tr>
-<th>Pin</th>
-<th>Name</th>
-<th>Supply</th>
-<th>TYPE</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>B1</td>
-<td>sub</td>
-<td>HV</td>
-<td>Power</td>
-<td></td>
-</tr>
-<tr>
-<td>B2</td>
-<td>subdpads</td>
-<td>HV</td>
-<td>Power</td>
-<td>Don't connect</td>
-</tr>
-<tr>
-<td>B3</td>
-<td>gnda!</td>
-<td></td>
-<td>Power</td>
-<td></td>
-</tr>
-<tr>
-<td>B4</td>
-<td>vdda!</td>
-<td>1.8 V</td>
-<td>Power</td>
-<td></td>
-</tr>
-<tr>
-<td>B5</td>
-<td>sample_clock_p</td>
-<td></td>
-<td>Input</td>
-<td>LVDS &lt;200 MHz Clock for ToT counter<br/>  (Connect to gnd! if Single ended clock is used) - P/N can be swapped</td>
-</tr>
-<tr>
-<td>B6</td>
-<td>sample_clock_n</td>
-<td></td>
-<td>Input</td>
-<td>LVDS &lt;200 MHz Clock for ToT counter<br/>  (Connect to vdd! if Single ended clock is used) - P/N can be swapped</td>
-</tr>
-<tr>
-<td>B7</td>
-<td>vdd!</td>
-<td>1.8 V</td>
-<td>Power</td>
-<td></td>
-</tr>
-<tr>
-<td>B8</td>
-<td>gnd!</td>
-<td></td>
-<td>Power</td>
-<td></td>
-</tr>
-<tr>
-<td>B9</td>
-<td>interrupt</td>
-<td></td>
-<td>Output (Open-Drain/pushpull see <a href="../astropix3/configuration.html#digital-config">interrupt_pushpull</a> config bit)</td>
-<td>Active low status signal (0: data to read out 1: no data to read out) - Needs 10 kOhm pullup to vdd! in Open-Drain mode</td>
-</tr>
-<tr>
-<td>B10</td>
-<td>res_n</td>
-<td></td>
-<td>Input</td>
-<td>Active low global reset</td>
-</tr>
-<tr>
-<td>B11</td>
-<td>timestamp_clk</td>
-<td></td>
-<td>Input</td>
-<td></td>
-</tr>
-<tr>
-<td>B12</td>
-<td>hold</td>
-<td></td>
-<td>Output</td>
-<td></td>
-</tr>
-<tr>
-<td>B13</td>
-<td>sr_CK1</td>
-<td></td>
-<td>Input</td>
-<td>SPI Fallback: Clock1 for Chip Configuration</td>
-</tr>
-<tr>
-<td>B14</td>
-<td>sr_CK2</td>
-<td></td>
-<td>Input</td>
-<td>SPI Fallback: Clock2 for Chip Configuration</td>
-</tr>
-<tr>
-<td>B15</td>
-<td>sr_LOAD</td>
-<td></td>
-<td>Input</td>
-<td>SPI Fallback: Load for Chip Configuration</td>
-</tr>
-<tr>
-<td>B16</td>
-<td>sr_SIN</td>
-<td></td>
-<td>Input</td>
-<td>SPI Fallback: In for Chip Configuration</td>
-</tr>
-<tr>
-<td>B17</td>
-<td>sr_RB</td>
-<td></td>
-<td>Input</td>
-<td>SPI Fallback: Readback for Chip Configuration</td>
-</tr>
-<tr>
-<td>B18</td>
-<td>sr_SOUT</td>
-<td></td>
-<td>Output</td>
-<td>SPI Fallback: Out for Chip Configuration</td>
-</tr>
-<tr>
-<td>B19</td>
-<td>vdd!</td>
-<td>1.8 V</td>
-<td>Power</td>
-<td></td>
-</tr>
-<tr>
-<td>B20</td>
-<td>gnd!</td>
-<td></td>
-<td>Power</td>
-<td></td>
-</tr>
-<tr>
-<td>B21</td>
-<td>vdda!</td>
-<td>1.8 V</td>
-<td>Power</td>
-<td></td>
-</tr>
-<tr>
-<td>B22</td>
-<td>gnda!</td>
-<td></td>
-<td>Power</td>
-<td></td>
-</tr>
-<tr>
-<td>B23</td>
-<td>gnda!</td>
-<td></td>
-<td>Power</td>
-<td></td>
-</tr>
-<tr>
-<td>B24</td>
-<td>VPBias</td>
-<td></td>
-<td>BiDir</td>
-<td>Reference current</td>
-</tr>
-<tr>
-<td>B25</td>
-<td>pamp</td>
-<td></td>
-<td>BiDir</td>
-<td>Don't connect</td>
-</tr>
-<tr>
-<td>B26</td>
-<td>blpix</td>
-<td></td>
-<td>BiDir</td>
-<td>Comparator baseline voltage</td>
-</tr>
-<tr>
-<td>B27</td>
-<td>NC</td>
-<td></td>
-<td>NC</td>
-<td></td>
-</tr>
-<tr>
-<td>B28</td>
-<td>gnda!</td>
-<td></td>
-<td>Power</td>
-<td></td>
-</tr>
-<tr>
-<td>B29</td>
-<td>vdda!</td>
-<td>1.8 V</td>
-<td>Power</td>
-<td></td>
-</tr>
-<tr>
-<td>B30</td>
-<td>Inj</td>
-<td></td>
-<td>BiDir</td>
-<td>Analog Injection</td>
-</tr>
-<tr>
-<td>B31</td>
-<td>VCasc2!</td>
-<td></td>
-<td>BiDir</td>
-<td>Load cascode voltage</td>
-</tr>
-<tr>
-<td>B32</td>
-<td>ThPix</td>
-<td></td>
-<td>BiDir</td>
-<td>Comparator threshold voltage for NMOS Amplifier pixels</td>
-</tr>
-<tr>
-<td>B33</td>
-<td>vminuspix</td>
-<td>0.9 V</td>
-<td>Power</td>
-<td>Level shifter low level</td>
-</tr>
-<tr>
-<td>B34</td>
-<td>gnda!</td>
-<td></td>
-<td>Power</td>
-<td></td>
-</tr>
-<tr>
-<td>B35</td>
-<td>vdda!</td>
-<td>1.8 V</td>
-<td>Power</td>
-<td></td>
-</tr>
-<tr>
-<td>B36</td>
-<td>SFOut</td>
-<td></td>
-<td>Output</td>
-<td>Source Follower to buffer signal from analog multiplexer, needs external load resistor 2 kOhm to gnda!</td>
-</tr>
-<tr>
-<td>B37</td>
-<td>vdda_temp</td>
-<td>1.8 V</td>
-<td>Power</td>
-<td></td>
-</tr>
-<tr>
-<td>B38</td>
-<td>gnda_temp</td>
-<td></td>
-<td>Power</td>
-<td></td>
-</tr>
-<tr>
-<td>B39</td>
-<td>Vtemp1</td>
-<td></td>
-<td>Output</td>
-<td></td>
-</tr>
-<tr>
-<td>B40</td>
-<td>sub</td>
-<td>HV</td>
-<td>Power</td>
-<td></td>
-</tr>
-<tr>
-<td>B41</td>
-<td>subapads</td>
-<td>HV</td>
-<td>Power</td>
-<td>Don't connect</td>
-</tr>
-<tr>
-<td>B42</td>
-<td>ring1</td>
-<td></td>
-<td>Power</td>
-<td></td>
-</tr>
-<tr>
-<td>B43</td>
-<td>ring2</td>
-<td></td>
-<td>Power</td>
-<td></td>
-</tr>
-<tr>
-<td>B44</td>
-<td>ring3</td>
-<td></td>
-<td>Power</td>
-<td></td>
-</tr>
-<tr>
-<td>B45</td>
-<td>ring4</td>
-<td></td>
-<td>Power</td>
-<td></td>
-</tr>
-<tr>
-<td>L1</td>
-<td>SPI_left_MISO1</td>
-<td></td>
-<td>Output</td>
-<td>SPI Peripheral MISO1</td>
-</tr>
-<tr>
-<td>L2</td>
-<td>SPI_left_MISO0</td>
-<td></td>
-<td>Output</td>
-<td>SPI Peripheral MISO0</td>
-</tr>
-<tr>
-<td>L3</td>
-<td>SPI_left_MOSI</td>
-<td></td>
-<td>Input</td>
-<td>SPI Peripheral MOSI</td>
-</tr>
-<tr>
-<td>L4</td>
-<td>SPI_left_CLK</td>
-<td></td>
-<td>Input</td>
-<td>SPI Clock input</td>
-</tr>
-<tr>
-<td>L5</td>
-<td>SPI_left_CSN</td>
-<td></td>
-<td>Input</td>
-<td>SPI Chip Select (active-low) input</td>
-</tr>
-<tr>
-<td>L6</td>
-<td>sample_clock_left</td>
-<td></td>
-<td>Output</td>
-<td>Single Ended ToT clock input</td>
-</tr>
-<tr>
-<td>R1</td>
-<td>sample_clock_right</td>
-<td></td>
-<td>Output</td>
-<td>Don't use - internal connection to Pad missing</td>
-</tr>
-<tr>
-<td>R2</td>
-<td>SPI_right_CSN</td>
-<td></td>
-<td>Output</td>
-<td>SPI Chip Select (active-low) output</td>
-</tr>
-<tr>
-<td>R3</td>
-<td>SPI_right_CLK</td>
-<td></td>
-<td>Output</td>
-<td>SPI Clock output</td>
-</tr>
-<tr>
-<td>R4</td>
-<td>SPI_right_MOSI</td>
-<td></td>
-<td>Output</td>
-<td>SPI Sender MOSI</td>
-</tr>
-<tr>
-<td>R5</td>
-<td>SPI_right_MISO0</td>
-<td></td>
-<td>Input</td>
-<td>SPI Sender MISO0</td>
-</tr>
-<tr>
-<td>R6</td>
-<td>SPI_right_MISO1</td>
-<td></td>
-<td>Input</td>
-<td>SPI Sender MISO1</td>
-</tr>
-</tbody>
-</table>
+<h2 id="pll">PLL<a class="headerlink" href="#pll" title="Permanent link">¶</a></h2>
+<p>Since version 4, AstroPix features an integrated Third-Order Type-2 PLL used to generate a 20 MHz clock from an externally provided 2.5 MHz Reference Clock.
+$$
+F_{\text{OutClk}} = 8 F_{\text{RefClk}}
+$$</p>
+<h3 id="block-diagram">Block diagram<a class="headerlink" href="#block-diagram" title="Permanent link">¶</a></h3>
+<p>It is a single-ended design using TSPC logic in the high frequency parts to reduce the power consumption. The 9-stage current starved VCO is current-controlled through a V-I Converter, used to reduce the VCO Gain and effectively reducing phase noise. The coarse control current can be further controlled by VNVCO current.</p>
+<figure>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="100%"><img alt="PLL Diagram" src="../images/astropix5/pll.png" width="1000px"/></a></p>
+<figcaption>
+<p>Block Diagram of Third-Order Type-2 PLL to generate a x8 faster clock</p>
+</figcaption>
+</figure>
+<h3 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">¶</a></h3>
+<p>To use the PLL clock, the clock multiplexer bit in the chip configuration has to be set to 1. The only current which needs to be configured for the PLL to work is the charge pump current set by VNCp, a lower value reduces phase noise but increase the lock time, which fortunately is not important in this application. A good starting point is a current of 2.5 <span class="arithmatex">\(\mu\)</span>A i.e. a VNCp setting of 10. VNVCO can be usually set to 0.</p>
+<h2 id="dll">DLL<a class="headerlink" href="#dll" title="Permanent link">¶</a></h2>
+<p>It also features an integrated DLL used to regulate the total delay line consisting of 16 delay elements to the reference clock period.
+The delay line is an exact replica of the delay line used in the per-Pixel TDCs, therefore allowing the regulation of the TDC delay.</p>
+<h3 id="block-diagram_1">Block diagram<a class="headerlink" href="#block-diagram_1" title="Permanent link">¶</a></h3>
+<p>It is also a single-ended design including a startup controller to prevent harmonic lock and stuck state from being outside the lock-in range.
+The control bias voltage for the delay lines is replicated to not influence the filter pole and stability by the load capacitance of the circuit.</p>
+<figure>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="100%"><img alt="DLL Diagram" src="../images/astropix5/dll.png" width="1000px"/></a></p>
+<figcaption>
+<p>Block Diagram of the DLL with startup controller to control the total delay of the TDCs</p>
+</figcaption>
+</figure>
+<p>The delay of a single delay element can be calculated by:
+$$
+T_{\text{delaycell}} = \dfrac{1}{F_{\text{OutClk}} 16}
+$$</p>
+<p>This results in a delay of 3.125 ns for a single delay element at a clock speed of 20 MHz.</p>
+<h3 id="configuration_1">Configuration<a class="headerlink" href="#configuration_1" title="Permanent link">¶</a></h3>
+<p>The only current which needs to be configured for the DLL to work is the charge pump current set by VNCp, which also used by the <a href="#configuration">PLL</a>.</p>
+<!-- END INCLUDE -->
 <aside class="md-source-file">
 <span class="md-source-file__fact">
 <span class="md-icon" title="Last update">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
 </span>
-<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="December 23, 2025 19:32:02 UTC">December 23, 2025</span>
+<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="February 6, 2026 11:43:16 UTC">February 6, 2026</span>
 </span>
 </aside>
 </article>
