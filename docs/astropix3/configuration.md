@@ -7,6 +7,44 @@ AstroPix3 is configured trough a long shift register, consisting of a configurat
 
 The chip can be programmed directly via the shift register interface or through the [SPI SR Command](spi.md#shift-register-io-and-spi-command).
 
+## Shift Register (SR) Interface
+The Shift Register Interface is a double clocked 5 Wire serial interface. The diagram below shows the write of two bits, one and zero.
+
+### Writing
+<pre>
+<code class="wavedrom">
+{signal: [
+  {name: 'SIN',     wave:  '0..1...0.......' },
+  {name: 'CK1',     wave:  '0..10..10......' },
+  {name: 'CK2',     wave:  '0....10..10....' },
+  {name: 'LOAD',    wave:  '0..........1.0.' }
+],
+
+ }
+</code>
+</pre>
+### Readback
+
+1. Drive the Readback pin high
+2. Toggle CK1 and CK2 once
+3. Read the Shift Register Output by monitoring the SOUT output and writing as many dummy bits, as you want to read bits from the register
+
+Below is the timing diagram for the readback of the 2 bit shift register from the write example. After CK2 is high for the first time, the last written bit is visible at SOUT.
+<pre>
+<code class="wavedrom">
+{signal: [
+  {name: 'SIN',     wave:  '0..............' },
+  {name: 'CK1',     wave:  '0..10..10......' },
+  {name: 'CK2',     wave:  '0....10..10....' },
+  {name: 'LOAD',    wave:  '0..............' },
+  {name: 'RB',      wave:  '0..1..0........' },
+  {name: 'SOUT',    wave:  'x....1...0.....' }
+],
+
+ }
+</code>
+</pre>
+
 ## Digital Config
 | Field Name         | Bits | Default Value | Description |
 |--------------------|------|---------------| -----------|

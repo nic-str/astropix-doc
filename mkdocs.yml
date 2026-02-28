@@ -27,6 +27,7 @@ nav:
     - DAC: astropix4/dac.md
     - Injection: astropix4/injection.md
     - PLL and DLL: astropix4/plldll.md
+    - Configuration Registers: astropix4/configuration.md
     - Pins: astropix4/pins.md
   - AstroPix5 User Guide:
     - astropix5/index.md
@@ -125,6 +126,7 @@ plugins:
   - offline
   - search
   - git-revision-date-localized
+  - macros
   #- to-pdf
 
 # markdown_extensions:
