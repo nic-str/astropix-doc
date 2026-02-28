@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<link href="plldll.html" rel="prev"/>
+<link href="pins.html" rel="next"/>
+<link href="../ADL_Logo.png" rel="icon"/>
+<meta content="mkdocs-1.6.1, mkdocs-material-9.7.3" name="generator"/>
+<title>Configuration Registers - AstroPix Documentation</title>
+<link href="../assets/stylesheets/main.484c7ddc.min.css" rel="stylesheet"/>
+<script src="../assets/external/unpkg.com/iframe-worker/shim.js"></script>
+
+<link href="../assets/external/fonts.googleapis.com/css.49ea35f2.css" rel="stylesheet">
+<style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+<link href="../assets/external/unpkg.com/katex@0/dist/katex.min.css" rel="stylesheet">
+<link href="../stylesheets/custom.css" rel="stylesheet"/>
+<script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+<link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><script src="../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+<body dir="ltr">
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#shift-register-sr-interface">
+          Skip to content
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header md-header--shadow" data-md-component="header">
+<nav aria-label="Header" class="md-header__inner md-grid">
+<a aria-label="AstroPix Documentation" class="md-header__button md-logo" data-md-component="logo" href=".." title="AstroPix Documentation">
+<img alt="logo" src="../ADL_Logo.png"/>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            AstroPix Documentation
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              Configuration Registers
+            
+          </span>
+</div>
+</div>
+</div>
+<script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+<label class="md-header__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="Search" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="Search" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+</label>
+<nav aria-label="Search" class="md-search__options">
+<button aria-label="Clear" class="md-search__icon md-icon" tabindex="-1" title="Clear" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+</button>
+</nav>
+<div class="md-search__suggest" data-md-component="search-suggest"></div>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="" tabindex="0">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            Initializing search
+          </div>
+<ol class="md-search-result__list" role="presentation"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navigation" class="md-nav md-nav--primary md-nav--integrated" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="AstroPix Documentation" class="md-nav__button md-logo" data-md-component="logo" href=".." title="AstroPix Documentation">
+<img alt="logo" src="../ADL_Logo.png"/>
+</a>
+    AstroPix Documentation
+  </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--section md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_1" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../index.html">
+<span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+</a>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_1_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_1">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--section md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_2" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../astropix2/index.html">
+<span class="md-ellipsis">
+    
+  
+    AstroPix2 User Guide
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_2_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_2">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    AstroPix2 User Guide
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../astropix2/pixelelectronics.html">
+<span class="md-ellipsis">
+    
+  
+    Pixel Electronics
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../astropix2/readout.html">
+<span class="md-ellipsis">
+    
+  
+    Matrix Readout
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../astropix2/spi.html">
+<span class="md-ellipsis">
+    
+  
+    SPI Interface
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../astropix2/configuration.html">
+<span class="md-ellipsis">
+    
+  
+    Configuration Registers
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../astropix2/pins.html">
+<span class="md-ellipsis">
+    
+  
+    Pins
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--section md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_3" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../astropix3/index.html">
+<span class="md-ellipsis">
+    
+  
+    AstroPix3 User Guide
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_3">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    AstroPix3 User Guide
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../astropix3/pixelelectronics.html">
+<span class="md-ellipsis">
+    
+  
+    Pixel Electronics
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../astropix3/readout.html">
+<span class="md-ellipsis">
+    
+  
+    Matrix Readout
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../astropix3/spi.html">
+<span class="md-ellipsis">
+    
+  
+    SPI Interface
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../astropix3/dac.html">
+<span class="md-ellipsis">
+    
+  
+    DAC
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../astropix3/injection.html">
+<span class="md-ellipsis">
+    
+  
+    Injection
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../astropix3/configuration.html">
+<span class="md-ellipsis">
+    
+  
+    Configuration Registers
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../astropix3/pins.html">
+<span class="md-ellipsis">
+    
+  
+    Pins
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_4" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="index.html">
+<span class="md-ellipsis">
+    
+  
+    AstroPix4 User Guide
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="true" aria-labelledby="__nav_4_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_4">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    AstroPix4 User Guide
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="pixelelectronics.html">
+<span class="md-ellipsis">
+    
+  
+    Pixel Electronics
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="spi.html">
+<span class="md-ellipsis">
+    
+  
+    SPI Interface
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="dac.html">
+<span class="md-ellipsis">
+    
+  
+    DAC
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="injection.html">
+<span class="md-ellipsis">
+    
+  
+    Injection
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="plldll.html">
+<span class="md-ellipsis">
+    
+  
+    PLL and DLL
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+<span class="md-ellipsis">
+    
+  
+    Configuration Registers
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="configuration.html">
+<span class="md-ellipsis">
+    
+  
+    Configuration Registers
+  
+
+    
+  </span>
+</a>
+<nav aria-label="Table of Contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of Contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#shift-register-sr-interface">
+<span class="md-ellipsis">
+      
+        Shift Register (SR) Interface
+      
+    </span>
+</a>
+<nav aria-label="Shift Register (SR) Interface" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#writing">
+<span class="md-ellipsis">
+      
+        Writing
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#readback">
+<span class="md-ellipsis">
+      
+        Readback
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#digital-config">
+<span class="md-ellipsis">
+      
+        Digital Config
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#analog-config">
+<span class="md-ellipsis">
+      
+        Analog Config
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#vdac-config">
+<span class="md-ellipsis">
+      
+        VDAC Config
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#column-config">
+<span class="md-ellipsis">
+      
+        Column Config
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#row-config">
+<span class="md-ellipsis">
+      
+        Row Config
+      
+    </span>
+</a>
+<nav aria-label="Row Config" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#writing_1">
+<span class="md-ellipsis">
+      
+        Writing
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#reading">
+<span class="md-ellipsis">
+      
+        Reading
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="pins.html">
+<span class="md-ellipsis">
+    
+  
+    Pins
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--section md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_5" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../astropix5/index.html">
+<span class="md-ellipsis">
+    
+  
+    AstroPix5 User Guide
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_5_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_5">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    AstroPix5 User Guide
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../astropix5/pixelelectronics.html">
+<span class="md-ellipsis">
+    
+  
+    Pixel Electronics
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../astropix5/spi.html">
+<span class="md-ellipsis">
+    
+  
+    SPI Interface
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../astropix5/dac.html">
+<span class="md-ellipsis">
+    
+  
+    DAC
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../astropix5/injection.html">
+<span class="md-ellipsis">
+    
+  
+    Injection
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../astropix5/plldll.html">
+<span class="md-ellipsis">
+    
+  
+    PLL and DLL
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../astropix5/pins.html">
+<span class="md-ellipsis">
+    
+  
+    Pins
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../setup/setup.html">
+<span class="md-ellipsis">
+    
+  
+    Measurement Setup
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<h1 id="chip-configuration">Chip Configuration<a class="headerlink" href="#chip-configuration" title="Permanent link">¶</a></h1>
+<p>AstroPix4 is configured trough multiple shift register, a long register consisting of a configuration for the digital part, the analog part including all current and voltage DACs and the column configuration to disable pixels and selection rows/columns for injection. The first bit in the register is the <em>interrupt_pushpull</em> bit, while bit 37 of the 16th column config is the last bit.
+The second register is used to write the Row Config to write the pixel RAM and to enable/disable individual hitbuffers.</p>
+<!--config_digana-start-->
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For programing, the first bit <em>interrupt_pushpull</em> has to be sent last, and the last bit in this list first.</p>
+</div>
+<p>The chip can be programmed directly via the shift register interface or through the <a href="spi.html#shift-register-io-and-spi-command">SPI SR Command</a>.</p>
+<h2 id="shift-register-sr-interface">Shift Register (SR) Interface<a class="headerlink" href="#shift-register-sr-interface" title="Permanent link">¶</a></h2>
+<p>The Shift Register Interface is a double clocked 5 Wire serial interface. The diagram below shows the write of two bits, one and zero.</p>
+<h3 id="writing">Writing<a class="headerlink" href="#writing" title="Permanent link">¶</a></h3>
+<script class="wavedrom" type="WaveDrom">
+{signal: [
+  {name: 'SIN',     wave:  '0..1...0.......' },
+  {name: 'CK1',     wave:  '0..10..10......' },
+  {name: 'CK2',     wave:  '0....10..10....' },
+  {name: 'LOAD',    wave:  '0..........1.0.' }
+],
+
+ }
+</script>
+<h3 id="readback">Readback<a class="headerlink" href="#readback" title="Permanent link">¶</a></h3>
+<ol>
+<li>Drive the Readback pin high</li>
+<li>Toggle CK1 and CK2 once</li>
+<li>Read the Shift Register Output by monitoring the SOUT output and writing as many dummy bits, as you want to read bits from the register</li>
+</ol>
+<p>Below is the timing diagram for the readback of the 2 bit shift register from the write example. After CK2 is high for the first time, the last written bit is visible at SOUT.</p>
+<script class="wavedrom" type="WaveDrom">
+{signal: [
+  {name: 'SIN',     wave:  '0..............' },
+  {name: 'CK1',     wave:  '0..10..10......' },
+  {name: 'CK2',     wave:  '0....10..10....' },
+  {name: 'LOAD',    wave:  '0..............' },
+  {name: 'RB',      wave:  '0..1..0........' },
+  {name: 'SOUT',    wave:  'x....1...0.....' }
+],
+
+ }
+</script>
+<h2 id="digital-config">Digital Config<a class="headerlink" href="#digital-config" title="Permanent link">¶</a></h2>
+<table>
+<thead>
+<tr>
+<th>Field Name</th>
+<th>Bits</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>interrupt_pushpull</td>
+<td>1</td>
+<td>0</td>
+<td>1: push-pull output for single chip setup<br/> 0: open-drain for single or multi chip</td>
+</tr>
+<tr>
+<td>clkmux</td>
+<td>1</td>
+<td>0</td>
+<td>1: 20MHz from external 0: 20MHz from PLL</td>
+</tr>
+<tr>
+<td>unused</td>
+<td>4</td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td>slowdownldpix</td>
+<td>4</td>
+<td>0</td>
+<td>Increase scan chain priority wait time</td>
+</tr>
+<tr>
+<td>slowdownldcol</td>
+<td>5</td>
+<td>0</td>
+<td>Increase DRAM reading wait time</td>
+</tr>
+<tr>
+<td>maxcyc</td>
+<td>6</td>
+<td>63</td>
+<td>Set max number of columns to read in one FSM cycle</td>
+</tr>
+<tr>
+<td>resetckdiv</td>
+<td>4</td>
+<td>15</td>
+<td>Set FSM wait time after reset</td>
+</tr>
+<tr>
+<td>unused</td>
+<td>32</td>
+<td>0</td>
+<td></td>
+</tr>
+<tr>
+<td>unused</td>
+<td>1</td>
+<td>0</td>
+<td></td>
+</tr>
+<tr>
+<td>Reset</td>
+<td>1</td>
+<td>0</td>
+<td>Reset</td>
+</tr>
+<tr>
+<td>enPCH</td>
+<td>1</td>
+<td>0</td>
+<td>Enable RAM writing</td>
+</tr>
+<tr>
+<td>enRam</td>
+<td>1</td>
+<td>0</td>
+<td>Enable RAM bitline precharge</td>
+</tr>
+<tr>
+<td>unused</td>
+<td>5</td>
+<td>0</td>
+<td></td>
+</tr>
+<tr>
+<td>enLVDSterm</td>
+<td>1</td>
+<td>1</td>
+<td>Enable differential termination in external clock LVDS receiver</td>
+</tr>
+<tr>
+<td>unused</td>
+<td>1</td>
+<td>0</td>
+<td></td>
+</tr>
+<tr>
+<td>disLVDS</td>
+<td>1</td>
+<td>0</td>
+<td>Disable external clock LVDS receiver</td>
+</tr>
+<tr>
+<td>unused</td>
+<td>5</td>
+<td>63</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="analog-config">Analog Config<a class="headerlink" href="#analog-config" title="Permanent link">¶</a></h2>
+<table>
+<thead>
+<tr>
+<th>Field Name</th>
+<th>Bits</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DisHiDR</td>
+<td>1</td>
+<td>1</td>
+<td>1: Amplifier high-gain mode<br/> 0: Amplifier bilinear gain mode</td>
+</tr>
+<tr>
+<td>q01</td>
+<td>1</td>
+<td>0</td>
+<td>Biasblock enable (use default values)</td>
+</tr>
+<tr>
+<td>qon0</td>
+<td>1</td>
+<td>0</td>
+<td>Biasblock enable (use default values)</td>
+</tr>
+<tr>
+<td>qon1</td>
+<td>1</td>
+<td>1</td>
+<td>Biasblock enable (use default values)</td>
+</tr>
+<tr>
+<td>qon2</td>
+<td>1</td>
+<td>0</td>
+<td>Biasblock enable (use default values)</td>
+</tr>
+<tr>
+<td>qon3</td>
+<td>1</td>
+<td>1</td>
+<td>Biasblock enable (use default values)</td>
+</tr>
+<tr>
+<td>blres</td>
+<td>6</td>
+<td>0</td>
+<td>Highpass filter bandwidth 0: low 63: high</td>
+</tr>
+<tr>
+<td>vpdac</td>
+<td>6</td>
+<td>0</td>
+<td>TDAC current</td>
+</tr>
+<tr>
+<td>vn1</td>
+<td>6</td>
+<td>20</td>
+<td>Amplifier input NMOS bias</td>
+</tr>
+<tr>
+<td>vnfb</td>
+<td>6</td>
+<td>1</td>
+<td>Feedback current</td>
+</tr>
+<tr>
+<td>vnfoll</td>
+<td>6</td>
+<td>10</td>
+<td>Amplifier operating point feedback</td>
+</tr>
+<tr>
+<td>nu5</td>
+<td>6</td>
+<td>0</td>
+<td>unused</td>
+</tr>
+<tr>
+<td>vndel</td>
+<td>6</td>
+<td>10</td>
+<td>Hitbuffer Edgedetector delay</td>
+</tr>
+<tr>
+<td>incp</td>
+<td>6</td>
+<td>0</td>
+<td>PLL charge pump current</td>
+</tr>
+<tr>
+<td>nu8</td>
+<td>6</td>
+<td>0</td>
+<td>unused</td>
+</tr>
+<tr>
+<td>vn2</td>
+<td>6</td>
+<td>0</td>
+<td>Additional Amplifier input NMOS bias to increase maximum current</td>
+</tr>
+<tr>
+<td>vnfoll2</td>
+<td>6</td>
+<td>1</td>
+<td>Low pass filter bandwidth 0: low 63: high</td>
+</tr>
+<tr>
+<td>vnbias</td>
+<td>6</td>
+<td>10</td>
+<td>N-well bias</td>
+</tr>
+<tr>
+<td>vpload</td>
+<td>6</td>
+<td>5</td>
+<td>Amplifier load current</td>
+</tr>
+<tr>
+<td>nu13</td>
+<td>6</td>
+<td>0</td>
+<td>unused</td>
+</tr>
+<tr>
+<td>vncomp</td>
+<td>6</td>
+<td>2</td>
+<td>Comparator bias current</td>
+</tr>
+<tr>
+<td>vpfoll</td>
+<td>6</td>
+<td>30</td>
+<td>Ampout multiplexer current</td>
+</tr>
+<tr>
+<td>nu16</td>
+<td>6</td>
+<td>0</td>
+<td>unused</td>
+</tr>
+<tr>
+<td>vprec</td>
+<td>6</td>
+<td>30</td>
+<td>Levelshifter Pullup current</td>
+</tr>
+<tr>
+<td>vnrec</td>
+<td>6</td>
+<td>30</td>
+<td>Levelshifter Receiver load current</td>
+</tr>
+</tbody>
+</table>
+<!--config_digana-end-->
+<h2 id="vdac-config">VDAC Config<a class="headerlink" href="#vdac-config" title="Permanent link">¶</a></h2>
+<table>
+<thead>
+<tr>
+<th>Field Name</th>
+<th>Bits</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>blpix:</td>
+<td>10</td>
+<td>568</td>
+<td>Comparator baseline voltage</td>
+</tr>
+<tr>
+<td>thpix:</td>
+<td>10</td>
+<td>600</td>
+<td>Comparator threshold voltage for NMOS Amplifier pixels</td>
+</tr>
+<tr>
+<td>vcasc2:</td>
+<td>10</td>
+<td>625</td>
+<td>Amplifier load cascode voltage</td>
+</tr>
+<tr>
+<td>vtest:</td>
+<td>10</td>
+<td>0</td>
+<td>Test voltage</td>
+</tr>
+<tr>
+<td>vinj:</td>
+<td>10</td>
+<td>0</td>
+<td>Injection amplitude</td>
+</tr>
+</tbody>
+</table>
+<!-- BEGIN INCLUDE ../astropix3/configuration.md '&lt;!--config_column-start--&gt;' '&lt;!--config_column-end--&gt;' -->
+<h2 id="column-config">Column Config<a class="headerlink" href="#column-config" title="Permanent link">¶</a></h2>
+<p>Each column incorporates a 38 bit shift register, and all columns are connected in series starting from column 0 to column 34.</p>
+<!-- BEGIN INCLUDE ./configuration/format_col_config.md '&lt;!--start--&gt;' '&lt;!--end--&gt;' -->
+<script class="wavedrom" type="WaveDrom">
+    {
+        reg:[
+            {bits: 1,  name: 'Inj', attr: "Row"},
+            {bits: 35,  name: 'Pixel Comp Disable[34:0]', attr: 'Pixel Comp Disable'},
+            {bits: 1,  name: 'Inj' , attr: 'Col'},
+            {bits: 1,  name: 'A', attr: ''},
+        ], config: { bits: 38},
+    }
+    </script>
+<!-- END INCLUDE -->
+<p>For column n from 0 to 34:</p>
+<ul>
+<li>Bit 37: AmpOut Mux enable</li>
+<li>Bit 36: Enable Column for injection</li>
+<li>Bit 35-1: Enable Pixel comparators in column (<strong>1:</strong> Disable <strong>0:</strong> Enable)<ul>
+<li>Bit 35 is row 34</li>
+<li>Bit 1 is row 0</li>
+</ul>
+</li>
+<li>Bit 0: Enable Row n for Injection</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Set AmpOut bit only in one column</p>
+</div>
+<!-- END INCLUDE -->
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>In AstroPix4 the RAM can be only configured via the SR interface and not via SPI</p>
+</div>
+<!--tdac-start-->
+<h2 id="row-config">Row Config<a class="headerlink" href="#row-config" title="Permanent link">¶</a></h2>
+<p>Each Pixel has a 4 bit SRAM cell, storing a 3 bit comparator threshold trimming value and an enable bit for the hit buffer.
+The SRAM cells are written row wise, each of the 16 pixels per row has its dedicated 4 bit SRAM.</p>
+<!-- BEGIN INCLUDE ./tdac/sram.md '&lt;!--start--&gt;' '&lt;!--end--&gt;' -->
+<script class="wavedrom" type="WaveDrom">
+    {
+        reg:[
+            {bits: 1,  name: 'Hit buffer disable', type: 3},
+            {bits: 3,  name: 'TDAC [2:0]', type: 4},
+        ], config:{bits: 4}
+    }
+    </script>
+<!-- END INCLUDE -->
+<ul>
+<li>To enable the hit buffer set "Hit buffer disable" to 0</li>
+<li>TDAC value 0 means no offset current, while 7 means highest offset current</li>
+</ul>
+<!-- ### Offset voltage calculation
+With Comparator and TDAC offset current
+$$
+I_\text{comp, uA}=\frac{1.5}{63} \text{VNCOMP}\\
+I_\text{TDAC, uA}=\frac{0.6}{63} \text{VPDAC} \cdot \text{TDACVAL}
+$$
+The comparator offset voltage can be calculator to:
+$$
+V_\text{os} = 65 \text{mV} \frac{I_\text{TDAC, uA}}{I_\text{comp, uA}}
+$$ -->
+<h3 id="writing_1">Writing<a class="headerlink" href="#writing_1" title="Permanent link">¶</a></h3>
+<p>To write a specific SRAM row, the bits have to be written into the TDAC config register with the pattern below.
+In addition to the 4 bit Pixel RAM values, there is a row enable bit, which is set to 1 if the corresponding row should be written.
+Therefore, if multiple rows should receive the same configuration, they can be written at the same time.</p>
+<p>The row length is 5 x 16 bits.
+Below is an example for a four pixel row:</p>
+<!-- BEGIN INCLUDE ./tdac/sram_row.md '&lt;!--start--&gt;' '&lt;!--end--&gt;' -->
+<script class="wavedrom" type="WaveDrom">
+    {
+        reg:[
+            {bits: 1,  name: 'Row 0', type: 4},
+            {bits: 4,  name: 'SRAM Pixel 0', type: 3},
+            {bits: 1,  name: 'Row 1', type: 4},
+            {bits: 4,  name: 'SRAM Pixel 1', type: 3},
+            {bits: 1,  name: 'Row 2', type: 4},
+            {bits: 4,  name: 'SRAM Pixel 2', type: 3},
+            {bits: 1,  name: 'Row 3', type: 4},
+            {bits: 4,  name: 'SRAM Pixel 3', type: 3},
+        ], config:{bits: 20}
+    }
+    </script>
+<!-- END INCLUDE -->
+<p>The write-enable bit <strong>enRAMPCH</strong> has to be set to <strong>1</strong> in the chip configuration.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>After power up it is useful to disable all offset currents and enable all hit buffers by writing 16 times 5b00001</p>
+</div>
+<h3 id="reading">Reading<a class="headerlink" href="#reading" title="Permanent link">¶</a></h3>
+<p>To read back the RAM values, the following procedure can be used:</p>
+<ol>
+<li>Set enRAMPCH to zero, to disable write driver</li>
+<li>Write chip config</li>
+<li>Set enPCH bit 1, to precharge the bitlines, to avoid flipping</li>
+<li>Write chip config</li>
+<li>Set enPCH bit 0, to stop precharging</li>
+<li>Write chip config</li>
+<li>Set row bit in the desired row</li>
+<li>Write row config</li>
+<li>Perform <a href="configuration.html#readback">SR readback procedure</a></li>
+</ol>
+<!--tdac-stop-->
+<aside class="md-source-file">
+<span class="md-source-file__fact">
+<span class="md-icon" title="Last update">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
+</span>
+<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="February 28, 2026 19:15:06 UTC">February 28, 2026</span>
+</span>
+</aside>
+</article>
+</div>
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+</div>
+<button class="md-top md-icon" data-md-component="top" hidden="" type="button">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+  Back to top
+</button>
+</main>
+<footer class="md-footer">
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+<div class="md-copyright__highlight">
+      Nicolas Striebig
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+      Material for MkDocs
+    </a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.expand", "navigation.sections", "navigation.indexes", "navigation.top", "content.code.copy", "toc.integrate", "search.suggest", "search.highlight"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+<script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+<script src="../assets/external/unpkg.com/tablesort@5.3.0/dist/tablesort.min.js"></script>
+<script src="../javascripts/tablesort.js"></script>
+<script src="../javascripts/wavedrom.js"></script>
+<script src="../assets/external/cdnjs.cloudflare.com/ajax/libs/wavedrom/3.5.0/skins/default.min.js"></script>
+<script src="../assets/external/cdnjs.cloudflare.com/ajax/libs/wavedrom/3.5.0/wavedrom.min.js"></script>
+<script src="../javascripts/katex.js"></script>
+<script src="../assets/external/unpkg.com/katex@0/dist/katex.min.js"></script>
+<script src="../assets/external/unpkg.com/katex@0/dist/contrib/auto-render.min.js"></script>
+<script src="../javascripts/calculator.js"></script>
+<script src="../assets/external/unpkg.com/mermaid@11/dist/mermaid.min.js"></script>
+<script id="init-glightbox">document.querySelectorAll('.glightbox').forEach(function(element) {
+    try {
+        var img = element.querySelector('img');
+        if (img && img.src) {
+            element.setAttribute('href', img.src);
+        } else {
+            console.log('No img element with src attribute found');
+        }
+    } catch (error) {
+        console.log('Error:', error);
+    }
+});
+const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script><script>window.addEventListener('load', function() {wavedrom.processAll();});</script></body></html>
