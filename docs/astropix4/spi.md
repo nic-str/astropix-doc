@@ -10,10 +10,12 @@ The main differences are:
     include-markdown "../astropix5/spi.md"
     start="<!--spi4-start-->"
     end="<!--spi4-stop-->"
+    rewrite-relative-urls=false
 %}
 
 {%
     include-markdown "../astropix5/spi.md"
     start="<!--spi4readout-start-->"
     end="<!--spi4readout-stop-->"
+    rewrite-relative-urls=false
 %}

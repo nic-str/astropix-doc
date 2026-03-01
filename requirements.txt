@@ -1,4 +1,4 @@
-mkdocs
+mkdocs~=1.6.1
 mkdocs-wavedrom-plugin
 mkdocs-drawio
 mkdocs-glightbox

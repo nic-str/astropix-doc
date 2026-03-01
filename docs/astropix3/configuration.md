@@ -6,9 +6,9 @@ AstroPix3 is configured trough a long shift register, consisting of a configurat
     For programing, the first bit *interrupt_pushpull* has to be sent last, and the last bit in this list first.
 
 The chip can be programmed directly via the shift register interface or through the [SPI SR Command](spi.md#shift-register-io-and-spi-command).
-
+<!--sr_principle-start-->
 ## Shift Register (SR) Interface
-The Shift Register Interface is a double clocked 5 Wire serial interface. The diagram below shows the write of two bits, one and zero.
+The Shift Register Interface is a double clocked 5 Wire serial interface, similar to SPI. The diagram below shows the writing of two bits, one and zero.
 
 ### Writing
 <pre>
@@ -44,7 +44,7 @@ Below is the timing diagram for the readback of the 2 bit shift register from th
  }
 </code>
 </pre>
-
+<!--sr_principle-stop-->
 ## Digital Config
 | Field Name         | Bits | Default Value | Description |
 |--------------------|------|---------------| -----------|

@@ -13,7 +13,7 @@
 | vdd!      | 1.62 V | 1.8 V  | 1.98 V | 3 mA         | All pads internally connected - add decoupling on each pad if possible |
 | vssa!     | 1.1 V  | 1.2 V  | 1.98 V | 1 mA         | All pads internally connected - add decoupling on each pad if possible |
 | vminuspix | 0 V    | 1 V    | 1.98 V | < 100 uA     |                                                                        |
-| HV        | 0 V    | -150 V | -350 V | < 100 nA     | All pads internally connected - Negative Bias for Pixel Sensors        |
+| HV        | 0 V    | -150 V | -250 V | < 100 nA     | All pads internally connected - Negative Bias for Pixel Sensors        |
 
 !!! warning
 
@@ -30,7 +30,7 @@
 | Parameter                 | Min   | Typ    | Max   | Conditions                                   |
 |---------------------------|-------|--------|-------|----------------------------------------------|
 | Common mode voltage       | 0.8 V | 0.9V   | 1.1 V |                                              |
-| Differential amplitude    |       | 0.2 V  |       | Differential termination $R_T = 100~\Omega $ |
+| Differential amplitude    |       | 0.2 V  |       | Differential termination $R_\text{T} = 100~\Omega $ |
 | Wake up time after Enable |       | 100 ns |       |                                              |
 
 ## Pins

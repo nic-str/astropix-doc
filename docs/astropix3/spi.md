@@ -26,8 +26,7 @@ The IDLE byte represents no specific command and uses an invalid address: 0x1D f
 
 
 ### Shift Register I/O and SPI Command
-
-The shift register interface exposes two clocks, a serial input (SIN), and a load signal to load bits into the registers.
+The SPI SR command is a module, which internally drives the [configuration shift register](./configuration.md#shift-register-sr-interface), consisting of two clocks, a serial input (SIN), and a load signal to load bits into the registers.
 Each bit on the SIN line is clocked through the shift register by toggling Clock 1 and Clock 2 separately. The diagram below illustrates a 3-bit register configuration:
 
 {% include-markdown "./spi/format_sr.md" %}
