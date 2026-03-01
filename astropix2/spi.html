@@ -837,7 +837,7 @@
 </tbody>
 </table>
 <h3 id="shift-register-io-and-spi-command">Shift Register I/O and SPI Command<a class="headerlink" href="#shift-register-io-and-spi-command" title="Permanent link">¶</a></h3>
-<p>The shift register interface exposes two clocks, a serial input (SIN), and a load signal to load bits into the registers.
+<p>The SPI SR command is a module, which internally drives the <a href="../astropix3/configuration.html#shift-register-sr-interface">configuration shift register</a>, consisting of two clocks, a serial input (SIN), and a load signal to load bits into the registers.
 Each bit on the SIN line is clocked through the shift register by toggling Clock 1 and Clock 2 separately. The diagram below illustrates a 3-bit register configuration:</p>
 <!-- BEGIN INCLUDE ./spi/format_sr.md '&lt;!--start--&gt;' '&lt;!--end--&gt;' -->
 <script class="wavedrom" type="WaveDrom">

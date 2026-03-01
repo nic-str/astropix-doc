@@ -659,8 +659,9 @@
 <p>For programing, the first bit <em>interrupt_pushpull</em> has to be sent last, and the last bit in this list first.</p>
 </div>
 <p>The chip can be programmed directly via the shift register interface or through the <a href="spi.html#shift-register-io-and-spi-command">SPI SR Command</a>.</p>
+<!--sr_principle-start-->
 <h2 id="shift-register-sr-interface">Shift Register (SR) Interface<a class="headerlink" href="#shift-register-sr-interface" title="Permanent link">¶</a></h2>
-<p>The Shift Register Interface is a double clocked 5 Wire serial interface. The diagram below shows the write of two bits, one and zero.</p>
+<p>The Shift Register Interface is a double clocked 5 Wire serial interface, similar to SPI. The diagram below shows the writing of two bits, one and zero.</p>
 <h3 id="writing">Writing<a class="headerlink" href="#writing" title="Permanent link">¶</a></h3>
 <script class="wavedrom" type="WaveDrom">
 {signal: [
@@ -691,6 +692,7 @@
 
  }
 </script>
+<!--sr_principle-stop-->
 <h2 id="digital-config">Digital Config<a class="headerlink" href="#digital-config" title="Permanent link">¶</a></h2>
 <table>
 <thead>
