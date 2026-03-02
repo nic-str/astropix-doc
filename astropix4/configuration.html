@@ -534,19 +534,19 @@
 <nav aria-label="Row Config" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#writing_1">
+<a class="md-nav__link" href="#row-writing">
 <span class="md-ellipsis">
       
-        Writing
+        Row Writing
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#reading">
+<a class="md-nav__link" href="#row-reading">
 <span class="md-ellipsis">
       
-        Reading
+        Row Reading
       
     </span>
 </a>
@@ -1107,8 +1107,26 @@ The second register is used to write the Row Config to write the pixel RAM and t
 </div>
 <!--tdac-start-->
 <h2 id="row-config">Row Config<a class="headerlink" href="#row-config" title="Permanent link">¶</a></h2>
-<p>Each Pixel has a 4 bit SRAM cell, storing a 3 bit comparator threshold trimming value and an enable bit for the hit buffer.
-The SRAM cells are written row wise, each of the 16 pixels per row has its dedicated 4 bit SRAM.</p>
+<p>The row config is stored in a 5 x 16 bit long shift register and applied with the <em>ld_tdac</em> signal.
+Below is an example for a four pixel row:</p>
+<!-- BEGIN INCLUDE ./tdac/sram_row.md '&lt;!--start--&gt;' '&lt;!--end--&gt;' -->
+<script class="wavedrom" type="WaveDrom">
+    {
+        reg:[
+            {bits: 1,  name: 'Row 0', type: 4},
+            {bits: 4,  name: 'SRAM Pixel 0', type: 3},
+            {bits: 1,  name: 'Row 1', type: 4},
+            {bits: 4,  name: 'SRAM Pixel 1', type: 3},
+            {bits: 1,  name: 'Row 2', type: 4},
+            {bits: 4,  name: 'SRAM Pixel 2', type: 3},
+            {bits: 1,  name: 'Row 3', type: 4},
+            {bits: 4,  name: 'SRAM Pixel 3', type: 3},
+        ], config:{bits: 20}
+    }
+    </script>
+<!-- END INCLUDE -->
+<p>Each of the 16 pixels per row has a 4 bit SRAM cell. The SRAM cells are written row wise, and rows are selected by setting the corresponding row enable bit to 1.</p>
+<p>The 4 bit SRAM per pixel are used to store a 3 bit comparator threshold trimming value and a disable Bit for the hit buffer. The disable Bit can be used to mask hit readout and timestamp capturing for individual pixels.</p>
 <!-- BEGIN INCLUDE ./tdac/sram.md '&lt;!--start--&gt;' '&lt;!--end--&gt;' -->
 <script class="wavedrom" type="WaveDrom">
     {
@@ -1133,34 +1151,17 @@ The comparator offset voltage can be calculator to:
 $$
 V_\text{os} = 65 \text{mV} \frac{I_\text{TDAC, uA}}{I_\text{comp, uA}}
 $$ -->
-<h3 id="writing_1">Writing<a class="headerlink" href="#writing_1" title="Permanent link">¶</a></h3>
+<h3 id="row-writing">Row Writing<a class="headerlink" href="#row-writing" title="Permanent link">¶</a></h3>
 <p>To write a specific SRAM row, the bits have to be written into the TDAC config register with the pattern below.
 In addition to the 4 bit Pixel RAM values, there is a row enable bit, which is set to 1 if the corresponding row should be written.
 Therefore, if multiple rows should receive the same configuration, they can be written at the same time.</p>
-<p>The row length is 5 x 16 bits.
-Below is an example for a four pixel row:</p>
-<!-- BEGIN INCLUDE ./tdac/sram_row.md '&lt;!--start--&gt;' '&lt;!--end--&gt;' -->
-<script class="wavedrom" type="WaveDrom">
-    {
-        reg:[
-            {bits: 1,  name: 'Row 0', type: 4},
-            {bits: 4,  name: 'SRAM Pixel 0', type: 3},
-            {bits: 1,  name: 'Row 1', type: 4},
-            {bits: 4,  name: 'SRAM Pixel 1', type: 3},
-            {bits: 1,  name: 'Row 2', type: 4},
-            {bits: 4,  name: 'SRAM Pixel 2', type: 3},
-            {bits: 1,  name: 'Row 3', type: 4},
-            {bits: 4,  name: 'SRAM Pixel 3', type: 3},
-        ], config:{bits: 20}
-    }
-    </script>
-<!-- END INCLUDE -->
 <p>The write-enable bit <strong>enRAMPCH</strong> has to be set to <strong>1</strong> in the chip configuration.</p>
+<p>After powering up the chip it is useful to disable all offset currents and enable all hit buffers by writing 5b00001 into every one of the 16 pixels.</p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>After power up it is useful to disable all offset currents and enable all hit buffers by writing 16 times 5b00001</p>
+<p>After each row write, it is recommended to write the same RAM bits again with all row bits disabled to avoid glitches.</p>
 </div>
-<h3 id="reading">Reading<a class="headerlink" href="#reading" title="Permanent link">¶</a></h3>
+<h3 id="row-reading">Row Reading<a class="headerlink" href="#row-reading" title="Permanent link">¶</a></h3>
 <p>To read back the RAM values, the following procedure can be used:</p>
 <ol>
 <li>Set enRAMPCH to zero, to disable write driver</li>
@@ -1179,7 +1180,7 @@ Below is an example for a four pixel row:</p>
 <span class="md-icon" title="Last update">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
 </span>
-<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 1, 2026 11:38:14 UTC">March 1, 2026</span>
+<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 2, 2026 12:29:36 UTC">March 2, 2026</span>
 </span>
 </aside>
 </article>
