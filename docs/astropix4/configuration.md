@@ -86,9 +86,13 @@ The chip can be programmed directly via the shift register interface or through 
 {%set n_rowbits = "5 x 16" %}
 <!--tdac-start-->
 ## Row Config
+The row config is stored in a {{n_rowbits}} bit long shift register and applied with the *ld_tdac* signal.
+Below is an example for a four pixel row:
+{% include-markdown "./tdac/sram_row.md" %}
 
-Each Pixel has a 4 bit SRAM cell, storing a 3 bit comparator threshold trimming value and an enable bit for the hit buffer.
-The SRAM cells are written row wise, each of the {{ n_columns }} pixels per row has its dedicated 4 bit SRAM.
+Each of the {{ n_columns }} pixels per row has a 4 bit SRAM cell. The SRAM cells are written row wise, and rows are selected by setting the corresponding row enable bit to 1.
+
+The 4 bit SRAM per pixel are used to store a 3 bit comparator threshold trimming value and a disable Bit for the hit buffer. The disable Bit can be used to mask hit readout and timestamp capturing for individual pixels.
 {% include-markdown "./tdac/sram.md" %}
 
 * To enable the hit buffer set "Hit buffer disable" to 0
@@ -105,23 +109,21 @@ $$
 V_\text{os} = 65 \text{mV} \frac{I_\text{TDAC, uA}}{I_\text{comp, uA}}
 $$ -->
 
-### Writing
+### Row Writing
 
 To write a specific SRAM row, the bits have to be written into the TDAC config register with the pattern below.
 In addition to the 4 bit Pixel RAM values, there is a row enable bit, which is set to 1 if the corresponding row should be written.
 Therefore, if multiple rows should receive the same configuration, they can be written at the same time.
 
-The row length is {{ n_rowbits }} bits.
-Below is an example for a four pixel row:
-
-{% include-markdown "./tdac/sram_row.md" %}
-
 The write-enable bit **enRAMPCH** has to be set to **1** in the chip configuration.
 
-!!! info
-    After power up it is useful to disable all offset currents and enable all hit buffers by writing {{ n_columns }} times 5b00001
+After powering up the chip it is useful to disable all offset currents and enable all hit buffers by writing 5b00001 into every one of the {{ n_columns }} pixels.
 
-### Reading
+!!! info
+    After each row write, it is recommended to write the same RAM bits again with all row bits disabled to avoid glitches.
+
+
+### Row Reading
 To read back the RAM values, the following procedure can be used:
 
 1. Set enRAMPCH to zero, to disable write driver
