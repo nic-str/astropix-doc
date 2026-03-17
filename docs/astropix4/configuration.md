@@ -79,9 +79,6 @@ The chip can be programmed directly via the shift register interface or through 
     end="<!--config_column-end-->"
 %}
 
-!!! warning
-    In AstroPix4 the RAM can be only configured via the SR interface and not via SPI
-
 {%set n_columns = 16 %}
 {%set n_rowbits = "5 x 16" %}
 <!--tdac-start-->
@@ -97,6 +94,8 @@ The 4 bit SRAM per pixel are used to store a 3 bit comparator threshold trimming
 
 * To enable the hit buffer set "Hit buffer disable" to 0
 * TDAC value 0 means no offset current, while 7 means highest offset current
+<!--tdac-stop-->
+* **Due to a design flaw in AstroPix4 the linearity of the TDAC is not good for low VNComp and VPDAC currents. Therefore if TDACs are used, VNCOMP should be at least set to 20.**
 
 <!-- ### Offset voltage calculation
 With Comparator and TDAC offset current
@@ -108,7 +107,7 @@ The comparator offset voltage can be calculator to:
 $$
 V_\text{os} = 65 \text{mV} \frac{I_\text{TDAC, uA}}{I_\text{comp, uA}}
 $$ -->
-
+<!--tdac-start2-->
 ### Row Writing
 
 To write a specific SRAM row, the bits have to be written into the TDAC config register with the pattern below.
@@ -137,4 +136,4 @@ To read back the RAM values, the following procedure can be used:
 9. Perform [SR readback procedure](./configuration.md#readback)
 
 
-<!--tdac-stop-->
+<!--tdac-stop2-->

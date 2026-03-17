@@ -95,3 +95,9 @@ The chip can be programmed directly via the shift register interface or through 
     end="<!--tdac-stop-->"
     rewrite-relative-urls=false
 %}
+
+{% include-markdown "../astropix4/configuration.md"
+    start="<!--tdac-start2-->"
+    end="<!--tdac-stop2-->"
+    rewrite-relative-urls=false
+%}
