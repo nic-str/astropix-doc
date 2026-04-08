@@ -174,5 +174,5 @@
 
 ## Layout GDS
 
-An encrypted zip file containing the GDS with chipedge and labeled Bondpads can be downloaded [here](ap5_pads.zip){:download="ap5_pads.zip"}.  
+An encrypted zip file containing the GDS with chipedge and labeled Bondpads can be downloaded [here](ap5_pads_v2.zip){:download="ap5_pads.zip"}.  
 A recommended GDS viewer is [KLayout](https://www.klayout.de/build.html) (all platform support).
