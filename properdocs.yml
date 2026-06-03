@@ -129,12 +129,13 @@ plugins:
       recursive: true
   - offline
   - search
-  # - git-revision-date-localized
+  - git-revision-date-localized
   - macros
-  - document-dates:
-      position: bottom            # Display position: top(after title) bottom(end of document), default: top
-      type: date
-      show_author: false
+  # Disable because of annoying gravatar and wevatar cdn
+  # - document-dates:
+  #     position: bottom            # Display position: top(after title) bottom(end of document), default: top
+  #     type: date
+  #     show_author: false
   #- to-pdf
 
 # markdown_extensions:
