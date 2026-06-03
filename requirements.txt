@@ -8,5 +8,5 @@ mkdocs-include-markdown-plugin
 # mkdocs-material
 mkdocs-materialx
 mkdocs-to-pdf
-# mkdocs-git-revision-date-localized-plugin
+mkdocs-git-revision-date-localized-plugin
 mkdocs-macros-plugin
