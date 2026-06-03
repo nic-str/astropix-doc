@@ -46,8 +46,6 @@ Two typical configurations are shown for each chip version:
 | 5           | Optimal       | J6=-HV J6, POW6 = 1.8 V, VDD18 = 1.8V, VSSA = 1.2V, VDD33 = 2.7 V | Internally generated | JP1: 1-2                   |
 
 ## Software
-For AstroPix2 to AstroPix4 the recommend software and firmware is [astep-fw branch:dev_richard](https://github.com/AstroPix/astep-fw/tree/dev_richard). The documentation can be found [here](https://astropix.github.io/astep-fw/).
+For AstroPix3 and more recents versions, the recommended software and firmware is [astep-fw branch:dev_richard](https://github.com/AstroPix/astep-fw/tree/dev_richard). The documentation can be found [here](https://astropix.github.io/astep-fw/).
 
-<del>It can also be used for AstroPix4, by using the branch> [dev_nic](https://github.com/AstroPix/astep-fw/tree/dev_nic).</del> Merged into dev_richard.
-
-A legacy software, [astropix-python](https://github.com/AstroPix/astropix-python) together with [astropix-fw](https://github.com/AstroPix/astropix-fw), is available, supporting all chip versions.
+The predecessor of astep-fw, [astropix-python](https://github.com/AstroPix/astropix-python) together with [astropix-fw](https://github.com/AstroPix/astropix-fw), is in maintenance mode.
