@@ -63,3 +63,15 @@
 .rr-output {
   margin-top: 1rem;
 }
+
+#pulseCanvas {
+  width: 1000px;    /* visible size */
+  height: 500px;
+  /* border: 1px solid #ccc; */
+}
+
+:root  > * {
+  --md-primary-fg-color:        #00876c;
+  /* --md-primary-fg-color--light: #ECB7B7;
+  --md-primary-fg-color--dark:  #90030C; */
+}
