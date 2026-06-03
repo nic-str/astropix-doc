@@ -27,9 +27,8 @@ AstroPix3 Layout
 - First 2 columns feature dynamic feedback pixels
 - Third column features NMOS comparator with resistive load
 - Fourth column features NMOS comparator with PMOS load
-- Pixel Dynamic Range 20 keV - 250 keV
+- Pixel Dynamic Range 20 keV - 700 keV
 - Noise Floor 5keV (2%@662keV)
-- Pixel Comparator Outputs Row/Column OR wired
 
 
 ### Matrix Digitisation
