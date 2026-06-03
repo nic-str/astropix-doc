@@ -1,9 +1,12 @@
-mkdocs~=1.6.1
+# mkdocs~=1.6.1
+properdocs
+properdocs-theme-mkdocs
 mkdocs-wavedrom-plugin
 mkdocs-drawio
 mkdocs-glightbox
 mkdocs-include-markdown-plugin
-mkdocs-material
+# mkdocs-material
+mkdocs-materialx
 mkdocs-to-pdf
-mkdocs-git-revision-date-localized-plugin
+# mkdocs-git-revision-date-localized-plugin
 mkdocs-macros-plugin
