@@ -2,11 +2,11 @@
 <html class="no-js" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<link href="injection.html" rel="prev"/>
-<link href="configuration.html" rel="next"/>
+<link href="pixelelectronics.html" rel="prev"/>
+<link href="spi.html" rel="next"/>
 <link href="../ADL_Logo.png" rel="icon"/>
 <meta content="mkdocs-ProperDocs 1.6.7, mkdocs-materialx-10.1.6" name="generator"/>
-<title>PLL and DLL - AstroPix Documentation</title>
+<title>Pixel Readout - AstroPix Documentation</title>
 <link href="../assets/stylesheets/main.9d7f4a96.min.css" rel="stylesheet"/>
 <link href="../assets/stylesheets/palette.a45159b5.min.css" rel="stylesheet"/>
 <script src="../assets/external/unpkg.com/iframe-worker/shim.js"></script>
@@ -29,7 +29,7 @@
 <label class="md-overlay" for="__drawer"></label>
 <label class="md-overlay" for="__toc"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#pll">
+<a class="md-skip" href="#hitbuffer">
           Skip to content
         </a>
 </div>
@@ -53,7 +53,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              PLL and DLL
+              Pixel Readout
             
           </span>
 </div>
@@ -337,10 +337,10 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--section md-nav__item--nested">
-<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_4" type="checkbox"/>
+<li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_4" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
-<a class="md-nav__link" href="../astropix4/index.html">
+<a class="md-nav__link" href="index.html">
 <span class="md-ellipsis">
     
   
@@ -354,138 +354,12 @@
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-expanded="false" aria-labelledby="__nav_4_label" class="md-nav" data-md-level="1">
+<nav aria-expanded="true" aria-labelledby="__nav_4_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_4">
 <span class="md-nav__icon md-icon"></span>
             
   
     AstroPix4 User Guide
-  
-
-          </label>
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="../astropix4/pixelelectronics.html">
-<span class="md-ellipsis">
-    
-  
-    Pixel Electronics
-  
-
-    
-  </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../astropix4/readout.html">
-<span class="md-ellipsis">
-    
-  
-    Pixel Readout
-  
-
-    
-  </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../astropix4/spi.html">
-<span class="md-ellipsis">
-    
-  
-    SPI Interface
-  
-
-    
-  </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../astropix4/dac.html">
-<span class="md-ellipsis">
-    
-  
-    DAC
-  
-
-    
-  </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../astropix4/injection.html">
-<span class="md-ellipsis">
-    
-  
-    Injection
-  
-
-    
-  </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../astropix4/plldll.html">
-<span class="md-ellipsis">
-    
-  
-    PLL and DLL
-  
-
-    
-  </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../astropix4/configuration.html">
-<span class="md-ellipsis">
-    
-  
-    Configuration Registers
-  
-
-    
-  </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../astropix4/pins.html">
-<span class="md-ellipsis">
-    
-  
-    Pins
-  
-
-    
-  </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" id="__nav_5" type="checkbox"/>
-<div class="md-nav__link md-nav__container">
-<a class="md-nav__link" href="index.html">
-<span class="md-ellipsis">
-    
-  
-    AstroPix5 User Guide
-  
-
-    
-  </span>
-</a>
-<label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
-<span class="md-nav__icon md-icon"></span>
-</label>
-</div>
-<nav aria-expanded="true" aria-labelledby="__nav_5_label" class="md-nav" data-md-level="1">
-<label class="md-nav__title" for="__nav_5">
-<span class="md-nav__icon md-icon"></span>
-            
-  
-    AstroPix5 User Guide
   
 
           </label>
@@ -501,6 +375,74 @@
     
   </span>
 </a>
+</li>
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+<span class="md-ellipsis">
+    
+  
+    Pixel Readout
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="readout.html">
+<span class="md-ellipsis">
+    
+  
+    Pixel Readout
+  
+
+    
+  </span>
+</a>
+<nav aria-label="Table of Contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of Contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#hitbuffer">
+<span class="md-ellipsis">
+      
+        Hitbuffer
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#time-over-threshold-calculation">
+<span class="md-ellipsis">
+      
+        Time over Threshold calculation
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#eoc">
+<span class="md-ellipsis">
+      
+        EoC
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#tdc">
+<span class="md-ellipsis">
+      
+        TDC
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="spi.html">
@@ -538,20 +480,8 @@
   </span>
 </a>
 </li>
-<li class="md-nav__item md-nav__item--active">
-<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
-<label class="md-nav__link md-nav__link--active" for="__toc">
-<span class="md-ellipsis">
-    
-  
-    PLL and DLL
-  
-
-    
-  </span>
-<span class="md-nav__icon md-icon"></span>
-</label>
-<a class="md-nav__link md-nav__link--active" href="plldll.html">
+<li class="md-nav__item">
+<a class="md-nav__link" href="plldll.html">
 <span class="md-ellipsis">
     
   
@@ -561,76 +491,6 @@
     
   </span>
 </a>
-<nav aria-label="Table of Contents" class="md-nav md-nav--secondary">
-<label class="md-nav__title" for="__toc">
-<span class="md-nav__icon md-icon"></span>
-      Table of Contents
-    </label>
-<ul class="md-nav__list" data-md-component="toc">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#pll">
-<span class="md-ellipsis">
-      
-        PLL
-      
-    </span>
-</a>
-<nav aria-label="PLL" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#block-diagram">
-<span class="md-ellipsis">
-      
-        Block diagram
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#configuration">
-<span class="md-ellipsis">
-      
-        Configuration
-      
-    </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#dll">
-<span class="md-ellipsis">
-      
-        DLL
-      
-    </span>
-</a>
-<nav aria-label="DLL" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#block-diagram_1">
-<span class="md-ellipsis">
-      
-        Block diagram
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#configuration_1">
-<span class="md-ellipsis">
-      
-        Configuration
-      
-    </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-</ul>
-</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="configuration.html">
@@ -646,6 +506,120 @@
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="pins.html">
+<span class="md-ellipsis">
+    
+  
+    Pins
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--section md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_5" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../astropix5/index.html">
+<span class="md-ellipsis">
+    
+  
+    AstroPix5 User Guide
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_5_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_5">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    AstroPix5 User Guide
+  
+
+          </label>
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../astropix5/pixelelectronics.html">
+<span class="md-ellipsis">
+    
+  
+    Pixel Electronics
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../astropix5/spi.html">
+<span class="md-ellipsis">
+    
+  
+    SPI Interface
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../astropix5/dac.html">
+<span class="md-ellipsis">
+    
+  
+    DAC
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../astropix5/injection.html">
+<span class="md-ellipsis">
+    
+  
+    Injection
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../astropix5/plldll.html">
+<span class="md-ellipsis">
+    
+  
+    PLL and DLL
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../astropix5/configuration.html">
+<span class="md-ellipsis">
+    
+  
+    Configuration Registers
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../astropix5/pins.html">
 <span class="md-ellipsis">
     
   
@@ -678,47 +652,21 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1>PLL and DLL</h1>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>If the PLL is not used, the LVDS Receiver for the external clock must be enabled in the configuration and an appropriate clock must be provided for the chip to work</p>
-<p><strong>External Clock:</strong> Clkmux 0, DisableLVDS 0, VNCp: x, VNVCO: 0<br/>
-<strong>Internal Clock:</strong> Clkmux 1, DisableLVDS 1, VNCp: 10, VNVCO: 0</p>
-</div>
-<h2 id="pll">PLL<a class="headerlink" href="#pll" title="Permanent link">¶</a></h2>
-<p>Since version 4, AstroPix features an integrated Third-Order Type-2 PLL used to generate a 20 MHz clock from an externally provided 2.5 MHz Reference Clock.
-$$
-F_{\text{OutClk}} = 8 F_{\text{RefClk}}
-$$</p>
-<h3 id="block-diagram">Block diagram<a class="headerlink" href="#block-diagram" title="Permanent link">¶</a></h3>
-<p>It is a single-ended design using TSPC logic in the high frequency parts to reduce the power consumption. The 9-stage current starved VCO is current-controlled through a V-I Converter, used to reduce the VCO Gain and effectively reducing phase noise. The coarse control current can be further controlled by VNVCO current.</p>
-<figure>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="100%" href="../images/astropix5/pll.png"><img alt="PLL Diagram" src="../images/astropix5/pll.png" width="1000px"/></a></p>
-<figcaption>
-<p>Block Diagram of Third-Order Type-2 PLL to generate a x8 faster clock</p>
-</figcaption>
-</figure>
-<h3 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">¶</a></h3>
-<p>To use the PLL clock, the clock multiplexer bit in the chip configuration has to be set to 1. The only current which needs to be configured for the PLL to work is the charge pump current set by VNCp, a lower value reduces phase noise but increase the lock time, which fortunately is not important in this application. A good starting point is a current of 2.5 <span class="arithmatex">\(\mu\)</span>A i.e. a VNCp setting of 10. VNVCO can be usually set to 0.</p>
-<h2 id="dll">DLL<a class="headerlink" href="#dll" title="Permanent link">¶</a></h2>
-<p>It also features an integrated DLL used to regulate the total delay line consisting of 16 delay elements to the reference clock period.
-The delay line is an exact replica of the delay line used in the per-Pixel TDCs, therefore allowing the regulation of the TDC delay.</p>
-<h3 id="block-diagram_1">Block diagram<a class="headerlink" href="#block-diagram_1" title="Permanent link">¶</a></h3>
-<p>It is also a single-ended design including a startup controller to prevent harmonic lock and stuck state from being outside the lock-in range.
-The control bias voltage for the delay lines is replicated to not influence the filter pole and stability by the load capacitance of the circuit.</p>
-<figure>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="100%" href="../images/astropix5/dll.png"><img alt="DLL Diagram" src="../images/astropix5/dll.png" width="1000px"/></a></p>
-<figcaption>
-<p>Block Diagram of the DLL with startup controller to control the total delay of the TDCs</p>
-</figcaption>
-</figure>
-<p>The delay of a single delay element can be calculated by:
-$$
-T_{\text{delaycell}} = \dfrac{1}{F_{\text{OutClk}} 16}
-$$</p>
-<p>This results in a delay of 3.125 ns for a single delay element at a clock speed of 20 MHz.</p>
-<h3 id="configuration_1">Configuration<a class="headerlink" href="#configuration_1" title="Permanent link">¶</a></h3>
-<p>The only current which needs to be configured for the DLL to work is the charge pump current set by VNCp, which also used by the <a href="#configuration">PLL</a>.</p>
+<h1>Pixel Readout</h1>
+<h2 id="hitbuffer">Hitbuffer<a class="headerlink" href="#hitbuffer" title="Permanent link">¶</a></h2>
+<!--ap4_tot_calc-start-->
+<h2 id="time-over-threshold-calculation">Time over Threshold calculation<a class="headerlink" href="#time-over-threshold-calculation" title="Permanent link">¶</a></h2>
+<p>The ToT in seconds can be calculated by subtracting the leading edge timestamp <span class="arithmatex">\(\text{TS}_1\)</span> from the trailing edge timestamp <span class="arithmatex">\(\text{TS}_2\)</span>.</p>
+<div class="arithmatex">\[
+\text{T}_\text{tot} = ( \text{TS}_2 - \text{TS}_1 ) \text{T}_\text{clk,20}
+\]</div>
+<p>If the result is negative <span class="arithmatex">\(\text{T}_\text{tot} &lt; 0\)</span>, which can happen if <span class="arithmatex">\(\text{TS}_2\)</span> wraps over and is finally smaller than <span class="arithmatex">\(\text{TS}_1\)</span>, a correction factor of <span class="arithmatex">\(2^{\text{N,TSbits}}\)</span> needs to be added:</p>
+<div class="arithmatex">\[
+\text{T}_\text{tot} = \text{T}_\text{tot} + 2^{17}
+\]</div>
+<!--ap4_tot_calc-stop-->
+<h2 id="eoc">EoC<a class="headerlink" href="#eoc" title="Permanent link">¶</a></h2>
+<h2 id="tdc">TDC<a class="headerlink" href="#tdc" title="Permanent link">¶</a></h2>
 </article>
 </div>
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>

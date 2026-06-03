@@ -375,7 +375,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../astropix4/readout.md">
+<a class="md-nav__link" href="../astropix4/readout.html">
 <span class="md-ellipsis">
     
   
@@ -596,8 +596,22 @@
 <article class="md-content__inner md-typeset">
 <h1>Readout</h1>
 <h2 id="hitbuffer">Hitbuffer<a class="headerlink" href="#hitbuffer" title="Permanent link">¶</a></h2>
+<!-- BEGIN INCLUDE ../astropix4/readout.md '&lt;!--ap4_tot_calc-start--&gt;' '&lt;!--ap4_tot_calc--&gt;' -->
+<h2 id="time-over-threshold-calculation">Time over Threshold calculation<a class="headerlink" href="#time-over-threshold-calculation" title="Permanent link">¶</a></h2>
+<p>The ToT in seconds can be calculated by subtracting the leading edge timestamp <span class="arithmatex">\(\text{TS}_1\)</span> from the trailing edge timestamp <span class="arithmatex">\(\text{TS}_2\)</span>.</p>
+<div class="arithmatex">\[
+\text{T}_\text{tot} = ( \text{TS}_2 - \text{TS}_1 ) \text{T}_\text{clk,20}
+\]</div>
+<p>If the result is negative <span class="arithmatex">\(\text{T}_\text{tot} &lt; 0\)</span>, which can happen if <span class="arithmatex">\(\text{TS}_2\)</span> wraps over and is finally smaller than <span class="arithmatex">\(\text{TS}_1\)</span>, a correction factor of <span class="arithmatex">\(2^{\text{N,TSbits}}\)</span> needs to be added:</p>
+<div class="arithmatex">\[
+\text{T}_\text{tot} = \text{T}_\text{tot} + 2^{17}
+\]</div>
+<!--ap4_tot_calc-stop-->
 <h2 id="eoc">EoC<a class="headerlink" href="#eoc" title="Permanent link">¶</a></h2>
 <h2 id="tdc">TDC<a class="headerlink" href="#tdc" title="Permanent link">¶</a></h2>
+<!-- END INCLUDE -->
+<h2 id="eoc_1">EoC<a class="headerlink" href="#eoc_1" title="Permanent link">¶</a></h2>
+<h2 id="tdc_1">TDC<a class="headerlink" href="#tdc_1" title="Permanent link">¶</a></h2>
 </article>
 </div>
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
