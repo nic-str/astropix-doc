@@ -37,7 +37,7 @@
 | B2  | subdpads | HV     | Power | Don't connect |
 | B3  | gnda!    |        | Power |               |
 | B4  | vdda!    | 1.8 V  | Power |               |
-| B5  | sample_clock_p     |        | Input           | LVDS <200 MHz Clock for ToT counter<br>  (Connect to gnd! if Single ended clock is used) - P/N can be swapped
+| B5  | sample_clock_p     |        | Input           | LVDS <200 MHz Clock for ToT counter<br>  (Connect to gnd! if Single ended clock is used) - P/N can be swapped |
 | B6  | sample_clock_n     |        | Input           | LVDS <200 MHz Clock for ToT counter<br>  (Connect to vdd! if Single ended clock is used) - P/N can be swapped             |
 | B7  | vdd!               | 1.8 V  | Power   |               |
 | B8  | gnd!               |        | Power   |               |
@@ -78,8 +78,8 @@
 | B43 | ring2              |        | Power   |               |
 | B44 | ring3              |        | Power   |               |
 | B45 | ring4              |        | Power   |               |
-| L1  | SPI_left_MISO1     |        | Output              | SPI Peripheral MISO1                                                                                   |
-| L2  | SPI_left_MISO0     |        | Output              | SPI Peripheral MISO0                                                                                   |
+| L1  | SPI_left_MISO1     |        | Output, HiZ if SPI_left_CSN is high              | SPI Peripheral MISO1                                                                                   |
+| L2  | SPI_left_MISO0     |        | Output, HiZ if SPI_left_CSN is high              | SPI Peripheral MISO0                                                                                   |
 | L3  | SPI_left_MOSI      |        | Input               | SPI Peripheral MOSI                                                                                    |
 | L4  | SPI_left_CLK       |        | Input               | SPI Clock input                                                                                        |
 | L5  | SPI_left_CSN       |        | Input               | SPI Chip Select (active-low) input                                                                     |

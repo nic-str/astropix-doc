@@ -112,8 +112,8 @@
 | B70 | gnd!              |        | Power                                                          |             |
 | B71 | hv_ring           |        | Power                                                          |             |
 |     |                   |        |                                                                |             |
-| L1  | spi_left_MISO1    |        | Output                                                         |             |
-| L2  | spi_left_MISO0    |        | Output                                                         |             |
+| L1  | spi_left_MISO1    |        | Output, HiZ if SPI_left_CSN is high                                                         |             |
+| L2  | spi_left_MISO0    |        | Output, HiZ if SPI_left_CSN is high                                                         |             |
 | L3  | spi_left_MOSI     |        | Input                                                          |             |
 | L4  | spi_left_CLK      |        | Input                                                          |             |
 | L5  | spi_left_CSN      |        | Input                                                          |             |
