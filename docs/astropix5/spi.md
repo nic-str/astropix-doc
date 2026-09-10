@@ -48,6 +48,8 @@ SPI commands generate this sequence as follows:
 - At the end of the sequence, send a byte with bit[1] = 1 to generate the required Load signal, in this case for the digital config
 - When the frame ends, the Load signal returns to 0
 
+To configure one of the shift registers apart from digital config, the according bit from the diagram below has to be set in addition to bit[1] = 1.
+As an example, to load the pulsegen configuration, the correct MOSI data would be `8'b00010010`.
 {% include-markdown "../astropix5/spi/format_packet_sr.md" %}
 
 
