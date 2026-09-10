@@ -917,6 +917,8 @@ Each bit on the SIN line is clocked through the shift register by toggling Clock
 <li>At the end of the sequence, send a byte with bit[1] = 1 to generate the required Load signal, in this case for the digital config</li>
 <li>When the frame ends, the Load signal returns to 0</li>
 </ul>
+<p>To configure one of the shift registers apart from digital config, the according bit from the diagram below has to be set in addition to bit[1] = 1.
+As an example, to load the pulsegen configuration, the correct MOSI data would be <code>8'b00010010</code>.</p>
 <!-- BEGIN INCLUDE ../astropix5/spi/format_packet_sr.md '&lt;!--start--&gt;' '&lt;!--end--&gt;' -->
 <script class="wavedrom" type="WaveDrom">
     {
