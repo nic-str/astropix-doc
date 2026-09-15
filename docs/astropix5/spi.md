@@ -44,14 +44,13 @@ Each bit on the SIN line is clocked through the shift register by toggling Clock
 SPI commands generate this sequence as follows:
 
 - The first byte contains the 0x3 command and the target chip or broadcast ID
-- Each subsequent byte shifts a 0 or 1 into the shift register. The LSB of each byte is used for Serial In (`8'bxxxxxxx1` or `8'bxxxxxxx0`)
+- Each subsequent byte shifts a 0 or 1 into the shift register. The LSB of each byte is used for Serial In ( 1 = `8'b00000001` and 0 = `8'b00000000`)
 - At the end of the sequence, send a byte with bit[1] = 1 to generate the required Load signal, in this case for the digital config
 - When the frame ends, the Load signal returns to 0
 
 To configure one of the shift registers apart from digital config, the according bit from the diagram below has to be set in addition to bit[1] = 1.
 As an example, to load the pulsegen configuration, the correct MOSI data would be `8'b00010010`.
 {% include-markdown "../astropix5/spi/format_packet_sr.md" %}
-
 
 ## Reading from the Front-End (FE)
 
