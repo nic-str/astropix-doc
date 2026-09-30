@@ -7,7 +7,7 @@ mkdocs-glightbox
 mkdocs-include-markdown-plugin
 # mkdocs-material
 mkdocs-materialx
-nkdocs-document-dates @ git+https://github.com/nic-str/mkdocs-document-dates@main
+mkdocs-document-dates @ git+https://github.com/nic-str/mkdocs-document-dates@main
 mkdocs-to-pdf
 mkdocs-git-revision-date-localized-plugin
 mkdocs-macros-plugin
