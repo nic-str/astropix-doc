@@ -1,6 +1,6 @@
 site_name: AstroPix Documentation
-# nav:
-#   - .
+site_description: User Documentation of the AstroPix HVMAPS family
+# site_url: http://127.0.0.1:8000/
 nav:
   - Getting Started:
     - index.md
@@ -23,7 +23,7 @@ nav:
   - AstroPix4 User Guide:
     - astropix4/index.md
     - Pixel Electronics: astropix4/pixelelectronics.md
-    - Pixel Readout: astropix4/readout.md
+    - Matrix Readout: astropix4/readout.md
     - SPI Interface: astropix4/spi.md
     - DAC: astropix4/dac.md
     - Injection: astropix4/injection.md
@@ -33,6 +33,7 @@ nav:
   - AstroPix5 User Guide:
     - astropix5/index.md
     - Pixel Electronics: astropix5/pixelelectronics.md
+    - Matrix Readout: astropix5/readout.md
     - SPI Interface: astropix5/spi.md
     - DAC: astropix5/dac.md
     - Injection: astropix5/injection.md
@@ -131,12 +132,21 @@ plugins:
   - search
   - git-revision-date-localized
   - macros
-  # Disable because of annoying gravatar and wevatar cdn
-  # - document-dates:
-  #     position: bottom            # Display position: top(after title) bottom(end of document), default: top
-  #     type: date
-  #     show_author: false
+  # - llmstxt:
+  #     markdown_description: AstroPix User Documentation
+  #     full_output: llms-full.txt
+  #     sections:
+  #       Usage documentation:
+  #       - index.md: Main documentation page
+  #       - astropix3/*.md
+  #       - astropix4/*.md
+  #       - astropix5/*.md
+  #       - setup/*.md
   #- to-pdf
+  - document-dates:
+      position: bottom            # Display position: top(after title) bottom(end of document), default: top
+      type: date
+      show_author: false
 
 # markdown_extensions:
 #   - pymdownx.snippets:
