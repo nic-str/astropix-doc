@@ -11,3 +11,4 @@ mkdocs-document-dates @ git+https://github.com/nic-str/mkdocs-document-dates@mai
 mkdocs-to-pdf
 mkdocs-git-revision-date-localized-plugin
 mkdocs-macros-plugin
+mkdocs-llmstxt

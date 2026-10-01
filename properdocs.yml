@@ -1,6 +1,7 @@
 site_name: AstroPix Documentation
 site_description: User Documentation of the AstroPix HVMAPS family
-# site_url: http://127.0.0.1:8000/
+# edit_uri: edit/main/docs/
+# repo_url: https://github.com/nic-str/astropix-doc
 nav:
   - Getting Started:
     - index.md
@@ -132,16 +133,16 @@ plugins:
   - search
   - git-revision-date-localized
   - macros
-  # - llmstxt:
-  #     markdown_description: AstroPix User Documentation
-  #     full_output: llms-full.txt
-  #     sections:
-  #       Usage documentation:
-  #       - index.md: Main documentation page
-  #       - astropix3/*.md
-  #       - astropix4/*.md
-  #       - astropix5/*.md
-  #       - setup/*.md
+  - llmstxt:
+      markdown_description: AstroPix User Documentation
+      full_output: llms-full.txt
+      sections:
+        Usage documentation:
+        - index.md: Main documentation page
+        - astropix3/*.md: AstroPix3
+        - astropix4/*.md: AstroPix4
+        - astropix5/*.md: AstroPix5
+        - setup/setup.md: Measurement Setup
   #- to-pdf
   - document-dates:
       position: bottom            # Display position: top(after title) bottom(end of document), default: top
