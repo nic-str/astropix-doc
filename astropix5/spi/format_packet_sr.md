@@ -1,0 +1,15 @@
+```
+    {
+        reg:[
+            {bits: 1,  name: 'SIN', type: 2},
+            {bits: 1,  name: 'Load DigConfig', type: 3},
+            {bits: 1,  name: 'Load ColConfig', type: 3},
+            {bits: 1,  name: 'Load TDAC', type: 3},
+            {bits: 1,  name: 'Load Pulsegen', type: 3},
+            {bits: 2,  name: 'Unused', type: 0},
+            {bits: 1,  name: 'Readback', type: 4},
+        ], config:{bits: 8, vflip: false}
+    }
+```
+
+2025-12-222026-09-15

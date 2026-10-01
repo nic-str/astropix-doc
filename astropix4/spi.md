@@ -1,0 +1,240 @@
+# SPI Daisychain Interface
+
+The AstroPix4 SPI Interface is an enhanced version of the [SPI Interface of AstroPix3](https://github.com/nic-str/astropix-doc/astropix3/spi.html).
+
+The main differences are:
+
+- One 8 Byte frame per hit instead of two 5 Byte frames
+
+## Controlling FE
+
+AstroPix receives commands via the MOSI line, using the following 8-bit format:
+
+```
+    {
+        reg:[
+            {bits: 5,  name: 'Chip Address (5b)', type: 4},
+            {bits: 3,  name: 'Command (3b)', type: 3},
+        ], config:{bits: 8}
+    }
+```
+
+All valid commands are summarized in the table below:
+
+| BIT   | Field   | Description                                                                         |
+| ----- | ------- | ----------------------------------------------------------------------------------- |
+| [4:0] | Address | 0x00 - 0x14 : Single addresses 0x15 - 0x1F : Reserved 0x1D: Invalid 0x1E: Broadcast |
+| [7:5] | Command | 0x01 - NOCMD / IDLE 0x02 - Routing: dispatch 0x03 - Shift Register Config addresses |
+
+The IDLE byte represents no specific command and uses an invalid address: 0x1D for the address and 0x1 for IDLE, resulting in **0x3D**.
+
+```
+    {
+        reg:[
+            {bits: 5,  name: '0x1D', type: 4, attr: "Address"},
+            {bits: 3,  name: '0x1', type: 3, attr: "Command"},
+        ], config:{bits: 8}
+    }
+```
+
+### Commands
+
+| COMMAND | NAME                  | LENGTH  | DESCRIPTION                                                                                                                                                                                                                                             |
+| ------- | --------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 0x01    | NOCMD                 | 1 Byte  | No Operation                                                                                                                                                                                                                                            |
+| 0x02    | Address Config        | 1 Byte  | Sets the chip address. The chip forwards the command to the next chip with Address = Address + 1. To configure addresses, start with chip "00" by sending 0x40, then send IDLE bytes to keep the clock active and propagate the address down the chain. |
+| 0x03    | Shift Register Config | N Bytes | Uses the entire SPI frame for shift register configuration. SPI Chip Select must be toggled to send a new command.                                                                                                                                      |
+| 0x04    | Heartbeat             | 1 Byte  | Request Heartbeat Package from chip via Address or from all chips via Broadcast 0x1E                                                                                                                                                                    |
+| 0x05    | ADC Readout           | 1 Byte  | Request acquisition of 8 voltages (2 temperature sensors and 6 bias voltage) from on-chip ADC                                                                                                                                                           |
+
+### Shift Register I/O and SPI Command
+
+The SPI SR command is a module, which internally drives the [configuration shift register](https://github.com/nic-str/astropix-doc/astropix4/configuration.html#shift-register-sr-interface), consisting of two clocks, a serial input (SIN), and a load signal to load bits into the registers. Each bit on the SIN line is clocked through the shift register by toggling Clock 1 and Clock 2 separately. The diagram below illustrates a 3-bit register configuration:
+
+```
+    { signal : [
+        {name: 'Ck1',    wave: '0.10..10..10...'},
+        {name: 'Ck2',     wave: '0...10..10..10.'},
+        {name: 'SIN',     wave: 'x5..x5..x5..x..', data: ['Bit 0','Bit 1', 'Bit 2']},
+        {name: 'Load',   wave: '0............10'},
+    ], config:{hscale: 2}
+}
+```
+
+SPI commands generate this sequence as follows:
+
+- The first byte contains the 0x3 command and the target chip or broadcast ID
+- Each subsequent byte shifts a 0 or 1 into the shift register. The LSB of each byte is used for Serial In ( 1 = `8'b00000001` and 0 = `8'b00000000`)
+- At the end of the sequence, send a byte with bit[1] = 1 to generate the required Load signal, in this case for the digital config
+- When the frame ends, the Load signal returns to 0
+
+To configure one of the shift registers apart from digital config, the according bit from the diagram below has to be set in addition to bit[1] = 1. As an example, to load the pulsegen configuration, the correct MOSI data would be `8'b00010010`.
+
+```
+    {
+        reg:[
+            {bits: 1,  name: 'SIN', type: 2},
+            {bits: 1,  name: 'Load DigConfig', type: 3},
+            {bits: 1,  name: 'Load ColConfig', type: 3},
+            {bits: 1,  name: 'Load TDAC', type: 3},
+            {bits: 1,  name: 'Load Pulsegen', type: 3},
+            {bits: 2,  name: 'Unused', type: 0},
+            {bits: 1,  name: 'Readback', type: 4},
+        ], config:{bits: 8, vflip: false}
+    }
+```
+
+## Reading from the Front-End (FE)
+
+The APS-to-FE path differs from the FE-to-APS path, as it does not process commands. Its sole function is to forward packets down the chain and arbitrate between forwarded packets and those generated by the local readout.
+
+The data format on this path uses a header that includes the Chip ID and a length field, allowing the Arbiter to transmit complete frames without splitting them.
+
+### Hit Packet
+
+A single hit generates a single data frames, which is different to the 2 row and column half hits generated by AstroPix3.
+
+Each frame consists of 7 bytes:
+
+```
+    {
+        reg:[
+            {bits: 8,  name: 'Header', type: 2},
+            {bits: 5,  name: 'Row [4:0]', type: 3},
+            {bits: 5,  name: 'Col [4:0]', type: 3},
+            {bits: 18,  name: 'TS1 Neg, TS1 [16:0]', type: 4},
+            {bits: 5,  name: 'TS1 TDC', type: 4},
+            {bits: 18,  name: 'TS2 Neg, TS2 [16:0]', type: 5},
+            {bits: 5,  name: 'TS2 TDC', type: 5},
+        ], config:{bits: 64, vflip: true}
+    }
+```
+
+#### Header Byte
+
+```
+    {
+        reg:[
+            {bits: 3,  name: 'Payload (3b)', type: 2},
+            {bits: 5,  name: 'Chip Address (5b)', type: 2},
+        ], config:{bits: 8}
+    }
+```
+
+- Chip address is set by the routing byte
+- Payload length indicates the number of bytes following the header
+
+#### Hit Location
+
+The hit location is a 5 bit binary column and row address sent within the two first bytes after the header.
+
+## Readout procedure
+
+Note
+
+If the chip is not configured and the SPI clock is toggled, you will likely see the [no data case](https://github.com/nic-str/astropix-doc/astropix4/spi.html#no-data-available), where the chip responds with IDLE bytes. In some cases, you may also receive data generated by noise hits, unless hold is active. If you do not receive any data from the chip, check the physical SPI connection.
+
+### Readout Sequence
+
+- Activate the Timestamp Clock and if the integrated PLL is not used also the ToT clocks.
+- Send the Routing Byte through the daisy-chain to assign chip IDs
+- Send the Shift Register configuration command to configure the chips
+- Wait for the interrupt falling edge, with the SPI clock deactivated
+- When the interrupt is asserted, start the SPI clock to send dummy bytes (e.g., IDLE 0x3D) to initiate readout
+- Continue sending dummy bytes until the interrupt is deasserted
+- Deactivate SPI clock again to save power
+
+### Data available for readout
+
+```
+    { signal : [
+        {name: 'ResetN',      wave: '10.1.|..............................'},
+        {name: 'hold',        wave: '0....|..............................'},
+        {name: 'Interrupt',   wave: 'x1...|.0............................'},
+        {},
+        {name: 'SPI CLK',     wave: '0....|......p.......................'},
+        {name: 'SPI MOSI',    wave: 'xxxxx|x.....2.......2.......2.......', data: ['IDLE 0x3D','IDLE 0x3D', 'IDLE 0x3D']},
+        {name: 'SPI CSN',     wave: '1....|...0..........................'},
+        {name: 'SPI MISO[0]', wave: 'z....|...1..3...3...4...4...4...4...', data: ['IDLE Bit 0,2,4,6','IDLE Bit 0,2,4,6', 'HEADER Bit 0,2,4,6', 'Hit Location Bit 0,2,4,6', 'ToA Bit 0,2,4,6', 'ToT Bit 0,2,4,6']},
+        {name: 'SPI MISO[1]', wave: 'z....|...0..3...3...4...4...4...4...', data: ['IDLE Bit 1,3,5,7','IDLE Bit 1,3,5,7', 'HEADER Bit 1,3,5,7', 'Hit Location Bit 1,3,5,7', 'ToA Bit 1,3,5,7','ToT Bit 1,3,5,7']},
+    ]
+}
+```
+
+### No data available
+
+This timing diagram shows the case when hold is low and interrupt is inactive, the chip returns only IDLE bytes because there is no hit data.
+
+```
+    { signal : [
+        {name: 'ResetN',      wave: '10.1.|..............................'},
+        {name: 'hold',        wave: '0....|..............................'},
+        {name: 'Interrupt',   wave: 'x1...|..............................'},
+        {},
+        {name: 'SPI CLK',     wave: '0....|......p.......................'},
+        {name: 'SPI MOSI',    wave: 'xxxxx|x.....2.......2.......2.......', data: ['IDLE 0x3D','IDLE 0x3D', 'IDLE 0x3D']},
+        {name: 'SPI CSN',     wave: '1....|...0..........................'},
+        {name: 'SPI MISO[0]', wave: 'z....|...1..3...3...3...3...3...3...', data: ['IDLE Bit 0,2,4,6','IDLE Bit 0,2,4,6', 'IDLE Bit 0,2,4,6', 'IDLE Bit 0,2,4,6', 'IDLE Bit 0,2,4,6', 'IDLE Bit 0,2,4,6']},
+        {name: 'SPI MISO[1]', wave: 'z....|...0..3...3...3...3...3...3...', data: ['IDLE Bit 1,3,5,7','IDLE Bit 1,3,5,7', 'IDLE Bit 1,3,5,7', 'IDLE Bit 1,3,5,7', 'IDLE Bit 1,3,5,7','IDLE Bit 1,3,5,7']},
+    ]
+}
+```
+
+### Hold active
+
+This timing diagram shows the case when hold is active and interrupt is active, the chip returns only IDLE bytes instead of sending out hit data.
+
+```
+    { signal : [
+        {name: 'ResetN',      wave: '10.1.|..............................'},
+        {name: 'hold',        wave: '0....|...1..........................'},
+        {name: 'Interrupt',   wave: 'x1...|.0............................'},
+        {},
+        {name: 'SPI CLK',     wave: '0....|......p.......................'},
+        {name: 'SPI MOSI',    wave: 'xxxxx|x.....2.......2.......2.......', data: ['IDLE 0x3D','IDLE 0x3D', 'IDLE 0x3D']},
+        {name: 'SPI CSN',     wave: '1....|...0..........................'},
+        {name: 'SPI MISO[0]', wave: 'z....|...1..3...3...3...3...3...3...', data: ['IDLE Bit 0,2,4,6','IDLE Bit 0,2,4,6', 'IDLE Bit 0,2,4,6', 'IDLE Bit 0,2,4,6', 'IDLE Bit 0,2,4,6', 'IDLE Bit 0,2,4,6']},
+        {name: 'SPI MISO[1]', wave: 'z....|...0..3...3...3...3...3...3...', data: ['IDLE Bit 1,3,5,7','IDLE Bit 1,3,5,7', 'IDLE Bit 1,3,5,7', 'IDLE Bit 1,3,5,7', 'IDLE Bit 1,3,5,7','IDLE Bit 1,3,5,7']},
+    ]
+}
+```
+
+## Readout Rate Considerations
+
+To select a safe minimum SPI clock frequency, both the expected hit volume and the maximum acceptable readout latency must be considered. The formulas below give minimum values, include an appropriate safety margin when choosing the operating point. Note that the ToA timestamp is 17 bits wide and the daisy-chain arbiter does prioritize forwarded data; both factors relax the required SPI throughput compared to [AstroPix3](https://github.com/nic-str/astropix-doc/astropix3/spi.html#readout-rate-considerations).
+
+### Minimum Data Rate
+
+Assuming a maximum hit rate HR, the peak data rate for a row of n chips is $$ \\text{DR} = n \\cdot \\textnormal{HR} \\cdot 8 ~\\text{Byte} $$
+
+Assuming n = 20 and a maximum hit rate HR of 10 Hz/sensor, the data rate DR is 12.8 Kbit/s, requiring a minimum SPI clock frequency of 7 kHz.
+
+### Latency Requirements
+
+Let n be the number of chips in a row and RR the readout rate (RR is twice the SPI clock frequency, as there are 2 MISO lines). The minimum readout latency for a hit originating at the last chip in the row, when only that chip has a hit, is $$ t\_{\\text{lat, single hit}} = \\dfrac{8 ~\\text{Byte} + 2 ~\\text{Byte}\\cdot (n-1)}{\\text{RR}} $$
+
+If every chip in the row has a stored hit, the minimum latency becomes $$ t\_{\\text{lat, all hits}} = \\dfrac{8 ~\\text{Byte}\\cdot n}{\\text{RR}} $$
+
+This latency must be shorter than the wrap time of the 17 bit time-of-arrival counter $$ t\_{\\text{lat}} < 2^{17} ~T\_{\\text{ckts}} $$ where (T\_\\textnormal{ckts}) is the timestamp clock period.
+
+Using (T\_\\textnormal{ckts} = 1/f\_\\textnormal{ckts}) = 1/(20 MHz) and n = 20 gives the following practical numbers: the single-hit case requires RR ~ 56 kbit/s (SPI clock = 28 kHz). In the case where every chip has a stored hit, RR ~ 195 kbit/s (SPI clock = 98 kHz).
+
+If a slower timestamp clock can be tolerated, the required SPI clock frequency can be reduced accordingly.
+
+### Calculator
+
+### Readout Rate Calculator
+
+Number of chips (n):
+
+Hit rate per chip (HR) \[Hz\]:
+
+Timestamp clock period Tckts \[s\]:
+
+(default = 1 / (20 MHz) = 50 ns)
+
+Calculate
+
+______________________________________________________________________
+
+2026-02-062026-03-01
