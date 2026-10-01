@@ -11,6 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       CI: true
+      SITE_URL: https://github.com/nic-str/astropix-doc
     steps:
       - uses: actions/checkout@v7
         with:

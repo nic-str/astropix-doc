@@ -2,6 +2,7 @@ site_name: AstroPix Documentation
 site_description: User Documentation of the AstroPix HVMAPS family
 # edit_uri: edit/main/docs/
 # repo_url: https://github.com/nic-str/astropix-doc
+site_url: !ENV [SITE_URL, http://localhost:8000]
 nav:
   - Getting Started:
     - index.md
