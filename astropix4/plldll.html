@@ -44,6 +44,14 @@
         </a>
 </div>
 <div data-md-component="announce">
+<aside class="md-banner">
+<div class="md-banner__inner md-grid md-typeset">
+<!-- Hier kommt Ihr Banner-Text oder HTML-Code hin -->
+The documentation has moved to <strong><a href="https://kit-adl.codeberg.page/astropix-doc/">https://kit-adl.codeberg.page/astropix-doc/</a></strong>.<br/>
+This page is no longer maintained and may be disabled in the future.
+
+          </div>
+</aside>
 </div>
 <header class="md-header md-header--shadow" data-md-component="header">
 <nav aria-label="Header" class="md-header__inner md-grid">
@@ -715,7 +723,7 @@ $$</p>
 <h3 id="block-diagram">Block diagram<a class="headerlink" href="#block-diagram" title="Permanent link">¶</a></h3>
 <p>It is a single-ended design using TSPC logic in the high frequency parts to reduce the power consumption. The 9-stage current starved VCO is current-controlled through a V-I Converter, used to reduce the VCO Gain and effectively reducing phase noise. The coarse control current can be further controlled by VNVCO current.</p>
 <figure>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="100%" href="../images/astropix5/pll.png"><img alt="PLL Diagram" src="../images/astropix5/pll.png" width="1000px"/></a></p>
+<p></p>
 <figcaption>
 <p>Block Diagram of Third-Order Type-2 PLL to generate a x8 faster clock</p>
 </figcaption>
@@ -729,7 +737,7 @@ The delay line is an exact replica of the delay line used in the per-Pixel TDCs,
 <p>It is also a single-ended design including a startup controller to prevent harmonic lock and stuck state from being outside the lock-in range.
 The control bias voltage for the delay lines is replicated to not influence the filter pole and stability by the load capacitance of the circuit.</p>
 <figure>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="100%" href="../images/astropix5/dll.png"><img alt="DLL Diagram" src="../images/astropix5/dll.png" width="1000px"/></a></p>
+<p></p>
 <figcaption>
 <p>Block Diagram of the DLL with startup controller to control the total delay of the TDCs</p>
 </figcaption>
