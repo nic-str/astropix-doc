@@ -19,6 +19,7 @@ jobs:
           sparse-checkout: |
             docs
             includes
+            overrides
             mkdocs.yml
             requirements.txt
       - name: Configure Git Credentials
